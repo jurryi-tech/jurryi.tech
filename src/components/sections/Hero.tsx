@@ -178,7 +178,7 @@ export default function Hero() {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-[150vh] w-full overflow-hidden"
+      className="relative min-h-screen w-full overflow-hidden"
       style={{
         background: "linear-gradient(180deg, #F3EFE8 0%, #FDFBF7 60%)",
       }}

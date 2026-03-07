@@ -329,7 +329,7 @@ function Fig3({ containerRef }: { containerRef: React.RefObject<HTMLDivElement |
       {/* Input layer nodes */}
       {inputYs.map((y, i) => (
         <g key={`in-${i}`}>
-          <circle className="draw-path" cx={inputX} cy={y} r="12" stroke={GOLD} strokeWidth="1.5" />
+          <circle cx={inputX} cy={y} r="12" fill="white" stroke={GOLD} strokeWidth="1.5" />
           <text x={inputX - 22} y={y + 4} textAnchor="end" fontSize="9" fontFamily="'IBM Plex Mono', monospace" fill={STROKE_COLOR}>
             {inputLabels[i]}
           </text>
@@ -338,18 +338,18 @@ function Fig3({ containerRef }: { containerRef: React.RefObject<HTMLDivElement |
 
       {/* Hidden layer 1 nodes */}
       {hidden1Ys.map((y, i) => (
-        <circle key={`h1-${i}`} className="draw-path" cx={hidden1X} cy={y} r="12" stroke={STROKE_COLOR} strokeWidth="1.5" />
+        <circle key={`h1-${i}`} cx={hidden1X} cy={y} r="12" fill="white" stroke={STROKE_COLOR} strokeWidth="1.5" />
       ))}
 
       {/* Hidden layer 2 nodes */}
       {hidden2Ys.map((y, i) => (
-        <circle key={`h2-${i}`} className="draw-path" cx={hidden2X} cy={y} r="12" stroke={STROKE_COLOR} strokeWidth="1.5" />
+        <circle key={`h2-${i}`} cx={hidden2X} cy={y} r="12" fill="white" stroke={STROKE_COLOR} strokeWidth="1.5" />
       ))}
 
       {/* Output layer nodes */}
       {outputYs.map((y, i) => (
         <g key={`out-${i}`}>
-          <circle className="draw-path" cx={outputX} cy={y} r="12" stroke={GOLD} strokeWidth="1.5" />
+          <circle cx={outputX} cy={y} r="12" fill="white" stroke={GOLD} strokeWidth="1.5" />
           <text x={outputX + 22} y={y + 4} textAnchor="start" fontSize="9" fontFamily="'IBM Plex Mono', monospace" fill={STROKE_COLOR}>
             {outputLabels[i]}
           </text>
@@ -361,6 +361,138 @@ function Fig3({ containerRef }: { containerRef: React.RefObject<HTMLDivElement |
       <text x={hidden1X} y="400" textAnchor="middle" fontSize="10" fontFamily="'IBM Plex Mono', monospace" fill="#888">Hidden Layer 1</text>
       <text x={hidden2X} y="400" textAnchor="middle" fontSize="10" fontFamily="'IBM Plex Mono', monospace" fill="#888">Hidden Layer 2</text>
       <text x={outputX} y="400" textAnchor="middle" fontSize="10" fontFamily="'IBM Plex Mono', monospace" fill="#888">Output Layer</text>
+    </svg>
+  );
+}
+
+/* ═══════════════════════════════════════════
+   FIG. 4 — Prior Art Analysis System
+   ═══════════════════════════════════════════ */
+function Fig4({ containerRef }: { containerRef: React.RefObject<HTMLDivElement | null> }) {
+  const svgRef = useRef<SVGSVGElement>(null);
+
+  useEffect(() => {
+    const svg = svgRef.current;
+    const container = containerRef.current;
+    if (!svg || !container) return;
+
+    const paths = svg.querySelectorAll<SVGElement>(".draw-path");
+
+    const ctx = gsap.context(() => {
+      paths.forEach((path) => {
+        if (path instanceof SVGGeometryElement) {
+          const length = path.getTotalLength();
+          gsap.set(path, { strokeDasharray: length, strokeDashoffset: length });
+          gsap.to(path, {
+            strokeDashoffset: 0,
+            ease: "none",
+            scrollTrigger: {
+              trigger: container,
+              start: "top 50%",
+              end: "center 40%",
+              scrub: 1,
+            },
+          });
+        }
+      });
+    }, svg);
+
+    return () => ctx.revert();
+  }, [containerRef]);
+
+  return (
+    <svg
+      ref={svgRef}
+      viewBox="0 0 800 450"
+      className="w-full max-w-4xl mx-auto"
+      fill="none"
+    >
+      {/* Document stack (bottom documents) */}
+      <rect className="draw-path" x="80" y="200" width="180" height="220" rx="3" stroke={STROKE_COLOR} strokeWidth="1" fill="white" />
+      <rect className="draw-path" x="90" y="190" width="180" height="220" rx="3" stroke={STROKE_COLOR} strokeWidth="1" fill="white" />
+      <rect className="draw-path" x="100" y="180" width="180" height="220" rx="3" stroke={STROKE_COLOR} strokeWidth="1.5" fill="white" />
+
+      {/* Lines on top document */}
+      <line className="draw-path" x1="120" y1="210" x2="260" y2="210" stroke={STROKE_COLOR} strokeWidth="1" opacity="0.5" />
+      <line className="draw-path" x1="120" y1="225" x2="250" y2="225" stroke={STROKE_COLOR} strokeWidth="1" opacity="0.5" />
+      <line className="draw-path" x1="120" y1="240" x2="240" y2="240" stroke={STROKE_COLOR} strokeWidth="1" opacity="0.5" />
+      <line className="draw-path" x1="120" y1="255" x2="255" y2="255" stroke={STROKE_COLOR} strokeWidth="1" opacity="0.5" />
+      <line className="draw-path" x1="120" y1="270" x2="230" y2="270" stroke={STROKE_COLOR} strokeWidth="1" opacity="0.5" />
+      <line className="draw-path" x1="120" y1="285" x2="260" y2="285" stroke={STROKE_COLOR} strokeWidth="1" opacity="0.5" />
+      <line className="draw-path" x1="120" y1="300" x2="245" y2="300" stroke={STROKE_COLOR} strokeWidth="1" opacity="0.5" />
+
+      {/* Highlighted section on doc (prior art match) */}
+      <rect x="118" y="248" width="144" height="24" fill={GOLD} opacity="0.15" rx="2" />
+
+      {/* Document label */}
+      <text x="190" y="370" textAnchor="middle" fontSize="10" fontFamily="'IBM Plex Mono', monospace" fill="#888">Patent Documents</text>
+      <text x="190" y="385" textAnchor="middle" fontSize="10" fontFamily="'IBM Plex Mono', monospace" fill="#888">147M+ Records</text>
+      <RefNumeral x={115} y={170} num="401" />
+      <line className="draw-path" x1="115" y1="177" x2="115" y2="180" stroke={STROKE_COLOR} strokeWidth="0.8" />
+
+      {/* Magnifying glass (main visual element) */}
+      <circle className="draw-path" cx="420" cy="200" r="80" stroke={GOLD} strokeWidth="3" />
+      <circle className="draw-path" cx="420" cy="200" r="72" stroke={STROKE_COLOR} strokeWidth="1" opacity="0.3" />
+      {/* Glass handle */}
+      <line className="draw-path" x1="477" y1="257" x2="530" y2="310" stroke={GOLD} strokeWidth="6" strokeLinecap="round" />
+      <line className="draw-path" x1="477" y1="257" x2="530" y2="310" stroke={STROKE_COLOR} strokeWidth="3" strokeLinecap="round" />
+
+      {/* Inside magnifying glass — text being analyzed */}
+      <line x1="375" y1="175" x2="460" y2="175" stroke={STROKE_COLOR} strokeWidth="1" opacity="0.4" />
+      <line x1="375" y1="190" x2="450" y2="190" stroke={STROKE_COLOR} strokeWidth="1" opacity="0.4" />
+      <line x1="375" y1="205" x2="465" y2="205" stroke={GOLD} strokeWidth="1.5" opacity="0.8" />
+      <line x1="375" y1="220" x2="455" y2="220" stroke={STROKE_COLOR} strokeWidth="1" opacity="0.4" />
+      <line x1="375" y1="235" x2="445" y2="235" stroke={STROKE_COLOR} strokeWidth="1" opacity="0.4" />
+
+      {/* Semantic match highlight */}
+      <rect x="372" y="199" width="96" height="12" fill={GOLD} opacity="0.15" rx="2" />
+
+      <RefNumeral x={420} y={100} num="402" />
+      <line className="draw-path" x1="420" y1="107" x2="420" y2="120" stroke={STROKE_COLOR} strokeWidth="0.8" />
+
+      {/* Arrow from docs to magnifying glass */}
+      <path className="draw-path" d="M280 260 C320 260, 330 230, 340 210" stroke={STROKE_COLOR} strokeWidth="1.5" markerEnd="url(#arrowhead4)" />
+
+      {/* Output results panel */}
+      <rect className="draw-path" x="580" y="100" width="180" height="280" rx="5" stroke={STROKE_COLOR} strokeWidth="1.5" />
+
+      {/* Panel header */}
+      <rect x="580" y="100" width="180" height="30" rx="5" fill={GOLD} opacity="0.1" />
+      <text x="670" y="120" textAnchor="middle" fontSize="10" fontWeight="bold" fontFamily="'IBM Plex Mono', monospace" fill={STROKE_COLOR}>Analysis Results</text>
+
+      {/* Result items */}
+      <circle cx="605" cy="155" r="6" fill="#50A050" opacity="0.6" />
+      <text x="618" y="158" fontSize="9" fontFamily="'IBM Plex Mono', monospace" fill={STROKE_COLOR}>98.2% Match — US9,123,456</text>
+
+      <circle cx="605" cy="185" r="6" fill="#50A050" opacity="0.4" />
+      <text x="618" y="188" fontSize="9" fontFamily="'IBM Plex Mono', monospace" fill={STROKE_COLOR}>91.7% Match — EP3,456,789</text>
+
+      <circle cx="605" cy="215" r="6" fill={GOLD} opacity="0.6" />
+      <text x="618" y="218" fontSize="9" fontFamily="'IBM Plex Mono', monospace" fill={STROKE_COLOR}>78.3% Match — IN202011xxx</text>
+
+      <circle cx="605" cy="245" r="6" fill={GOLD} opacity="0.4" />
+      <text x="618" y="248" fontSize="9" fontFamily="'IBM Plex Mono', monospace" fill={STROKE_COLOR}>65.1% Match — WO2021/xxx</text>
+
+      <circle cx="605" cy="275" r="6" fill="#888" opacity="0.3" />
+      <text x="618" y="278" fontSize="9" fontFamily="'IBM Plex Mono', monospace" fill="#999">42.8% Match — CN112xxx</text>
+
+      {/* Novelty score */}
+      <rect x="600" y="310" width="140" height="45" rx="3" fill={GOLD} opacity="0.08" stroke={GOLD} strokeWidth="1" />
+      <text x="670" y="330" textAnchor="middle" fontSize="9" fontFamily="'IBM Plex Mono', monospace" fill="#888">NOVELTY SCORE</text>
+      <text x="670" y="348" textAnchor="middle" fontSize="16" fontWeight="bold" fontFamily="'IBM Plex Mono', monospace" fill={GOLD}>72.4%</text>
+
+      <RefNumeral x={595} y={90} num="403" />
+      <line className="draw-path" x1="595" y1="97" x2="595" y2="100" stroke={STROKE_COLOR} strokeWidth="0.8" />
+
+      {/* Arrow from magnifying glass to results */}
+      <path className="draw-path" d="M500 200 L580 200" stroke={STROKE_COLOR} strokeWidth="1.5" markerEnd="url(#arrowhead4)" />
+
+      {/* Arrow marker */}
+      <defs>
+        <marker id="arrowhead4" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+          <polygon points="0 0, 8 3, 0 6" fill={STROKE_COLOR} />
+        </marker>
+      </defs>
     </svg>
   );
 }
@@ -412,6 +544,7 @@ export default function PatentDrawings() {
   const fig1Ref = useRef<HTMLDivElement>(null);
   const fig2Ref = useRef<HTMLDivElement>(null);
   const fig3Ref = useRef<HTMLDivElement>(null);
+  const fig4Ref = useRef<HTMLDivElement>(null);
 
   return (
     <section
@@ -441,7 +574,7 @@ export default function PatentDrawings() {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
         >
-          FIG. 1 &mdash; FIG. 3 | System Architecture Diagrams
+          FIG. 1 &mdash; FIG. 4 | System Architecture Diagrams
         </motion.h2>
       </div>
 
@@ -474,6 +607,16 @@ export default function PatentDrawings() {
             description="Simplified representation of the deep learning model architecture with four input features (Claim Text, Prior Art, Examiner Data, Jurisdiction), two hidden layers of six neurons each, and three output predictions (Grant Probability, Risk Score, Strategy)."
           >
             <Fig3 containerRef={fig3Ref} />
+          </FigureFrame>
+        </div>
+
+        <div ref={fig4Ref}>
+          <FigureFrame
+            figNum="4"
+            title="Prior Art Analysis System"
+            description="Illustration of the AI-powered prior art search and analysis pipeline. The system examines 147M+ patent documents, academic papers, and technical publications using semantic matching to identify relevant prior art references across 12 languages."
+          >
+            <Fig4 containerRef={fig4Ref} />
           </FigureFrame>
         </div>
       </div>

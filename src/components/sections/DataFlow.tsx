@@ -243,7 +243,7 @@ export default function DataFlow() {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-[350vh]"
+      className="relative min-h-[250vh]"
       style={{
         background: "linear-gradient(to bottom, #FFFFFF, #F5F5F3)",
       }}

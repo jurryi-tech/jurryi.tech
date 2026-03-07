@@ -199,7 +199,7 @@ export default function ProductCards() {
           trigger: section,
           pin: true,
           scrub: 1,
-          start: "top top",
+          start: "top 80px",
           end: () => `+=${totalScroll}`,
           invalidateOnRefresh: true,
         },
@@ -213,7 +213,7 @@ export default function ProductCards() {
     <section
       ref={sectionRef}
       id="product-cards"
-      className={`${isMobile ? "" : "min-h-[300vh]"} bg-[#FDFBF7] overflow-hidden`}
+      className={`bg-[#FDFBF7] overflow-hidden`}
     >
       {/* Section header */}
       <div className="pt-24 pb-12 px-8 md:px-16">
