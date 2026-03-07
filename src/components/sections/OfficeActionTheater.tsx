@@ -42,9 +42,9 @@ const rings = [
 
 export default function OfficeActionTheater() {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const pinRef = useRef<HTMLDivElement>(null);
   const documentRef = useRef<HTMLDivElement>(null);
   const stampRef = useRef<HTMLDivElement>(null);
-  const shakeRef = useRef<HTMLDivElement>(null);
   const ringsContainerRef = useRef<HTMLDivElement>(null);
   const ringRefs = useRef<(HTMLDivElement | null)[]>([]);
   const responseRef = useRef<HTMLDivElement>(null);
@@ -53,9 +53,9 @@ export default function OfficeActionTheater() {
 
   useEffect(() => {
     const section = sectionRef.current;
+    const pin = pinRef.current;
     const doc = documentRef.current;
     const stamp = stampRef.current;
-    const shake = shakeRef.current;
     const ringsContainer = ringsContainerRef.current;
     const response = responseRef.current;
     const greenStamp = greenStampRef.current;
@@ -63,9 +63,9 @@ export default function OfficeActionTheater() {
 
     if (
       !section ||
+      !pin ||
       !doc ||
       !stamp ||
-      !shake ||
       !ringsContainer ||
       !response ||
       !greenStamp ||
@@ -74,117 +74,91 @@ export default function OfficeActionTheater() {
       return;
 
     const ctx = gsap.context(() => {
-      /* ── PHASE 1: Document arrives (0-30%) ── */
-      const tl1 = gsap.timeline({
+      const tl = gsap.timeline({
         scrollTrigger: {
           trigger: section,
           start: "top top",
-          end: "30% top",
+          end: "bottom bottom",
           scrub: 1,
-          pin: false,
+          pin: pin,
         },
       });
 
-      tl1
-        .fromTo(
-          doc,
-          { y: -600, rotation: -8, opacity: 0 },
-          { y: 0, rotation: 0, opacity: 1, duration: 0.6, ease: "power2.out" }
-        )
-        .to(
-          stamp,
-          {
-            scale: 1,
-            opacity: 1,
-            rotation: -12,
-            duration: 0.15,
-            ease: "back.out(3)",
-          },
-          "+=0.1"
-        )
-        .to(
-          shake,
-          {
-            x: 1,
-            duration: 0.025,
-            repeat: 5,
-            yoyo: true,
-            ease: "none",
-          },
-          "<"
-        );
+      /* ── PHASE 1: Document descends into center (0-25%) ── */
+      tl.fromTo(
+        doc,
+        { y: -300, rotation: -5, opacity: 0, scale: 0.9 },
+        { y: 0, rotation: 0, opacity: 1, scale: 1, duration: 0.2, ease: "power2.out" }
+      );
 
-      /* ── PHASE 2: AI Analyzes (30-60%) ── */
-      const tl2 = gsap.timeline({
-        scrollTrigger: {
-          trigger: section,
-          start: "30% top",
-          end: "60% top",
-          scrub: 1,
-        },
-      });
+      // Red stamp slams down
+      tl.to(
+        stamp,
+        { scale: 1, opacity: 1, rotation: -12, duration: 0.05, ease: "back.out(3)" },
+        "+=0.02"
+      );
 
-      tl2.to(doc, {
-        x: "-40%",
-        scale: 0.75,
-        duration: 0.3,
+      // Hold for reading
+      tl.to(doc, { duration: 0.08 });
+
+      /* ── PHASE 2: AI Analyzes (25-55%) ── */
+      // Document moves left and shrinks
+      tl.to(doc, {
+        x: "-35%",
+        scale: 0.7,
+        duration: 0.1,
         ease: "power2.inOut",
       });
 
-      tl2.to(
+      // Rings container appears
+      tl.to(
         ringsContainer,
-        { opacity: 1, x: 0, duration: 0.2, ease: "power2.out" },
-        "<0.1"
+        { opacity: 1, x: 0, duration: 0.05, ease: "power2.out" },
+        "<0.03"
       );
 
+      // Each ring scales in
       ringRefs.current.forEach((ring, i) => {
         if (!ring) return;
-        tl2.fromTo(
+        tl.fromTo(
           ring,
-          { scale: 0.6, opacity: 0 },
-          {
-            scale: 1,
-            opacity: 1,
-            duration: 0.12,
-            ease: "power2.out",
-          },
-          `<${i === 0 ? 0.15 : 0.08}`
+          { scale: 0.5, opacity: 0 },
+          { scale: 1, opacity: 1, duration: 0.04, ease: "power2.out" },
+          `>-0.01`
         );
       });
 
-      /* ── PHASE 3: The Response (60-100%) ── */
-      const tl3 = gsap.timeline({
-        scrollTrigger: {
-          trigger: section,
-          start: "60% top",
-          end: "95% top",
-          scrub: 1,
-        },
-      });
+      // Hold analysis view
+      tl.to(ringsContainer, { duration: 0.08 });
 
-      tl3
-        .fromTo(
-          response,
-          { y: 60, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.4, ease: "power2.out" }
-        )
-        .fromTo(
-          metrics,
-          { y: 30, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.3, ease: "power2.out" },
-          "+=0.1"
-        )
-        .to(
-          greenStamp,
-          {
-            scale: 1,
-            opacity: 1,
-            rotation: -8,
-            duration: 0.15,
-            ease: "back.out(3)",
-          },
-          "+=0.05"
-        );
+      /* ── PHASE 3: Response Document (55-100%) ── */
+      // Fade out OA + rings
+      tl.to([doc, ringsContainer], { opacity: 0, duration: 0.05 });
+
+      // Response slides up
+      tl.fromTo(
+        response,
+        { y: 80, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.12, ease: "power2.out" }
+      );
+
+      // Metrics fade in
+      tl.fromTo(
+        metrics,
+        { y: 20, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.08, ease: "power2.out" },
+        "+=0.02"
+      );
+
+      // ALLOWED stamp
+      tl.to(
+        greenStamp,
+        { scale: 1, opacity: 1, rotation: -8, duration: 0.05, ease: "back.out(3)" },
+        "+=0.01"
+      );
+
+      // Hold final view
+      tl.to(response, { duration: 0.1 });
     }, section);
 
     return () => ctx.revert();
@@ -193,7 +167,7 @@ export default function OfficeActionTheater() {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-[200vh] w-full overflow-hidden"
+      className="relative min-h-[180vh] w-full overflow-hidden"
       style={{
         background: `
           repeating-linear-gradient(
@@ -207,16 +181,34 @@ export default function OfficeActionTheater() {
         `,
       }}
     >
+      {/* Section title */}
+      <div className="absolute top-0 left-0 w-full z-30 pt-8 pointer-events-none">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center"
+        >
+          <p className="font-mono text-xs tracking-[0.3em] text-[#C8A951] uppercase mb-2">
+            Office Action Response
+          </p>
+          <h2 className="font-serif text-3xl md:text-4xl font-bold text-[#1A1A1A]">
+            From Rejection to Allowance
+          </h2>
+        </motion.div>
+      </div>
+
       {/* Pinned viewport container */}
       <div
-        ref={shakeRef}
-        className="sticky top-0 h-screen flex items-center justify-center px-4 md:px-12 lg:px-20 overflow-hidden"
+        ref={pinRef}
+        className="relative h-screen flex items-center justify-center px-4 md:px-12 lg:px-20 overflow-hidden"
       >
         {/* ── PHASE 1: Office Action Document ── */}
         <div
           ref={documentRef}
           className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] max-w-[640px] bg-white shadow-2xl border border-gray-200 p-6 md:p-10 font-mono text-[11px] md:text-[13px] leading-relaxed text-gray-800 z-10"
-          style={{ transformOrigin: "center center" }}
+          style={{ transformOrigin: "center center", opacity: 0 }}
         >
           <div className="text-center font-bold text-[13px] md:text-[15px] tracking-wider mb-4 text-gray-900">
             UNITED STATES PATENT AND TRADEMARK OFFICE
@@ -286,7 +278,6 @@ export default function OfficeActionTheater() {
                   background: `radial-gradient(circle, rgba(30, 64, 175, ${0.04 + i * 0.01}) 0%, transparent 70%)`,
                 }}
               >
-                {/* Ring label — shown inside each ring */}
                 <div className="absolute text-center px-2" style={{ maxWidth: `${size - 20}px` }}>
                   <p className="text-[9px] md:text-[10px] text-blue-800 font-semibold leading-tight">
                     {ring.label}

@@ -40,9 +40,9 @@ const metrics = [
 ];
 
 const outputDocs = [
-  { title: "Patent Specification", thickness: "h-48" },
-  { title: "Patent Drawing Sheet", thickness: "h-40" },
-  { title: "Prosecution Strategy Brief", thickness: "h-36" },
+  { title: "Patent Specification", thickness: "h-48", icon: "spec" },
+  { title: "Patent Drawing Sheet", thickness: "h-44", icon: "drawing" },
+  { title: "Prosecution Strategy Brief", thickness: "h-40", icon: "strategy" },
 ];
 
 export default function DataFlow() {
@@ -362,8 +362,8 @@ export default function DataFlow() {
                   x2={`${c.x2}%`}
                   y2={c.y2}
                   stroke="#C8A960"
-                  strokeWidth="0.15"
-                  strokeOpacity="0.35"
+                  strokeWidth="0.35"
+                  strokeOpacity="0.55"
                 />
               ))}
             </svg>
@@ -388,17 +388,19 @@ export default function DataFlow() {
                     }}
                   >
                     <div
-                      className={`w-5 h-5 rounded-full border-2 ${
+                      className={`w-8 h-8 rounded-full border-2 flex items-center justify-center ${
                         isGolden
-                          ? "bg-[#C8A960] border-[#C8A960] shadow-[0_0_12px_rgba(200,169,96,0.5)]"
-                          : "bg-white border-[#C8A960]"
+                          ? "bg-[#C8A960] border-[#C8A960] shadow-[0_0_16px_rgba(200,169,96,0.6)]"
+                          : "bg-white border-[#C8A960] shadow-[0_0_8px_rgba(200,169,96,0.15)]"
                       }`}
-                    />
+                    >
+                      {!isGolden && <div className="w-2.5 h-2.5 rounded-full bg-[#C8A960]/40" />}
+                    </div>
                     <span
-                      className={`text-[9px] text-center font-sans max-w-[100px] leading-tight ${
+                      className={`text-[10px] text-center font-sans max-w-[120px] leading-tight ${
                         isGolden
-                          ? "text-[#C8A960] font-semibold"
-                          : "text-[#6B6B6B]"
+                          ? "text-[#C8A960] font-bold text-[11px]"
+                          : "text-[#4A4A4A] font-medium"
                       }`}
                     >
                       {name}
@@ -441,23 +443,96 @@ export default function DataFlow() {
               ref={(el) => {
                 outputCardRefs.current[i] = el;
               }}
-              className={`w-[220px] ${doc.thickness} bg-white border border-[#D4C5A9] rounded-lg shadow-xl flex flex-col items-center justify-center p-6`}
+              className={`w-[240px] ${doc.thickness} bg-white border border-[#D4C5A9] rounded-lg shadow-xl flex flex-col items-center justify-center p-6`}
               style={{ opacity: 0 }}
             >
-              <div className="w-10 h-10 rounded-full border-2 border-[#C8A960] flex items-center justify-center mb-3">
-                <div className="w-5 h-5 rounded-sm bg-[#C8A960]/20" />
-              </div>
+              {/* Unique icon per document type */}
+              {doc.icon === "spec" && (
+                <svg viewBox="0 0 48 48" className="w-12 h-12 mb-3" fill="none">
+                  <rect x="8" y="4" width="28" height="38" rx="3" stroke="#1A1A1A" strokeWidth="1.5" />
+                  <rect x="8" y="4" width="28" height="10" rx="3" fill="#C8A960" opacity="0.15" />
+                  <text x="22" y="12" textAnchor="middle" fontSize="6" fontWeight="bold" fill="#C8A960" fontFamily="monospace">SPEC</text>
+                  <line x1="14" y1="20" x2="30" y2="20" stroke="#1A1A1A" strokeWidth="1" opacity="0.4" />
+                  <line x1="14" y1="24" x2="28" y2="24" stroke="#1A1A1A" strokeWidth="1" opacity="0.3" />
+                  <line x1="14" y1="28" x2="30" y2="28" stroke="#1A1A1A" strokeWidth="1" opacity="0.4" />
+                  <line x1="14" y1="32" x2="24" y2="32" stroke="#1A1A1A" strokeWidth="1" opacity="0.3" />
+                  <line x1="14" y1="36" x2="28" y2="36" stroke="#1A1A1A" strokeWidth="1" opacity="0.2" />
+                  <rect x="32" y="6" width="8" height="8" rx="1" stroke="#C8A960" strokeWidth="1" fill="#C8A960" opacity="0.1" />
+                  <text x="36" y="12" textAnchor="middle" fontSize="5" fill="#C8A960" fontFamily="monospace">22</text>
+                </svg>
+              )}
+              {doc.icon === "drawing" && (
+                <svg viewBox="0 0 48 48" className="w-12 h-12 mb-3" fill="none">
+                  <rect x="6" y="6" width="36" height="32" rx="2" stroke="#1A1A1A" strokeWidth="1.5" />
+                  {/* Technical drawing: circuit/flowchart */}
+                  <rect x="12" y="12" width="10" height="8" rx="1" stroke="#C8A960" strokeWidth="1.2" />
+                  <rect x="28" y="12" width="10" height="8" rx="1" stroke="#C8A960" strokeWidth="1.2" />
+                  <line x1="22" y1="16" x2="28" y2="16" stroke="#1A1A1A" strokeWidth="1" />
+                  <circle cx="17" cy="30" r="5" stroke="#1A1A1A" strokeWidth="1" />
+                  <line x1="22" y1="30" x2="28" y2="30" stroke="#1A1A1A" strokeWidth="1" />
+                  <rect x="28" y="26" width="10" height="8" rx="1" stroke="#1A1A1A" strokeWidth="1" />
+                  <line x1="33" y1="20" x2="33" y2="26" stroke="#1A1A1A" strokeWidth="1" strokeDasharray="2 1" />
+                  <text x="24" y="44" textAnchor="middle" fontSize="4" fill="#888" fontFamily="monospace">FIG. 1</text>
+                </svg>
+              )}
+              {doc.icon === "strategy" && (
+                <svg viewBox="0 0 48 48" className="w-12 h-12 mb-3" fill="none">
+                  <rect x="6" y="4" width="30" height="38" rx="3" stroke="#1A1A1A" strokeWidth="1.5" />
+                  {/* Chess/strategy icon */}
+                  <path d="M16 12 L20 8 L24 12" stroke="#C8A960" strokeWidth="1.5" fill="none" />
+                  <rect x="16" y="12" width="8" height="4" rx="1" fill="#C8A960" opacity="0.2" stroke="#C8A960" strokeWidth="1" />
+                  {/* Checklist items */}
+                  <rect x="12" y="22" width="4" height="4" rx="0.5" stroke="#50A050" strokeWidth="1" />
+                  <path d="M13 24 L14.5 25.5 L17 22.5" stroke="#50A050" strokeWidth="0.8" />
+                  <line x1="19" y1="24" x2="30" y2="24" stroke="#1A1A1A" strokeWidth="1" opacity="0.4" />
+                  <rect x="12" y="29" width="4" height="4" rx="0.5" stroke="#50A050" strokeWidth="1" />
+                  <path d="M13 31 L14.5 32.5 L17 29.5" stroke="#50A050" strokeWidth="0.8" />
+                  <line x1="19" y1="31" x2="28" y2="31" stroke="#1A1A1A" strokeWidth="1" opacity="0.4" />
+                  <rect x="12" y="36" width="4" height="4" rx="0.5" stroke="#C8A960" strokeWidth="1" />
+                  <line x1="19" y1="38" x2="30" y2="38" stroke="#1A1A1A" strokeWidth="1" opacity="0.3" />
+                  {/* Percentage badge */}
+                  <circle cx="38" cy="14" r="7" fill="#1A1A1A" />
+                  <text x="38" y="16" textAnchor="middle" fontSize="5" fontWeight="bold" fill="#C8A960" fontFamily="monospace">87%</text>
+                </svg>
+              )}
               <p className="font-serif text-sm font-semibold text-[#1A1A1A] text-center">
                 {doc.title}
               </p>
               <div className="mt-3 w-full space-y-1.5">
-                {Array.from({ length: 4 + i }).map((_, li) => (
-                  <div
-                    key={li}
-                    className="h-[2px] bg-[#E5E0D5] rounded-full"
-                    style={{ width: `${70 + Math.random() * 30}%` }}
-                  />
-                ))}
+                {doc.icon === "spec" && (
+                  <>
+                    <div className="h-[2px] bg-[#E5E0D5] rounded-full" style={{ width: "95%" }} />
+                    <div className="h-[2px] bg-[#E5E0D5] rounded-full" style={{ width: "85%" }} />
+                    <div className="h-[2px] bg-[#C8A960]/30 rounded-full" style={{ width: "90%" }} />
+                    <div className="h-[2px] bg-[#E5E0D5] rounded-full" style={{ width: "75%" }} />
+                    <div className="h-[2px] bg-[#E5E0D5] rounded-full" style={{ width: "88%" }} />
+                  </>
+                )}
+                {doc.icon === "drawing" && (
+                  <>
+                    <div className="flex gap-2">
+                      <div className="w-1/2 h-8 border border-[#D4C5A9] rounded bg-[#FAF8F5]" />
+                      <div className="w-1/2 h-8 border border-[#D4C5A9] rounded bg-[#FAF8F5]" />
+                    </div>
+                    <div className="h-8 border border-[#D4C5A9] rounded bg-[#FAF8F5]" />
+                  </>
+                )}
+                {doc.icon === "strategy" && (
+                  <>
+                    <div className="flex items-center gap-1.5">
+                      <div className="w-2 h-2 rounded-full bg-green-400" />
+                      <div className="h-[2px] bg-[#E5E0D5] rounded-full flex-1" />
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <div className="w-2 h-2 rounded-full bg-green-400" />
+                      <div className="h-[2px] bg-[#E5E0D5] rounded-full flex-1" />
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <div className="w-2 h-2 rounded-full bg-[#C8A960]" />
+                      <div className="h-[2px] bg-[#C8A960]/30 rounded-full flex-1" />
+                    </div>
+                  </>
+                )}
               </div>
             </div>
           ))}

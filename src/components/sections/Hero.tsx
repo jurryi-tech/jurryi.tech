@@ -241,21 +241,21 @@ export default function Hero() {
             ref={subHeadRef}
             className="font-sans text-[18px] font-normal leading-[1.7] text-[#5A5A5A] max-w-[520px] mb-12 opacity-0"
           >
-            The world&apos;s first privacy-enabled AI infrastructure purpose-built
-            for patent attorney teams. Trained on prosecution history. Engineered
-            to eliminate rejections. Deployed on your terms.
+            Prosecution-ready patent applications from day one. 101-compliant
+            specifications. Office action responses in minutes, not days. Cut
+            your prosecution costs by 60% while doubling your grant rate.
           </p>
 
           {/* Stat Trio */}
           <div
             ref={statsRef}
-            className="flex items-center mb-12 opacity-0"
+            className="flex items-center flex-wrap gap-y-4 mb-12 opacity-0"
           >
-            <AnimatedStat value={11.2} suffix=" mo" label="avg. time to grant" />
+            <AnimatedStat value={60} suffix="%" label="lower prosecution costs" />
             <GoldSeparator />
-            <AnimatedStat value={84} suffix="%" label="first-action allowance rate" />
+            <AnimatedStat value={84} suffix="%" label="first-action allowance" />
             <GoldSeparator />
-            <AnimatedStat value={847} prefix="$" suffix="K" label="avg. annual savings per team" />
+            <AnimatedStat value={847} prefix="$" suffix="K" label="saved per team / year" />
           </div>
 
           {/* CTA Buttons */}
