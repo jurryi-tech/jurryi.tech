@@ -30,6 +30,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "webinars",
   ];
 
+  const blogPosts = [
+    "best-ai-patent-drafting-tools-2026",
+  ];
+
   return [
     {
       url: baseUrl,
@@ -54,6 +58,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: "weekly" as const,
       priority: 0.8,
+    })),
+    ...blogPosts.map((post) => ({
+      url: `${baseUrl}/resources/blog/${post}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.9,
     })),
   ];
 }
