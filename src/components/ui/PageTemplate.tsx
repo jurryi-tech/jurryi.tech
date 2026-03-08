@@ -1,15 +1,9 @@
 "use client";
-import { useEffect, useRef, ReactNode } from "react";
+import { ReactNode } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { HiOutlineScale, HiOutlinePencilAlt, HiOutlineCog } from "react-icons/hi";
 import { renderCardVisual, CardType } from "./FeatureCardVisuals";
-
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
 
 interface Feature {
   title: string;
@@ -65,28 +59,8 @@ export default function PageTemplate({
   howItHelps,
   accentColor = "#C5A44E",
 }: PageTemplateProps) {
-  const featuresRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (!featuresRef.current) return;
-    const ctx = gsap.context(() => {
-      gsap.from(".feature-card", {
-        scrollTrigger: {
-          trigger: featuresRef.current,
-          start: "top 80%",
-        },
-        y: 40,
-        opacity: 0,
-        duration: 0.6,
-        stagger: 0.12,
-        ease: "power3.out",
-      });
-    }, featuresRef);
-    return () => ctx.revert();
-  }, []);
-
   return (
-    <div className="min-h-screen bg-[#FDFBF7]">
+    <div className="min-h-screen bg-[#FDFBF7] overflow-x-hidden">
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-40 h-[72px] bg-[rgba(253,251,247,0.92)] backdrop-blur-xl border-b border-black/5">
         <div className="mx-auto flex h-full items-center justify-between px-8 max-w-[1440px]">
@@ -162,7 +136,7 @@ export default function PageTemplate({
       </motion.section>
 
       {/* Features Grid */}
-      <section ref={featuresRef} className="px-6 pb-24">
+      <section className="px-6 pb-24 overflow-hidden">
         <div className="max-w-6xl mx-auto">
           <motion.h2
             className="font-serif text-2xl text-[#1A1A1A] mb-12 text-center"
@@ -174,14 +148,17 @@ export default function PageTemplate({
             Key Capabilities
           </motion.h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {features.map((feature) => {
+            {features.map((feature, i) => {
               const visual = renderCardVisual(feature.cardType, feature.cardData, accentColor);
               return (
                 <motion.div
                   key={feature.title}
                   className="feature-card group bg-white rounded-xl p-6 border border-[#E8E6E3] hover:border-[#C5A44E]/30 transition-all duration-300 hover:shadow-lg hover:shadow-[#C5A44E]/5 min-w-0"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
                   whileHover={{ y: -4 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  transition={{ duration: 0.5, delay: i * 0.1, ease: "easeOut" }}
                 >
                   <div
                     className="w-10 h-10 rounded-lg flex items-center justify-center text-lg mb-4 transition-colors duration-300"
