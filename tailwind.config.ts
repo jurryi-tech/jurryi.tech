@@ -39,7 +39,7 @@ const config: Config = {
       },
       fontFamily: {
         sans: ["Inter", "system-ui", "sans-serif"],
-        serif: ["Playfair Display", "Georgia", "serif"],
+        serif: ["Times New Roman", "Times", "Georgia", "serif"],
         mono: ["IBM Plex Mono", "monospace"],
       },
       animation: {

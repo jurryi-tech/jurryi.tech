@@ -407,8 +407,7 @@ export default function JurisdictionTriptych() {
           className="absolute inset-0 flex items-start justify-center overflow-y-auto"
           style={{ background: jurisdictionStyles.usa.bg }}
         >
-          {/* Thin accent bar top */}
-          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#1B2A4A] via-[#4A7BF7] to-[#C5A44E]" />
+          {/* removed accent bar for immersive transition */}
 
           <div className="mx-auto flex w-full max-w-7xl gap-8 px-6 py-16 lg:px-12">
             <div className="flex-1 space-y-8">
@@ -457,7 +456,7 @@ export default function JurisdictionTriptych() {
           className="absolute inset-0 flex items-start justify-center overflow-y-auto"
           style={{ background: jurisdictionStyles.india.bg }}
         >
-          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#C45B28] via-[#1A7A6D] to-[#C45B28]" />
+          {/* removed accent bar */}
 
           <div className="mx-auto w-full max-w-7xl space-y-8 px-6 py-16 lg:px-12">
             <div className="anim-card">
@@ -530,7 +529,7 @@ export default function JurisdictionTriptych() {
           className="absolute inset-0 flex items-start justify-center overflow-y-auto"
           style={{ background: jurisdictionStyles.europe.bg }}
         >
-          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#003399] via-[#B8C4D4] to-[#FFD700]" />
+          {/* removed accent bar */}
 
           <div className="mx-auto w-full max-w-7xl space-y-8 px-6 py-16 lg:px-12">
             <div className="anim-card">
@@ -610,7 +609,7 @@ export default function JurisdictionTriptych() {
 function MobilePanelUSPTO({ cardBase }: { cardBase: string }) {
   return (
     <div className="min-h-screen px-4 py-16" style={{ background: jurisdictionStyles.usa.bg }}>
-      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#1B2A4A] via-[#4A7BF7] to-[#C5A44E]" />
+      {/* removed accent bar */}
       <div className="mx-auto max-w-lg space-y-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

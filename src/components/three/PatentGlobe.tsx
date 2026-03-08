@@ -1,174 +1,183 @@
 "use client";
-import { useRef, useMemo, useEffect } from "react";
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { useRef, useMemo, useEffect, useState } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Float } from "@react-three/drei";
 import * as THREE from "three";
 import { Suspense } from "react";
 
-/* ── Simplified continent coordinate data (lon, lat polygons) ── */
-/* Each continent is an array of [lon, lat] points forming rough outlines */
+/* ── European country ISO codes ── */
+const EUROPE_CODES = new Set([
+  "040","056","100","191","203","208","233","246","250","276","300",
+  "348","352","372","380","428","440","442","528","578","616","620",
+  "642","703","705","724","752","756","826","008","070","499","688",
+  "807","112","804",
+]);
+const USA_CODE = "840";
+const INDIA_CODE = "356";
 
-const NORTH_AMERICA: [number, number][][] = [
-  // Main landmass
-  [[-130,55],[-125,60],[-120,62],[-110,65],[-100,68],[-95,70],[-85,72],[-75,73],[-65,70],[-60,65],[-55,55],[-60,48],[-65,45],[-70,43],[-75,40],[-80,35],[-82,30],[-85,28],[-90,28],[-95,27],[-100,28],[-105,30],[-110,32],[-115,33],[-120,35],[-122,38],[-124,42],[-125,45],[-128,50],[-130,55]],
-  // Mexico/Central America
-  [[-115,33],[-110,32],[-105,30],[-100,28],[-95,27],[-90,28],[-88,20],[-90,16],[-92,15],[-95,16],[-100,18],[-105,20],[-110,24],[-115,28],[-115,33]],
-];
+/* ── Colors ── */
+const OCEAN_COLOR = "#D4E4ED";
+const LAND_COLOR = "#C8C3B8";
+const LAND_STROKE = "#A09A8E";
+const USA_COLOR = "rgba(27, 42, 74, 0.7)";
+const USA_STROKE = "#1B2A4A";
+const INDIA_COLOR = "rgba(196, 91, 40, 0.65)";
+const INDIA_STROKE = "#C45B28";
+const EUROPE_COLOR = "rgba(0, 51, 153, 0.55)";
+const EUROPE_STROKE = "#003399";
 
-const SOUTH_AMERICA: [number, number][][] = [
-  [[-80,10],[-75,12],[-70,12],[-65,10],[-60,5],[-52,3],[-48,0],[-45,-3],[-40,-8],[-38,-12],[-35,-15],[-38,-20],[-42,-22],[-45,-23],[-48,-26],[-50,-28],[-52,-32],[-55,-35],[-58,-38],[-62,-40],[-65,-42],[-68,-46],[-72,-48],[-75,-50],[-73,-45],[-72,-40],[-70,-35],[-70,-30],[-70,-25],[-72,-20],[-75,-15],[-78,-5],[-80,0],[-78,5],[-80,10]],
-];
+function useGlobeTexture() {
+  const [texture, setTexture] = useState<THREE.CanvasTexture | null>(null);
 
-const EUROPE: [number, number][][] = [
-  [[-10,36],[-8,38],[-10,42],[-8,44],[-2,44],[0,46],[2,48],[5,48],[8,48],[10,50],[12,52],[14,54],[10,56],[12,58],[10,60],[5,62],[8,64],[12,66],[15,68],[20,70],[25,70],[30,68],[32,65],[30,62],[28,58],[28,55],[24,52],[20,48],[18,46],[15,44],[14,42],[16,40],[22,38],[26,40],[28,42],[30,42],[32,40],[28,36],[24,36],[20,36],[14,38],[10,38],[5,38],[2,38],[0,36],[-5,36],[-10,36]],
-];
+  useEffect(() => {
+    let cancelled = false;
 
-const AFRICA: [number, number][][] = [
-  [[-18,16],[-16,20],[-18,24],[-15,28],[-5,36],[0,36],[10,38],[14,38],[20,36],[25,32],[30,32],[32,30],[35,28],[38,22],[42,12],[45,10],[48,8],[50,4],[50,0],[45,-5],[42,-10],[40,-15],[38,-20],[35,-25],[32,-28],[28,-32],[26,-34],[20,-34],[18,-32],[16,-28],[14,-24],[12,-18],[10,-12],[8,-5],[6,0],[5,5],[2,5],[-2,5],[-8,5],[-12,8],[-16,12],[-18,16]],
-];
+    async function buildTexture() {
+      try {
+        // Dynamic imports for world-atlas and topojson
+        const [worldData, topojsonClient, d3Geo] = await Promise.all([
+          import("world-atlas/countries-110m.json"),
+          import("topojson-client"),
+          import("d3-geo"),
+        ]);
 
-const ASIA: [number, number][][] = [
-  // Main Asia landmass
-  [[30,42],[32,40],[35,38],[38,36],[40,35],[42,32],[45,28],[48,30],[50,28],[55,25],[58,24],[60,25],[62,28],[65,30],[68,28],[72,22],[75,18],[78,10],[80,8],[82,10],[85,15],[88,22],[90,24],[92,22],[95,18],[98,16],[100,15],[102,12],[105,10],[108,14],[110,18],[112,22],[115,24],[118,28],[120,30],[122,32],[124,35],[126,38],[128,40],[130,42],[135,45],[140,42],[142,44],[145,48],[142,50],[138,52],[135,55],[130,58],[125,60],[120,62],[115,60],[110,58],[100,62],[95,65],[90,68],[85,70],[80,72],[75,72],[70,70],[65,68],[60,68],[55,65],[50,55],[45,52],[42,48],[40,45],[35,42],[30,42]],
-];
+        if (cancelled) return;
 
-const INDIA: [number, number][][] = [
-  [[68,28],[72,22],[75,18],[78,10],[80,8],[82,10],[85,15],[88,22],[90,24],[88,26],[85,28],[82,28],[78,30],[75,32],[72,30],[68,28]],
-];
+        const topology = worldData.default || worldData;
+        const countriesGeo = topojsonClient.feature(
+          topology as any,
+          (topology as any).objects.countries
+        ) as any;
 
-const USA_MAINLAND: [number, number][][] = [
-  [[-125,48],[-122,48],[-120,46],[-118,42],[-122,38],[-124,42],[-125,45],[-125,48]],
-  [[-120,46],[-115,46],[-110,45],[-105,45],[-100,48],[-95,48],[-90,48],[-85,46],[-82,44],[-78,42],[-75,40],[-72,42],[-70,42],[-68,44],[-70,45],[-72,44],[-75,42],[-78,40],[-80,38],[-82,35],[-80,32],[-82,30],[-85,28],[-90,28],[-95,27],[-98,28],[-100,30],[-105,32],[-110,32],[-115,33],[-120,35],[-122,38],[-118,42],[-120,46]],
-];
+        // Create high-res canvas
+        const canvas = document.createElement("canvas");
+        canvas.width = 4096;
+        canvas.height = 2048;
+        const ctx = canvas.getContext("2d")!;
 
-const AUSTRALIA: [number, number][][] = [
-  [[115,-35],[118,-35],[120,-33],[124,-32],[128,-30],[130,-28],[132,-25],[135,-22],[138,-18],[140,-16],[142,-14],[144,-16],[148,-18],[150,-22],[152,-25],[154,-28],[152,-32],[150,-35],[148,-38],[145,-38],[140,-38],[135,-38],[130,-38],[125,-36],[120,-35],[115,-35]],
-];
+        // Ocean background
+        ctx.fillStyle = OCEAN_COLOR;
+        ctx.fillRect(0, 0, 4096, 2048);
 
-function createGlobeTexture(): HTMLCanvasElement {
-  const canvas = document.createElement("canvas");
-  canvas.width = 2048;
-  canvas.height = 1024;
-  const ctx = canvas.getContext("2d")!;
+        // Subtle grid
+        ctx.strokeStyle = "rgba(180, 200, 220, 0.3)";
+        ctx.lineWidth = 0.5;
+        for (let lon = -180; lon <= 180; lon += 30) {
+          const x = ((lon + 180) / 360) * 4096;
+          ctx.beginPath();
+          ctx.moveTo(x, 0);
+          ctx.lineTo(x, 2048);
+          ctx.stroke();
+        }
+        for (let lat = -90; lat <= 90; lat += 30) {
+          const y = ((90 - lat) / 180) * 2048;
+          ctx.beginPath();
+          ctx.moveTo(0, y);
+          ctx.lineTo(4096, y);
+          ctx.stroke();
+        }
 
-  // Ocean
-  ctx.fillStyle = "#E8E4DC";
-  ctx.fillRect(0, 0, 2048, 1024);
+        // Create equirectangular projection for the canvas
+        const projection = d3Geo.geoEquirectangular()
+          .fitSize([4096, 2048], { type: "Sphere" } as any);
 
-  // Grid lines
-  ctx.strokeStyle = "rgba(200, 195, 185, 0.4)";
-  ctx.lineWidth = 0.5;
-  for (let lon = -180; lon <= 180; lon += 30) {
-    const x = ((lon + 180) / 360) * 2048;
-    ctx.beginPath();
-    ctx.moveTo(x, 0);
-    ctx.lineTo(x, 1024);
-    ctx.stroke();
-  }
-  for (let lat = -90; lat <= 90; lat += 30) {
-    const y = ((90 - lat) / 180) * 1024;
-    ctx.beginPath();
-    ctx.moveTo(0, y);
-    ctx.lineTo(2048, y);
-    ctx.stroke();
-  }
+        const pathGen = d3Geo.geoPath(projection, ctx);
 
-  function lonLatToCanvas(lon: number, lat: number): [number, number] {
-    const x = ((lon + 180) / 360) * 2048;
-    const y = ((90 - lat) / 180) * 1024;
-    return [x, y];
-  }
+        // Draw all countries (base land color)
+        for (const feature of countriesGeo.features) {
+          ctx.beginPath();
+          pathGen(feature);
+          ctx.fillStyle = LAND_COLOR;
+          ctx.fill();
+          ctx.strokeStyle = LAND_STROKE;
+          ctx.lineWidth = 1;
+          ctx.stroke();
+        }
 
-  function drawRegion(polygons: [number, number][][], fillColor: string, strokeColor: string) {
-    polygons.forEach((polygon) => {
-      ctx.beginPath();
-      polygon.forEach(([lon, lat], i) => {
-        const [x, y] = lonLatToCanvas(lon, lat);
-        if (i === 0) ctx.moveTo(x, y);
-        else ctx.lineTo(x, y);
-      });
-      ctx.closePath();
-      ctx.fillStyle = fillColor;
-      ctx.fill();
-      ctx.strokeStyle = strokeColor;
-      ctx.lineWidth = 1.5;
-      ctx.stroke();
-    });
-  }
+        // Overlay jurisdiction-specific colors
+        for (const feature of countriesGeo.features) {
+          const id = feature.id || feature.properties?.id;
+          let fillColor = "";
+          let strokeColor = "";
 
-  // Draw continents with neutral color first
-  const landColor = "#C5C0B5";
-  const landStroke = "#A09A8E";
+          if (id === USA_CODE) {
+            fillColor = USA_COLOR;
+            strokeColor = USA_STROKE;
+          } else if (id === INDIA_CODE) {
+            fillColor = INDIA_COLOR;
+            strokeColor = INDIA_STROKE;
+          } else if (EUROPE_CODES.has(id)) {
+            fillColor = EUROPE_COLOR;
+            strokeColor = EUROPE_STROKE;
+          }
 
-  drawRegion(NORTH_AMERICA, landColor, landStroke);
-  drawRegion(SOUTH_AMERICA, landColor, landStroke);
-  drawRegion(AFRICA, landColor, landStroke);
-  drawRegion(ASIA, landColor, landStroke);
-  drawRegion(AUSTRALIA, landColor, landStroke);
-  drawRegion(EUROPE, landColor, landStroke);
+          if (fillColor) {
+            ctx.beginPath();
+            pathGen(feature);
+            ctx.fillStyle = fillColor;
+            ctx.fill();
+            ctx.strokeStyle = strokeColor;
+            ctx.lineWidth = 1.5;
+            ctx.stroke();
+          }
+        }
 
-  // Overlay jurisdiction-specific colors
-  // USA — navy blue
-  drawRegion(USA_MAINLAND, "rgba(27, 42, 74, 0.6)", "#1B2A4A");
+        const tex = new THREE.CanvasTexture(canvas);
+        tex.needsUpdate = true;
+        if (!cancelled) setTexture(tex);
+      } catch (err) {
+        console.warn("Globe texture build failed:", err);
+      }
+    }
 
-  // India — saffron/orange
-  drawRegion(INDIA, "rgba(196, 91, 40, 0.6)", "#C45B28");
+    buildTexture();
+    return () => { cancelled = true; };
+  }, []);
 
-  // Europe — royal blue
-  drawRegion(EUROPE, "rgba(0, 51, 153, 0.5)", "#003399");
-
-  return canvas;
+  return texture;
 }
 
 function Globe() {
   const meshRef = useRef<THREE.Mesh>(null);
-  const atmosphereRef = useRef<THREE.Mesh>(null);
-
-  const texture = useMemo(() => {
-    if (typeof window === "undefined") return null;
-    const canvas = createGlobeTexture();
-    const tex = new THREE.CanvasTexture(canvas);
-    tex.wrapS = THREE.RepeatWrapping;
-    tex.needsUpdate = true;
-    return tex;
-  }, []);
+  const texture = useGlobeTexture();
 
   useFrame((_, delta) => {
     if (meshRef.current) {
-      meshRef.current.rotation.y += delta * 0.05;
+      meshRef.current.rotation.y += delta * 0.06;
     }
   });
 
-  if (!texture) return null;
-
   return (
-    <group rotation={[0.2, 0, 0]}>
+    <group rotation={[0.15, 0, 0]}>
       {/* Main globe */}
       <mesh ref={meshRef}>
         <sphereGeometry args={[2, 64, 64]} />
-        <meshStandardMaterial
-          map={texture}
-          roughness={0.8}
-          metalness={0.1}
-        />
+        {texture ? (
+          <meshStandardMaterial
+            map={texture}
+            roughness={0.7}
+            metalness={0.05}
+          />
+        ) : (
+          <meshStandardMaterial color="#C8C3B8" roughness={0.8} />
+        )}
       </mesh>
       {/* Atmosphere glow */}
-      <mesh ref={atmosphereRef} scale={[1.02, 1.02, 1.02]}>
+      <mesh scale={[1.03, 1.03, 1.03]}>
+        <sphereGeometry args={[2, 32, 32]} />
+        <meshBasicMaterial
+          color="#87CEEB"
+          transparent
+          opacity={0.06}
+          side={THREE.BackSide}
+        />
+      </mesh>
+      <mesh scale={[1.06, 1.06, 1.06]}>
         <sphereGeometry args={[2, 32, 32]} />
         <meshBasicMaterial
           color="#C5A44E"
           transparent
-          opacity={0.04}
-          side={THREE.BackSide}
-        />
-      </mesh>
-      {/* Outer glow ring */}
-      <mesh scale={[1.05, 1.05, 1.05]}>
-        <sphereGeometry args={[2, 32, 32]} />
-        <meshBasicMaterial
-          color="#8B7355"
-          transparent
-          opacity={0.02}
+          opacity={0.03}
           side={THREE.BackSide}
         />
       </mesh>
@@ -176,73 +185,28 @@ function Globe() {
   );
 }
 
-function JurisdictionMarker({ lat, lon, color, label }: { lat: number; lon: number; color: string; label: string }) {
+function JurisdictionMarker({ lat, lon, color }: { lat: number; lon: number; color: string }) {
   const ref = useRef<THREE.Mesh>(null);
-
-  const pos = useMemo(() => {
-    const phi = (90 - lat) * (Math.PI / 180);
-    const theta = (lon + 180) * (Math.PI / 180);
-    return new THREE.Vector3(
-      -2.02 * Math.sin(phi) * Math.cos(theta),
-      2.02 * Math.cos(phi),
-      2.02 * Math.sin(phi) * Math.sin(theta)
-    );
-  }, [lat, lon]);
+  const pos = useMemo(() => latLonToVec3(lat, lon, 2.02), [lat, lon]);
 
   useFrame((state) => {
     if (ref.current) {
-      const scale = 1 + Math.sin(state.clock.elapsedTime * 2) * 0.3;
-      ref.current.scale.set(scale, scale, scale);
+      const s = 1 + Math.sin(state.clock.elapsedTime * 2.5) * 0.4;
+      ref.current.scale.set(s, s, s);
     }
   });
 
   return (
     <group>
-      {/* Pulsing marker dot */}
       <mesh ref={ref} position={pos}>
         <sphereGeometry args={[0.04, 12, 12]} />
         <meshBasicMaterial color={color} />
       </mesh>
-      {/* Static base dot */}
       <mesh position={pos}>
-        <sphereGeometry args={[0.03, 8, 8]} />
+        <sphereGeometry args={[0.025, 8, 8]} />
         <meshBasicMaterial color={color} />
       </mesh>
-      {/* Beam line going outward */}
-      <BeamLine from={pos} color={color} />
     </group>
-  );
-}
-
-function BeamLine({ from, color }: { from: THREE.Vector3; color: string }) {
-  const ref = useRef<THREE.Mesh>(null);
-  const direction = from.clone().normalize();
-  const endPos = from.clone().add(direction.clone().multiplyScalar(0.8));
-  const midPos = from.clone().add(direction.clone().multiplyScalar(0.4));
-
-  useFrame((state) => {
-    if (ref.current) {
-      (ref.current.material as THREE.MeshBasicMaterial).opacity =
-        0.2 + Math.sin(state.clock.elapsedTime * 3) * 0.15;
-    }
-  });
-
-  // Calculate rotation to align cylinder with direction
-  const quaternion = useMemo(() => {
-    const q = new THREE.Quaternion();
-    q.setFromUnitVectors(new THREE.Vector3(0, 1, 0), direction);
-    return q;
-  }, [direction]);
-
-  return (
-    <mesh
-      ref={ref}
-      position={midPos}
-      quaternion={quaternion}
-    >
-      <cylinderGeometry args={[0.004, 0.004, 0.8, 4]} />
-      <meshBasicMaterial color={color} transparent opacity={0.3} />
-    </mesh>
   );
 }
 
@@ -251,27 +215,21 @@ function ConnectionArcs() {
 
   const arcs = useMemo(() => {
     const jurisdictions = [
-      { lat: 38.9, lon: -77.05 },  // USA
-      { lat: 28.6, lon: 77.2 },    // India
-      { lat: 48.14, lon: 11.58 },  // Europe
+      { lat: 38.9, lon: -77.05 },
+      { lat: 28.6, lon: 77.2 },
+      { lat: 48.14, lon: 11.58 },
     ];
-
-    const arcGeometries: { points: THREE.Vector3[]; color: string }[] = [];
-    const colors = ["#C5A44E", "#C5A44E", "#C5A44E"];
-
+    const result: THREE.Vector3[][] = [];
     for (let i = 0; i < jurisdictions.length; i++) {
       for (let j = i + 1; j < jurisdictions.length; j++) {
         const start = latLonToVec3(jurisdictions[i].lat, jurisdictions[i].lon, 2.02);
         const end = latLonToVec3(jurisdictions[j].lat, jurisdictions[j].lon, 2.02);
         const mid = start.clone().add(end).multiplyScalar(0.5).normalize().multiplyScalar(2.8);
-
         const curve = new THREE.QuadraticBezierCurve3(start, mid, end);
-        const points = curve.getPoints(50);
-        arcGeometries.push({ points, color: colors[i] });
+        result.push(curve.getPoints(50));
       }
     }
-
-    return arcGeometries;
+    return result;
   }, []);
 
   useFrame((state) => {
@@ -286,35 +244,24 @@ function ConnectionArcs() {
 
   return (
     <group ref={ref}>
-      {arcs.map((arc, i) => (
+      {arcs.map((points, i) => (
         <line key={i}>
           <bufferGeometry>
             <bufferAttribute
               attach="attributes-position"
-              args={[new Float32Array(arc.points.flatMap((p) => [p.x, p.y, p.z])), 3]}
+              args={[new Float32Array(points.flatMap((p) => [p.x, p.y, p.z])), 3]}
             />
           </bufferGeometry>
-          <lineBasicMaterial color={arc.color} transparent opacity={0.2} />
+          <lineBasicMaterial color="#C5A44E" transparent opacity={0.2} />
         </line>
       ))}
     </group>
   );
 }
 
-function latLonToVec3(lat: number, lon: number, radius: number): THREE.Vector3 {
-  const phi = (90 - lat) * (Math.PI / 180);
-  const theta = (lon + 180) * (Math.PI / 180);
-  return new THREE.Vector3(
-    -radius * Math.sin(phi) * Math.cos(theta),
-    radius * Math.cos(phi),
-    radius * Math.sin(phi) * Math.sin(theta)
-  );
-}
-
 function AmbientParticles() {
   const ref = useRef<THREE.Points>(null);
-  const count = 200;
-
+  const count = 150;
   const positions = useMemo(() => {
     const pos = new Float32Array(count * 3);
     for (let i = 0; i < count; i++) {
@@ -344,14 +291,13 @@ function AmbientParticles() {
       <bufferGeometry>
         <bufferAttribute attach="attributes-position" args={[positions, 3]} />
       </bufferGeometry>
-      <pointsMaterial color="#C5A44E" size={0.012} transparent opacity={0.35} />
+      <pointsMaterial color="#C5A44E" size={0.01} transparent opacity={0.3} />
     </points>
   );
 }
 
 function ConvergencePoint() {
   const ref = useRef<THREE.Mesh>(null);
-
   useFrame((state) => {
     if (ref.current) {
       ref.current.rotation.x = state.clock.elapsedTime * 0.5;
@@ -375,18 +321,28 @@ function ConvergencePoint() {
   );
 }
 
+function latLonToVec3(lat: number, lon: number, radius: number): THREE.Vector3 {
+  const phi = (90 - lat) * (Math.PI / 180);
+  const theta = (lon + 180) * (Math.PI / 180);
+  return new THREE.Vector3(
+    -radius * Math.sin(phi) * Math.cos(theta),
+    radius * Math.cos(phi),
+    radius * Math.sin(phi) * Math.sin(theta)
+  );
+}
+
 function GlobeScene() {
   return (
     <>
-      <ambientLight intensity={0.6} color="#FFF8F0" />
-      <directionalLight position={[5, 5, 5]} intensity={0.8} color="#FFFFFF" />
-      <pointLight position={[0, 3, 0]} intensity={0.5} color="#C5A44E" distance={5} />
+      <ambientLight intensity={0.7} color="#FFF8F0" />
+      <directionalLight position={[5, 5, 5]} intensity={0.6} color="#FFFFFF" />
+      <pointLight position={[0, 3, 0]} intensity={0.4} color="#C5A44E" distance={5} />
 
       <Globe />
 
-      <JurisdictionMarker lat={38.9} lon={-77.05} color="#1B2A4A" label="USPTO" />
-      <JurisdictionMarker lat={28.6} lon={77.2} color="#C45B28" label="IPO" />
-      <JurisdictionMarker lat={48.14} lon={11.58} color="#003399" label="EPO" />
+      <JurisdictionMarker lat={38.9} lon={-77.05} color="#1B2A4A" />
+      <JurisdictionMarker lat={28.6} lon={77.2} color="#C45B28" />
+      <JurisdictionMarker lat={48.14} lon={11.58} color="#003399" />
 
       <ConnectionArcs />
       <ConvergencePoint />
@@ -408,7 +364,7 @@ function GlobeScene() {
 function GlobeLoading() {
   return (
     <div className="w-full h-full flex items-center justify-center">
-      <div className="w-12 h-12 border border-gold/30 rounded-full animate-spin border-t-gold" />
+      <div className="w-12 h-12 border border-[#C5A44E]/30 rounded-full animate-spin border-t-[#C5A44E]" />
     </div>
   );
 }
