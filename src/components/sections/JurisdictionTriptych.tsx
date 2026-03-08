@@ -135,20 +135,20 @@ function USPTOStatsTicker() {
   return (
     <div
       ref={tickerRef}
-      className="relative h-[420px] overflow-hidden rounded-xl border border-[#1B2A4A]/10 bg-white shadow-sm"
+      className="relative h-[420px] overflow-hidden  border border-[#1A1A1A]/10 bg-white shadow-sm"
     >
       <div className="ticker-inner flex flex-col gap-2 p-3">
         {[...usptoStats, ...usptoStats].map((s, i) => (
           <div
             key={i}
-            className={`flex items-center justify-between rounded-lg px-4 py-3 text-sm transition-colors ${
+            className={`flex items-center justify-between  px-4 py-3 text-sm transition-colors ${
               s.highlight
                 ? "border border-[#C5A44E]/40 bg-[#C5A44E]/5"
-                : "border border-[#1B2A4A]/6 bg-[#F3EFE8]/50"
+                : "border border-[#1A1A1A]/6 bg-[#F3EFE8]/50"
             }`}
           >
             <span className="text-[#5A5A5A] font-medium text-xs">{s.label}</span>
-            <span className={`font-mono font-bold text-sm ${s.highlight ? "text-[#C5A44E]" : "text-[#1B2A4A]"}`}>
+            <span className={`font-mono font-bold text-sm ${s.highlight ? "text-[#C5A44E]" : "text-[#1A1A1A]"}`}>
               {s.value}
             </span>
           </div>
@@ -165,36 +165,36 @@ function SankeyFlowDiagram() {
     <div className="w-full py-6">
       <div className="flex flex-col items-center gap-2 lg:flex-row lg:gap-0">
         <div className="flex flex-col items-center">
-          <div className="rounded-lg border-2 border-[#C45B28] bg-[#C45B28]/5 px-6 py-4 text-center">
-            <p className="text-xs uppercase tracking-wider text-[#C45B28] font-medium">Applications Filed</p>
+          <div className=" border-2 border-[#1A1A1A] bg-[#1A1A1A]/5 px-6 py-4 text-center">
+            <p className="text-xs uppercase tracking-wider text-[#1A1A1A] font-medium">Applications Filed</p>
             <p className="mt-1 text-2xl font-bold text-[#1A1A1A]">66,440</p>
           </div>
         </div>
 
-        <div className="hidden h-[2px] w-16 bg-gradient-to-r from-[#C45B28] to-[#1A7A6D] lg:block" />
-        <div className="block h-8 w-[2px] bg-gradient-to-b from-[#C45B28] to-[#1A7A6D] lg:hidden" />
+        <div className="hidden h-[2px] w-16 bg-gradient-to-r from-[#1A1A1A] to-[#C5A44E] lg:block" />
+        <div className="block h-8 w-[2px] bg-gradient-to-b from-[#1A1A1A] to-[#C5A44E] lg:hidden" />
 
         <div className="flex flex-col items-center">
-          <div className="rounded-lg border-2 border-[#1A7A6D] bg-[#1A7A6D]/5 px-6 py-4 text-center">
-            <p className="text-xs uppercase tracking-wider text-[#1A7A6D] font-medium">Examined</p>
+          <div className=" border-2 border-[#C5A44E] bg-[#C5A44E]/5 px-6 py-4 text-center">
+            <p className="text-xs uppercase tracking-wider text-[#C5A44E] font-medium">Examined</p>
             <p className="mt-1 text-2xl font-bold text-[#1A1A1A]">48,200</p>
           </div>
           <div className="mt-2 flex gap-3 text-xs">
-            <span className="rounded-full bg-red-50 border border-red-200 px-3 py-1 text-red-600">Abandoned: 11,200</span>
+            <span className=" bg-red-50 border border-red-200 px-3 py-1 text-red-600">Abandoned: 11,200</span>
           </div>
         </div>
 
-        <div className="hidden h-[2px] w-16 bg-gradient-to-r from-[#1A7A6D] to-[#C5A44E] lg:block" />
-        <div className="block h-8 w-[2px] bg-gradient-to-b from-[#1A7A6D] to-[#C5A44E] lg:hidden" />
+        <div className="hidden h-[2px] w-16 bg-gradient-to-r from-[#C5A44E] to-[#C5A44E] lg:block" />
+        <div className="block h-8 w-[2px] bg-gradient-to-b from-[#C5A44E] to-[#C5A44E] lg:hidden" />
 
         <div className="flex flex-col items-center">
-          <div className="rounded-lg border-2 border-[#C5A44E] bg-[#C5A44E]/5 px-6 py-4 text-center">
+          <div className=" border-2 border-[#C5A44E] bg-[#C5A44E]/5 px-6 py-4 text-center">
             <p className="text-xs uppercase tracking-wider text-[#C5A44E] font-medium">Granted</p>
             <p className="mt-1 text-2xl font-bold text-[#1A1A1A]">29,840</p>
           </div>
           <div className="mt-2 flex gap-3 text-xs">
-            <span className="rounded-full bg-orange-50 border border-orange-200 px-3 py-1 text-orange-600">Opposition: 4,120</span>
-            <span className="rounded-full bg-gray-50 border border-gray-200 px-3 py-1 text-gray-500">Refused: 3,040</span>
+            <span className=" bg-orange-50 border border-orange-200 px-3 py-1 text-orange-600">Opposition: 4,120</span>
+            <span className=" bg-gray-50 border border-gray-200 px-3 py-1 text-gray-500">Refused: 3,040</span>
           </div>
         </div>
       </div>
@@ -268,9 +268,9 @@ function ProblemSolutionGears() {
     <div className="flex items-center justify-center py-8">
       <div className="relative" style={{ width: 130, height: 130 }}>
         <div className="absolute inset-0 animate-spin-slow">
-          <GearSVG teeth={10} innerRadius={18} outerRadius={28} toothDepth={8} color="#003399" className="w-full h-full" />
+          <GearSVG teeth={10} innerRadius={18} outerRadius={28} toothDepth={8} color="#1A1A1A" className="w-full h-full" />
         </div>
-        <span className="absolute inset-0 flex items-center justify-center text-[11px] font-bold uppercase tracking-wider text-[#003399] pointer-events-none">
+        <span className="absolute inset-0 flex items-center justify-center text-[11px] font-bold uppercase tracking-wider text-[#1A1A1A] pointer-events-none">
           Problem
         </span>
       </div>
@@ -295,14 +295,14 @@ function EPOBarChart() {
             <span className="text-[#5A5A5A]">{item.sector}</span>
             <span className="font-mono text-[#1A1A1A] font-semibold">{item.rate}%</span>
           </div>
-          <div className="relative h-5 w-full overflow-hidden rounded-full bg-[#003399]/8 border border-[#003399]/10">
+          <div className="relative h-5 w-full overflow-hidden  bg-[#1A1A1A]/8 border border-[#1A1A1A]/10">
             <div
-              className="h-full rounded-full bg-gradient-to-r from-[#003399]/70 to-[#003399]/40"
+              className="h-full  bg-gradient-to-r from-[#1A1A1A]/70 to-[#1A1A1A]/40"
               style={{ width: `${item.rate}%` }}
             />
             {item.jurryiRate && (
               <div
-                className="absolute top-0 h-full rounded-full border-2 border-[#C5A44E] bg-[#C5A44E]/10"
+                className="absolute top-0 h-full  border-2 border-[#C5A44E] bg-[#C5A44E]/10"
                 style={{ width: `${item.jurryiRate}%` }}
               >
                 <span className="absolute right-2 top-1/2 -translate-y-1/2 text-[10px] font-bold text-[#C5A44E]">
@@ -323,28 +323,28 @@ function EPOBarChart() {
 
 const jurisdictionStyles = {
   usa: {
-    accentColor: "#1B2A4A",
-    accentLight: "rgba(27,42,74,0.04)",
-    accentBorder: "rgba(27,42,74,0.12)",
-    headingColor: "#1B2A4A",
-    tagColor: "#4A7BF7",
+    accentColor: "#1A1A1A",
+    accentLight: "rgba(26,26,26,0.04)",
+    accentBorder: "rgba(26,26,26,0.12)",
+    headingColor: "#1A1A1A",
+    tagColor: "#C5A44E",
     bg: "linear-gradient(180deg, #FDFBF7 0%, #F3F1EC 100%)",
   },
   india: {
-    accentColor: "#C45B28",
-    accentLight: "rgba(196,91,40,0.04)",
-    accentBorder: "rgba(196,91,40,0.12)",
-    headingColor: "#C45B28",
-    tagColor: "#1A7A6D",
-    bg: "linear-gradient(180deg, #FDFBF7 0%, #F8F3ED 100%)",
+    accentColor: "#1A1A1A",
+    accentLight: "rgba(26,26,26,0.04)",
+    accentBorder: "rgba(26,26,26,0.12)",
+    headingColor: "#1A1A1A",
+    tagColor: "#C5A44E",
+    bg: "linear-gradient(180deg, #FDFBF7 0%, #F3F1EC 100%)",
   },
   europe: {
-    accentColor: "#003399",
-    accentLight: "rgba(0,51,153,0.04)",
-    accentBorder: "rgba(0,51,153,0.12)",
-    headingColor: "#003399",
-    tagColor: "#003399",
-    bg: "linear-gradient(180deg, #FDFBF7 0%, #F2F4F8 100%)",
+    accentColor: "#1A1A1A",
+    accentLight: "rgba(26,26,26,0.04)",
+    accentBorder: "rgba(26,26,26,0.12)",
+    headingColor: "#1A1A1A",
+    tagColor: "#C5A44E",
+    bg: "linear-gradient(180deg, #FDFBF7 0%, #F3F1EC 100%)",
   },
 };
 
@@ -420,12 +420,12 @@ export default function JurisdictionTriptych() {
   };
 
   /* shared card style */
-  const cardBase = "rounded-xl border bg-white p-5 shadow-sm transition-all hover:shadow-md";
+  const cardBase = "border bg-white p-5 shadow-sm transition-all hover:shadow-md";
 
   /* ---------- MOBILE LAYOUT ---------- */
   if (isMobile) {
     return (
-      <section className="relative">
+      <section className="relative" style={{ fontFamily: "'Times New Roman', Times, serif" }}>
         <MobilePanelUSPTO cardBase={cardBase} />
         <MobilePanelIPO cardBase={cardBase} />
         <MobilePanelEPO cardBase={cardBase} />
@@ -435,7 +435,7 @@ export default function JurisdictionTriptych() {
 
   /* ---------- DESKTOP LAYOUT ---------- */
   return (
-    <section ref={sectionRef} className="relative min-h-[400vh]">
+    <section ref={sectionRef} className="relative min-h-[400vh]" style={{ fontFamily: "'Times New Roman', Times, serif" }}>
       <div ref={panelWrapperRef} className="relative h-screen w-full overflow-hidden">
 
         {/* ============ PANEL 1: USPTO ============ */}
@@ -449,10 +449,10 @@ export default function JurisdictionTriptych() {
           <div className="mx-auto flex w-full max-w-7xl gap-8 px-6 py-16 lg:px-12">
             <div className="flex-1 space-y-8">
               <div className="anim-card">
-                <p className="text-sm font-semibold uppercase tracking-[0.3em] text-[#4A7BF7]">
+                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#C5A44E]">
                   The American Patent Cathedral
                 </p>
-                <h2 className="mt-2 text-5xl font-black text-[#1B2A4A]">USPTO</h2>
+                <h2 className="mt-2 text-4xl font-black text-[#1A1A1A]">USPTO</h2>
                 <p className="mt-1 text-lg text-[#5A5A5A]">
                   United States Patent and Trademark Office
                 </p>
@@ -462,9 +462,9 @@ export default function JurisdictionTriptych() {
                 {usptoCards.map((card) => (
                   <div
                     key={card.id}
-                    className={`anim-card ${cardBase} border-[#1B2A4A]/10 hover:border-[#1B2A4A]/25`}
+                    className={`anim-card ${cardBase} border-[#1A1A1A]/10 hover:border-[#C5A44E]/25`}
                   >
-                    <h3 className="text-base font-bold text-[#1B2A4A]">
+                    <h3 className="text-base font-bold text-[#1A1A1A]">
                       {card.title}
                     </h3>
                     <blockquote className="mt-3 border-l-2 border-[#C5A44E]/40 pl-3 text-xs leading-relaxed text-[#5A5A5A] italic font-serif">
@@ -479,7 +479,7 @@ export default function JurisdictionTriptych() {
             </div>
 
             <div className="hidden w-72 shrink-0 pt-20 xl:block">
-              <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-[#1B2A4A]/40 font-mono">
+              <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-[#1A1A1A]/40 font-mono">
                 USPTO FY2025 Statistics
               </p>
               <USPTOStatsTicker />
@@ -497,10 +497,10 @@ export default function JurisdictionTriptych() {
 
           <div className="mx-auto w-full max-w-7xl space-y-8 px-6 py-16 lg:px-12">
             <div className="anim-card">
-              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-[#C45B28]">
+              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#C5A44E]">
                 The Innovation Sanctum
               </p>
-              <h2 className="mt-2 text-5xl font-black text-[#C45B28]">IPO</h2>
+              <h2 className="mt-2 text-4xl font-black text-[#1A1A1A]">IPO</h2>
               <p className="mt-1 text-lg text-[#5A5A5A]">
                 Indian Patent Office
               </p>
@@ -517,9 +517,9 @@ export default function JurisdictionTriptych() {
               {ipoExclusions.map((ex) => (
                 <div
                   key={ex.id}
-                  className={`anim-card ${cardBase} border-[#C45B28]/15 text-center hover:border-[#C45B28]/30`}
+                  className={`anim-card ${cardBase} border-[#1A1A1A]/15 text-center hover:border-[#1A1A1A]/30`}
                 >
-                  <p className="text-2xl font-black text-[#C45B28]">
+                  <p className="text-2xl font-black text-[#1A1A1A]">
                     {ex.title}
                   </p>
                   <p className="mt-2 text-xs leading-snug text-[#5A5A5A]">
@@ -529,17 +529,17 @@ export default function JurisdictionTriptych() {
               ))}
             </div>
 
-            <div className={`anim-card ${cardBase} border-[#1A7A6D]/20 border-l-4 border-l-[#1A7A6D]`}>
+            <div className={`anim-card ${cardBase} border-[#C5A44E]/20 border-l-4 border-l-[#C5A44E]`}>
               <p className="text-sm leading-relaxed text-[#3A3A3A]">
                 Jurryi&apos;s India Drafting Agent generates complete patent
                 specifications formatted per Indian Patent Office requirements:
                 Form 1, Form 2, Form 3, Form 5, and Form 26. The{" "}
-                <span className="font-bold text-[#1A7A6D]">
+                <span className="font-bold text-[#C5A44E]">
                   One-Click Drafting
                 </span>{" "}
                 feature takes a plain-language invention disclosure and produces
                 a filing-ready document package in under{" "}
-                <span className="font-bold text-[#C45B28]">8 minutes</span>.
+                <span className="font-bold text-[#1A1A1A]">8 minutes</span>.
               </p>
             </div>
 
@@ -547,13 +547,13 @@ export default function JurisdictionTriptych() {
               <SankeyFlowDiagram />
             </div>
 
-            <div className={`anim-card flex items-center gap-5 ${cardBase} border-[#1A7A6D]/15`}>
-              <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border-2 border-[#1A7A6D] text-xl font-black text-[#1A7A6D]">
+            <div className={`anim-card flex items-center gap-5 ${cardBase} border-[#C5A44E]/15`}>
+              <div className="flex h-16 w-16 shrink-0 items-center justify-center  border-2 border-[#C5A44E] text-xl font-black text-[#C5A44E]">
                 47%
               </div>
               <p className="text-sm text-[#5A5A5A]">
                 Jurryi increases FER-to-Grant conversion by{" "}
-                <span className="font-bold text-[#1A7A6D]">47%</span> through
+                <span className="font-bold text-[#C5A44E]">47%</span> through
                 predictive claim structuring.
               </p>
             </div>
@@ -570,10 +570,10 @@ export default function JurisdictionTriptych() {
 
           <div className="mx-auto w-full max-w-7xl space-y-8 px-6 py-16 lg:px-12">
             <div className="anim-card">
-              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-[#003399]">
+              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#C5A44E]">
                 The Precision Chamber
               </p>
-              <h2 className="mt-2 text-5xl font-black text-[#003399]">EPO</h2>
+              <h2 className="mt-2 text-4xl font-black text-[#1A1A1A]">EPO</h2>
               <p className="mt-1 text-lg text-[#5A5A5A]">
                 European Patent Office
               </p>
@@ -590,9 +590,9 @@ export default function JurisdictionTriptych() {
               {epoArticles.map((art) => (
                 <div
                   key={art.id}
-                  className={`anim-card ${cardBase} border-[#003399]/10 hover:border-[#003399]/25`}
+                  className={`anim-card ${cardBase} border-[#1A1A1A]/10 hover:border-[#1A1A1A]/25`}
                 >
-                  <h3 className="text-base font-bold text-[#003399]">
+                  <h3 className="text-base font-bold text-[#1A1A1A]">
                     {art.title}
                   </h3>
                   <p className="mt-3 text-xs leading-relaxed text-[#5A5A5A]">
@@ -603,7 +603,7 @@ export default function JurisdictionTriptych() {
             </div>
 
             <div className="anim-card">
-              <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-[#003399]/50 font-mono">
+              <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-[#1A1A1A]/50 font-mono">
                 EPO Grant Rates by Sector
               </p>
               <EPOBarChart />
@@ -654,10 +654,10 @@ function MobilePanelUSPTO({ cardBase }: { cardBase: string }) {
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.6 }}
         >
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#4A7BF7]">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#C5A44E]">
             The American Patent Cathedral
           </p>
-          <h2 className="mt-2 text-4xl font-black text-[#1B2A4A]">USPTO</h2>
+          <h2 className="mt-2 text-3xl font-black text-[#1A1A1A]">USPTO</h2>
           <p className="mt-1 text-base text-[#5A5A5A]">
             United States Patent and Trademark Office
           </p>
@@ -670,9 +670,9 @@ function MobilePanelUSPTO({ cardBase }: { cardBase: string }) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.5, delay: i * 0.1 }}
-            className={`${cardBase} border-[#1B2A4A]/10`}
+            className={`${cardBase} border-[#1A1A1A]/10`}
           >
-            <h3 className="text-sm font-bold text-[#1B2A4A]">{card.title}</h3>
+            <h3 className="text-sm font-bold text-[#1A1A1A]">{card.title}</h3>
             <blockquote className="mt-3 border-l-2 border-[#C5A44E]/40 pl-3 text-xs leading-relaxed text-[#5A5A5A] italic font-serif">
               {card.quote}
             </blockquote>
@@ -689,20 +689,20 @@ function MobilePanelUSPTO({ cardBase }: { cardBase: string }) {
           transition={{ duration: 0.6 }}
           className="space-y-2"
         >
-          <p className="text-xs font-semibold uppercase tracking-widest text-[#1B2A4A]/40 font-mono">
+          <p className="text-xs font-semibold uppercase tracking-widest text-[#1A1A1A]/40 font-mono">
             USPTO FY2025 Statistics
           </p>
           {usptoStats.map((s, i) => (
             <div
               key={i}
-              className={`flex items-center justify-between rounded-lg px-3 py-2 text-xs ${
+              className={`flex items-center justify-between  px-3 py-2 text-xs ${
                 s.highlight
                   ? "border border-[#C5A44E]/40 bg-[#C5A44E]/5"
-                  : "border border-[#1B2A4A]/6 bg-white"
+                  : "border border-[#1A1A1A]/6 bg-white"
               }`}
             >
               <span className="text-[#5A5A5A]">{s.label}</span>
-              <span className={`font-mono font-bold ${s.highlight ? "text-[#C5A44E]" : "text-[#1B2A4A]"}`}>
+              <span className={`font-mono font-bold ${s.highlight ? "text-[#C5A44E]" : "text-[#1A1A1A]"}`}>
                 {s.value}
               </span>
             </div>
@@ -723,10 +723,10 @@ function MobilePanelIPO({ cardBase }: { cardBase: string }) {
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.6 }}
         >
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#C45B28]">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#C5A44E]">
             The Innovation Sanctum
           </p>
-          <h2 className="mt-2 text-4xl font-black text-[#C45B28]">IPO</h2>
+          <h2 className="mt-2 text-3xl font-black text-[#1A1A1A]">IPO</h2>
           <p className="mt-1 text-base text-[#5A5A5A]">Indian Patent Office</p>
         </motion.div>
 
@@ -751,9 +751,9 @@ function MobilePanelIPO({ cardBase }: { cardBase: string }) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className={`${cardBase} border-[#C45B28]/15 text-center`}
+              className={`${cardBase} border-[#1A1A1A]/15 text-center`}
             >
-              <p className="text-xl font-black text-[#C45B28]">{ex.title}</p>
+              <p className="text-xl font-black text-[#1A1A1A]">{ex.title}</p>
               <p className="mt-1 text-[11px] leading-snug text-[#5A5A5A]">{ex.desc}</p>
             </motion.div>
           ))}
@@ -764,14 +764,14 @@ function MobilePanelIPO({ cardBase }: { cardBase: string }) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.6 }}
-          className={`${cardBase} border-[#1A7A6D]/20 border-l-4 border-l-[#1A7A6D]`}
+          className={`${cardBase} border-[#C5A44E]/20 border-l-4 border-l-[#C5A44E]`}
         >
           <p className="text-sm leading-relaxed text-[#3A3A3A]">
             Jurryi&apos;s India Drafting Agent generates complete patent
             specifications. The{" "}
-            <span className="font-bold text-[#1A7A6D]">One-Click Drafting</span>{" "}
+            <span className="font-bold text-[#C5A44E]">One-Click Drafting</span>{" "}
             produces a filing-ready document package in under{" "}
-            <span className="font-bold text-[#C45B28]">8 minutes</span>.
+            <span className="font-bold text-[#1A1A1A]">8 minutes</span>.
           </p>
         </motion.div>
 
@@ -791,10 +791,10 @@ function MobilePanelEPO({ cardBase }: { cardBase: string }) {
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.6 }}
         >
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#003399]">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#C5A44E]">
             The Precision Chamber
           </p>
-          <h2 className="mt-2 text-4xl font-black text-[#003399]">EPO</h2>
+          <h2 className="mt-2 text-3xl font-black text-[#1A1A1A]">EPO</h2>
           <p className="mt-1 text-base text-[#5A5A5A]">European Patent Office</p>
         </motion.div>
 
@@ -807,9 +807,9 @@ function MobilePanelEPO({ cardBase }: { cardBase: string }) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.5, delay: i * 0.1 }}
-            className={`${cardBase} border-[#003399]/10`}
+            className={`${cardBase} border-[#1A1A1A]/10`}
           >
-            <h3 className="text-sm font-bold text-[#003399]">{art.title}</h3>
+            <h3 className="text-sm font-bold text-[#1A1A1A]">{art.title}</h3>
             <p className="mt-3 text-xs leading-relaxed text-[#5A5A5A]">{art.jurryi}</p>
           </motion.div>
         ))}
