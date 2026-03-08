@@ -15,7 +15,6 @@ const SecurityVault = dynamic(() => import("@/components/sections/SecurityVault"
 const ProductCards = dynamic(() => import("@/components/sections/ProductCards"), { ssr: false });
 const PatentDrawings = dynamic(() => import("@/components/sections/PatentDrawings"), { ssr: false });
 
-const SocialProof = dynamic(() => import("@/components/sections/SocialProof"), { ssr: false });
 const CTASection = dynamic(() => import("@/components/sections/CTASection"), { ssr: false });
 const Footer = dynamic(() => import("@/components/sections/Footer"), { ssr: false });
 
@@ -75,7 +74,6 @@ export default function Home() {
         <SecurityVault />
         <ProductCards />
         <PatentDrawings />
-        <SocialProof />
         <CTASection />
         <Footer />
       </div>

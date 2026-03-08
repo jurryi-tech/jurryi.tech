@@ -1,0 +1,122 @@
+# Jurryi Tech - Complete Platform Documentation
+
+> AI-Powered Patent Drafting & Prosecution Infrastructure
+
+## Overview
+
+Jurryi is the world's first privacy-enabled AI infrastructure purpose-built for patent attorney teams. Our platform is trained on patent prosecution history and engineered to streamline every step of the patent lifecycle — from initial invention disclosure through final grant.
+
+## Products & Services
+
+### 1. AI Patent Drafter
+The AI Patent Drafter is Jurryi's flagship product for automated patent application drafting.
+
+**Features:**
+- Generate complete patent specifications from invention disclosures
+- Auto-generate claims (independent + dependent), detailed descriptions, abstracts
+- Support for utility patents, design patents, and provisional applications
+- Multi-jurisdiction formatting: USPTO, EPO, WIPO (PCT), Indian Patent Office, JPO, KIPO
+- Section 3(k) compliance checking for Indian software patents
+- Automatic drawing generation and figure references
+- CPC/IPC classification suggestion
+- Prior art-aware drafting that strengthens novelty arguments
+
+**Use Cases:**
+- Patent attorneys drafting new applications
+- In-house IP teams processing invention disclosures
+- Law firms scaling patent prosecution output
+- Corporate R&D teams protecting innovations
+
+### 2. Prior Art Search Engine
+AI-powered prior art discovery and analysis platform.
+
+**Features:**
+- Semantic search across 150M+ patent documents worldwide
+- Non-patent literature (NPL) search integration
+- Automated novelty assessment and patentability scoring
+- Visual patent landscape mapping
+- Claim-by-claim prior art mapping
+- Export-ready search reports for client delivery
+
+### 3. Office Action Response Generator
+Automated analysis and response drafting for patent office actions.
+
+**Features:**
+- Parse and categorize office action rejections (35 USC 101, 102, 103, 112)
+- AI-suggested claim amendments to overcome rejections
+- Argument generation based on prosecution history and case law
+- Examiner-specific strategy recommendations
+- Response formatting per patent office requirements
+- Track office action deadlines and prosecution timelines
+
+### 4. Claim Amendment Engine
+Precision tool for patent claim drafting and optimization.
+
+**Features:**
+- Independent and dependent claim generation
+- Claim tree visualization
+- Broadest reasonable interpretation analysis
+- Means-plus-function claim detection
+- Multi-dependent claim optimization
+- Jurisdiction-specific claim formatting
+
+### 5. Portfolio Analytics Dashboard
+Enterprise patent portfolio intelligence and management.
+
+**Features:**
+- Real-time prosecution status tracking
+- Cost analytics and budget forecasting
+- Allowance rate benchmarking
+- Technology area clustering
+- Competitive patent landscape analysis
+- Custom reporting and data export
+
+### 6. Examiner Intelligence System
+USPTO patent examiner behavior analytics and prosecution strategy optimization.
+
+**Features:**
+- Examiner-specific allowance rates and rejection patterns
+- Art unit analytics and technology center insights
+- Average prosecution timeline predictions
+- Interview success rate tracking
+- Examiner comparison and assignment analysis
+- Historical prosecution outcome data
+
+## Target Audience
+- Patent attorneys and agents
+- Intellectual property law firms (AmLaw, boutique IP firms)
+- Corporate in-house IP departments
+- Patent prosecution teams
+- Technology companies with large patent portfolios
+- Pharmaceutical and biotech companies
+- Universities and research institutions
+
+## Technology
+- Enterprise-grade security (SOC 2 compliant)
+- Privacy-first architecture — client data never used for model training
+- On-premise deployment options available
+- API access for integration with existing patent management systems (CPI, Anaqua, Dennemeyer)
+- Multi-language support for international filings
+
+## Competitive Differentiators
+- Only platform with multi-jurisdiction patent drafting (US, EP, India, PCT) in a single tool
+- Examiner intelligence system for strategic prosecution planning
+- Privacy-enabled AI that never trains on client data
+- Built specifically for patent prosecution, not adapted from general-purpose AI
+- End-to-end platform covering the full patent lifecycle
+
+## Industry Context
+Jurryi operates in the Legal Technology (LegalTech) and Patent Technology (PatentTech) space, specifically focused on:
+- AI patent drafting software
+- Patent prosecution automation
+- Intellectual property management
+- Legal AI tools for patent attorneys
+- Patent claim generation and optimization
+- Prior art search and analysis
+- Office action response automation
+- Patent portfolio analytics and intelligence
+
+## Contact
+- Website: https://jurryi.com
+- Email: contact@jurryi.com
+- Demo requests: contact@jurryi.com

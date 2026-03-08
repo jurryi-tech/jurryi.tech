@@ -57,14 +57,8 @@ export default function Header() {
         {/* Spacer */}
         <div className="hidden lg:block" />
 
-        {/* Right: Login + CTA */}
+        {/* Right: CTA */}
         <div className="hidden lg:flex items-center gap-6">
-          <a
-            href="/login"
-            className="text-sm font-medium text-[#3A3A3A] transition-colors hover:text-[#C5A44E]"
-          >
-            Login
-          </a>
           <a
             href="mailto:contact@jurryi.com?subject=Demo%20Request&body=Hi%20Jurryi%20Team%2C%0A%0AI%20would%20like%20to%20request%20a%20demo.%0A%0AThank%20you."
             className="bg-[#1A1A1A] text-white px-5 py-2.5 rounded-md text-sm font-medium transition-colors hover:bg-[#C5A44E]"
@@ -105,9 +99,6 @@ export default function Header() {
         transition={{ duration: 0.3, ease: "easeInOut" }}
       >
         <nav className="flex flex-col gap-4 px-8 py-6">
-          <a href="/login" className="text-base font-medium text-[#3A3A3A]">
-            Login
-          </a>
           <a
             href="mailto:contact@jurryi.com?subject=Demo%20Request&body=Hi%20Jurryi%20Team%2C%0A%0AI%20would%20like%20to%20request%20a%20demo.%0A%0AThank%20you."
             className="inline-block text-center bg-[#1A1A1A] text-white px-5 py-2.5 rounded-md text-sm font-medium"

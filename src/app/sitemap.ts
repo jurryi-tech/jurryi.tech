@@ -1,0 +1,59 @@
+import { MetadataRoute } from "next";
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  const baseUrl = "https://jurryi.com";
+
+  const platformPages = [
+    "ai-patent-drafter",
+    "prior-art-search",
+    "office-action-response",
+    "claim-amendment-engine",
+    "portfolio-analytics",
+    "examiner-intelligence",
+  ];
+
+  const companyPages = [
+    "about-us",
+    "careers",
+    "contact",
+    "privacy-policy",
+    "security",
+    "terms-of-service",
+  ];
+
+  const resourcePages = [
+    "documentation",
+    "api-reference",
+    "patent-law-guide",
+    "blog",
+    "case-studies",
+    "webinars",
+  ];
+
+  return [
+    {
+      url: baseUrl,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 1,
+    },
+    ...platformPages.map((page) => ({
+      url: `${baseUrl}/platform/${page}`,
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.9,
+    })),
+    ...companyPages.map((page) => ({
+      url: `${baseUrl}/company/${page}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    })),
+    ...resourcePages.map((page) => ({
+      url: `${baseUrl}/resources/${page}`,
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    })),
+  ];
+}

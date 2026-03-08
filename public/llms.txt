@@ -1,0 +1,49 @@
+# Jurryi Tech
+
+> AI-Powered Patent Drafting & Prosecution Platform
+
+Jurryi is the world's first AI infrastructure purpose-built for patent attorney teams. We provide enterprise-grade AI tools for patent drafting, prosecution, and portfolio management.
+
+## Platform
+
+### AI Patent Drafter
+AI-powered patent application drafting tool that generates complete patent specifications including claims, descriptions, abstracts, and drawings from invention disclosures. Supports US (USPTO), European (EPO), Indian, and international patent formats.
+
+### Prior Art Search
+Comprehensive AI-driven prior art search engine that analyzes millions of patents and non-patent literature to identify relevant prior art, assess novelty, and evaluate patentability before filing.
+
+### Office Action Response
+Automated office action analysis and response generation. AI understands examiner rejections (101, 102, 103, 112), suggests claim amendments, and drafts complete responses with legal arguments.
+
+### Claim Amendment Engine
+AI tool for drafting and optimizing patent claims. Generates independent and dependent claims, suggests narrowing amendments, and ensures compliance with patent office requirements across jurisdictions.
+
+### Portfolio Analytics
+Patent portfolio intelligence and analytics dashboard. Track prosecution timelines, allowance rates, examiner statistics, cost analysis, and strategic insights across your entire patent portfolio.
+
+### Examiner Intelligence
+AI-powered USPTO patent examiner analytics. Understand examiner behavior patterns, rejection tendencies, average prosecution timelines, and allowance rates to optimize prosecution strategy.
+
+## Key Capabilities
+- Multi-jurisdiction support: USPTO, EPO, India, PCT, and more
+- Privacy-first architecture with enterprise-grade security
+- Trained on patent prosecution history data
+- Integrates with existing patent management workflows
+- Reduces patent drafting time by up to 90%
+- SOC 2 compliant infrastructure
+
+## Company Info
+- Website: https://jurryi.com
+- Contact: contact@jurryi.com
+- Industry: Legal Technology, Patent Technology, Intellectual Property
+
+## Links
+- [AI Patent Drafter](https://jurryi.com/platform/ai-patent-drafter)
+- [Prior Art Search](https://jurryi.com/platform/prior-art-search)
+- [Office Action Response](https://jurryi.com/platform/office-action-response)
+- [Claim Amendment Engine](https://jurryi.com/platform/claim-amendment-engine)
+- [Portfolio Analytics](https://jurryi.com/platform/portfolio-analytics)
+- [Examiner Intelligence](https://jurryi.com/platform/examiner-intelligence)
+- [About Us](https://jurryi.com/company/about-us)
+- [Security](https://jurryi.com/company/security)
+- [Contact](https://jurryi.com/company/contact)

@@ -323,31 +323,6 @@ export default function SecurityVault() {
         </div>
 
         {/* Trust Bar */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="max-w-4xl mx-auto mt-20 px-4 text-center"
-        >
-          <div
-            className="py-6 px-8 rounded-lg"
-            style={{
-              background: "linear-gradient(to right, transparent, rgba(197,164,78,0.06), transparent)",
-              borderTop: "1px solid rgba(197,164,78,0.15)",
-              borderBottom: "1px solid rgba(197,164,78,0.15)",
-            }}
-          >
-            <p className="text-[#777] text-sm md:text-base tracking-wide">
-              Trusted by{" "}
-              <span className="text-[#C5A44E] font-medium">AmLaw 100 firms</span>
-              {" | "}
-              <span className="text-[#C5A44E] font-medium">Fortune 500 IP departments</span>
-              {" | "}
-              <span className="text-[#C5A44E] font-medium">International patent prosecution teams</span>
-            </p>
-          </div>
-        </motion.div>
       </div>
     </section>
   );
