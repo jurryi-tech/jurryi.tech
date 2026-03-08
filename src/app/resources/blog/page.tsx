@@ -16,36 +16,48 @@ export default function BlogPage() {
           description:
             "Deep-dive articles exploring trends in patent prosecution, AI-assisted drafting, examiner behavior patterns, and the evolving landscape of intellectual property strategy across technology sectors.",
           icon: <HiOutlineArrowTrendingUp size={20} />,
+          cardType: "stat",
+          cardData: { value: "340+", label: "articles published", change: "+12 monthly" },
         },
         {
           title: "Product Updates",
           description:
             "Detailed announcements of new Jurryi features, platform improvements, and capability releases, with practical guidance on how to leverage each update in your daily prosecution workflows.",
           icon: <HiOutlineSparkles size={20} />,
+          cardType: "chart",
+          cardData: { bars: [30, 55, 70, 85, 95, 80, 90], labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"] },
         },
         {
           title: "Case Studies",
           description:
             "Narrative accounts of how law firms, corporate IP departments, and solo practitioners have used Jurryi to solve specific prosecution challenges and achieve measurable improvements in outcomes.",
           icon: <HiOutlinePencilSquare size={20} />,
+          cardType: "list",
+          cardData: { items: ["AI in prosecution", "Examiner trends", "Claim strategies", "Global IP news"] },
         },
         {
           title: "Expert Interviews",
           description:
             "Conversations with leading patent attorneys, former examiners, IP strategists, and technology innovators sharing their perspectives on the future of patent prosecution and intellectual property.",
           icon: <HiOutlineMicrophone size={20} />,
+          cardType: "profile",
+          cardData: { name: "Dr. S. Patel", subtitle: "Patent Strategy Expert", stat: "45", statLabel: "articles" },
         },
         {
           title: "Patent Law Changes",
           description:
             "Timely coverage and practical analysis of legislative updates, USPTO rule changes, and judicial decisions that affect patent prosecution practice and portfolio management strategy.",
           icon: <HiOutlineNewspaper size={20} />,
+          cardType: "timeline",
+          cardData: { steps: ["Bill passed", "Rule change", "Impact"] },
         },
         {
           title: "Technology Trends",
           description:
             "Forward-looking articles examining how emerging technologies — from generative AI to quantum computing — are reshaping patent landscapes and creating new opportunities for innovators.",
           icon: <HiOutlineEye size={20} />,
+          cardType: "metric",
+          cardData: { value: 78, max: 100, label: "reader satisfaction" },
         },
       ]}
       howItHelps={{

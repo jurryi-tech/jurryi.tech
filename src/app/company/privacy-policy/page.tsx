@@ -16,36 +16,48 @@ export default function PrivacyPolicyPage() {
           description:
             "We provide a comprehensive, plain-language accounting of every category of data we collect — from account registration details and usage analytics to document content and AI interaction logs. You will always know exactly what information Jurryi processes and for what purpose.",
           icon: <HiOutlineChartBar size={20} />,
+          cardType: "list" as const,
+          cardData: { items: ["Usage analytics", "Account info", "Patent content", "Communication prefs"] },
         },
         {
           title: "GDPR & Global Compliance",
           description:
             "Jurryi is fully compliant with the General Data Protection Regulation, the California Consumer Privacy Act, and other major data protection frameworks worldwide. We maintain lawful bases for processing, honor data subject rights, and work with certified data protection officers.",
           icon: <HiOutlineGlobeEuropeAfrica size={20} />,
+          cardType: "metric" as const,
+          cardData: { value: 100, max: 100, label: "GDPR compliant" },
         },
         {
           title: "Data Retention Policies",
           description:
             "We retain your data only for as long as it is necessary to provide our services or as required by applicable law. Clear retention schedules are published for every data category, and automated deletion processes ensure that expired data is purged securely and completely.",
           icon: <HiOutlineClock size={20} />,
+          cardType: "timeline" as const,
+          cardData: { steps: ["Created", "Retained", "Deleted"] },
         },
         {
           title: "Third-Party Sharing Limits",
           description:
             "Jurryi does not sell your data — ever. We share information with third parties only when strictly necessary for service delivery, and only with vendors who are contractually bound to equivalent privacy and security standards through comprehensive data processing agreements.",
           icon: <HiOutlineHandRaised size={20} />,
+          cardType: "list" as const,
+          cardData: { items: ["No selling data", "No ad targeting", "No third-party sharing", "Strict NDAs"] },
         },
         {
           title: "Cookie & Tracking Policy",
           description:
             "Our cookie policy gives you granular control over tracking technologies. We use essential cookies for platform functionality and optional analytics cookies only with your explicit consent. You can modify your preferences at any time through our cookie management center.",
           icon: <HiOutlineFingerPrint size={20} />,
+          cardType: "stat" as const,
+          cardData: { value: "0", label: "third-party trackers", change: "None" },
         },
         {
           title: "User Rights & Controls",
           description:
             "You have the right to access, correct, export, and delete your personal data at any time. Our self-service privacy dashboard makes it simple to exercise these rights, and our support team responds to all privacy-related requests within the timeframes mandated by applicable regulations.",
           icon: <HiOutlineHandThumbUp size={20} />,
+          cardType: "comparison" as const,
+          cardData: { before: "Complex", after: "Simple", improvement: "Clear rights" },
         },
       ]}
       howItHelps={{

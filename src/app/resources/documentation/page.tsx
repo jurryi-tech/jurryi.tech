@@ -16,36 +16,48 @@ export default function DocumentationPage() {
           description:
             "Step-by-step onboarding guides that walk you through account setup, workspace configuration, and your first patent analysis — designed to get you productive within minutes of signing up.",
           icon: <HiOutlineRocketLaunch size={20} />,
+          cardType: "timeline",
+          cardData: { steps: ["Sign up", "Configure", "Draft"] },
         },
         {
           title: "API Documentation",
           description:
             "Complete API reference with interactive examples, request and response schemas, and authentication details for seamless programmatic integration with your existing patent management systems.",
           icon: <HiOutlineBookOpen size={20} />,
+          cardType: "code",
+          cardData: { lines: ["GET /api/v1/patents", "Authorization: Bearer token", "Content-Type: json", "→ 200 OK"] },
         },
         {
           title: "Workflow Tutorials",
           description:
             "In-depth tutorials covering end-to-end patent prosecution workflows, including prior art analysis, claim drafting, office action responses, and multi-jurisdictional filing strategies.",
           icon: <HiOutlineMapPin size={20} />,
+          cardType: "list",
+          cardData: { items: ["Patent drafting", "OA response", "Prior art search", "Portfolio mgmt"] },
         },
         {
           title: "Integration Guides",
           description:
             "Detailed guides for connecting Jurryi with popular patent management tools, document management systems, and enterprise platforms to create a unified prosecution workflow.",
           icon: <HiOutlineLink size={20} />,
+          cardType: "list",
+          cardData: { items: ["REST API", "Python SDK", "Node.js SDK", "Webhooks"] },
         },
         {
           title: "Best Practices",
           description:
             "Curated recommendations from patent prosecution experts on how to leverage Jurryi's AI capabilities for optimal claim construction, prior art coverage, and prosecution efficiency.",
           icon: <HiOutlineStar size={20} />,
+          cardType: "stat",
+          cardData: { value: "50+", label: "best practices", change: "Updated weekly" },
         },
         {
           title: "Video Walkthroughs",
           description:
             "Visual, narrated walkthroughs of key platform features and workflows, making it easy to learn complex processes and share training materials across your team.",
           icon: <HiOutlineFilm size={20} />,
+          cardType: "timeline",
+          cardData: { steps: ["Watch", "Practice", "Master"] },
         },
       ]}
       howItHelps={{

@@ -5,6 +5,7 @@ import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { HiOutlineScale, HiOutlinePencilAlt, HiOutlineCog } from "react-icons/hi";
+import { renderCardVisual, CardType } from "./FeatureCardVisuals";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -14,6 +15,8 @@ interface Feature {
   title: string;
   description: string;
   icon: ReactNode;
+  cardType?: CardType;
+  cardData?: Record<string, any>;
 }
 
 interface PageTemplateProps {
@@ -104,7 +107,7 @@ export default function PageTemplate({
               href="/"
               className="text-sm font-medium text-[#3A3A3A] hover:text-[#C5A44E] transition-colors flex items-center gap-2"
             >
-              ← Back to Home
+              Back to Home
             </Link>
           </motion.div>
         </div>
@@ -160,7 +163,7 @@ export default function PageTemplate({
 
       {/* Features Grid */}
       <section ref={featuresRef} className="px-6 pb-24">
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <motion.h2
             className="font-serif text-2xl text-[#1A1A1A] mb-12 text-center"
             initial={{ opacity: 0, y: 20 }}
@@ -171,41 +174,47 @@ export default function PageTemplate({
             Key Capabilities
           </motion.h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {features.map((feature, i) => (
-              <motion.div
-                key={feature.title}
-                className="feature-card group bg-white rounded-xl p-6 border border-[#E8E6E3] hover:border-[#C5A44E]/30 transition-all duration-300 hover:shadow-lg hover:shadow-[#C5A44E]/5"
-                whileHover={{ y: -4 }}
-                transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              >
-                <div
-                  className="w-10 h-10 rounded-lg flex items-center justify-center text-lg mb-4 transition-colors duration-300"
-                  style={{
-                    backgroundColor: accentColor + "10",
-                    color: accentColor,
-                  }}
-                >
-                  {feature.icon}
-                </div>
-                <h3 className="font-medium text-[#1A1A1A] mb-2 text-[15px]">{feature.title}</h3>
-                <p className="text-sm text-[#777] leading-relaxed">{feature.description}</p>
-                {/* Micro hover line */}
+            {features.map((feature) => {
+              const visual = renderCardVisual(feature.cardType, feature.cardData, accentColor);
+              return (
                 <motion.div
-                  className="mt-4 h-[2px] rounded-full"
-                  style={{ backgroundColor: accentColor }}
-                  initial={{ scaleX: 0, transformOrigin: "left" }}
-                  whileHover={{ scaleX: 1 }}
-                  transition={{ duration: 0.3 }}
-                />
-              </motion.div>
-            ))}
+                  key={feature.title}
+                  className="feature-card group bg-white rounded-xl p-6 border border-[#E8E6E3] hover:border-[#C5A44E]/30 transition-all duration-300 hover:shadow-lg hover:shadow-[#C5A44E]/5 min-w-0"
+                  whileHover={{ y: -4 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                >
+                  <div
+                    className="w-10 h-10 rounded-lg flex items-center justify-center text-lg mb-4 transition-colors duration-300"
+                    style={{
+                      backgroundColor: accentColor + "10",
+                      color: accentColor,
+                    }}
+                  >
+                    {feature.icon}
+                  </div>
+                  <h3 className="font-medium text-[#1A1A1A] mb-2 text-[15px]">{feature.title}</h3>
+                  {visual && <div className="mb-3">{visual}</div>}
+                  <p className={`text-sm text-[#777] leading-relaxed ${visual ? "line-clamp-2" : ""}`}>
+                    {feature.description}
+                  </p>
+                  {/* Micro hover line */}
+                  <motion.div
+                    className="mt-4 h-[2px] rounded-full"
+                    style={{ backgroundColor: accentColor }}
+                    initial={{ scaleX: 0, transformOrigin: "left" }}
+                    whileHover={{ scaleX: 1 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
 
       {/* How Jurryi Helps Section */}
       <section className="px-6 pb-24 bg-gradient-to-b from-[#FDFBF7] to-[#F5F3EE]">
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 20 }}

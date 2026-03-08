@@ -16,31 +16,43 @@ export default function ExaminerIntelligencePage() {
           title: "Examiner Profiles",
           description: "Builds comprehensive behavioral profiles for every active USPTO examiner, capturing their rejection tendencies, preferred claim structures, responsiveness to specific argument types, and historical allowance patterns across technology domains.",
           icon: <HiOutlineUserCircle size={20} />,
+          cardType: "profile",
+          cardData: { name: "R. Martinez", subtitle: "Art Unit 2122", stat: "68", statLabel: "% allow" },
         },
         {
           title: "Rejection Patterns",
           description: "Identifies recurring rejection patterns at the examiner, art unit, and technology center levels — revealing which grounds of rejection are most frequently asserted and which response strategies have proven most effective in overcoming them.",
           icon: <HiOutlineChartBarSquare size={20} />,
+          cardType: "chart",
+          cardData: { bars: [85, 62, 45, 30, 15, 8], labels: ["103", "102", "101", "112", "DP", "ODP"] },
         },
         {
           title: "Allowance Rates",
           description: "Tracks real-time allowance rates by examiner, art unit, and claim type, providing granular statistical insights that inform prosecution strategy and help set realistic client expectations about timeline and likelihood of success.",
           icon: <HiOutlinePresentationChartBar size={20} />,
+          cardType: "metric",
+          cardData: { value: 73, max: 100, label: "avg allowance rate" },
         },
         {
           title: "Art Unit Analytics",
           description: "Delivers detailed performance analytics across all art units, comparing average pendency, rejection rates, appeal outcomes, and interview effectiveness to help practitioners identify the most favorable prosecution environments.",
           icon: <HiOutlineBuildingLibrary size={20} />,
+          cardType: "stat",
+          cardData: { value: "2,847", label: "art units tracked", change: "Real-time" },
         },
         {
           title: "Interview Success Prediction",
           description: "Predicts the likelihood of a successful examiner interview based on the specific examiner's interview history, the type of rejection at issue, and the technology area — recommending when interviews will accelerate allowance versus when written responses are more effective.",
           icon: <HiOutlinePhone size={20} />,
+          cardType: "comparison",
+          cardData: { before: "42%", after: "78%", improvement: "+86%" },
         },
         {
           title: "Timing Optimization",
           description: "Analyzes examiner workload cycles, response processing patterns, and seasonal trends to recommend the optimal timing for filing responses, requesting interviews, and pursuing after-final submissions for maximum prosecution efficiency.",
           icon: <LuTimer size={20} />,
+          cardType: "timeline",
+          cardData: { steps: ["File", "Interview", "Allowance"] },
         },
       ]}
       howItHelps={{

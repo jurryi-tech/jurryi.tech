@@ -16,36 +16,48 @@ export default function CaseStudiesPage() {
           description:
             "Transparent, quantified return-on-investment data showing time savings, cost reductions, and revenue impact that organizations have achieved after integrating Jurryi into their prosecution workflows.",
           icon: <HiOutlineBanknotes size={20} />,
+          cardType: "comparison",
+          cardData: { before: "$2.1M", after: "$680K", improvement: "68% saved" },
         },
         {
           title: "Implementation Stories",
           description:
             "Detailed narratives of how teams planned, executed, and refined their Jurryi deployments — including change management strategies, training approaches, and lessons learned along the way.",
           icon: <HiOutlineBuildingOffice size={20} />,
+          cardType: "timeline",
+          cardData: { steps: ["Evaluate", "Deploy", "Scale"] },
         },
         {
           title: "Workflow Transformations",
           description:
             "Before-and-after comparisons of patent prosecution workflows, illustrating how AI-powered analysis and automation eliminated bottlenecks and created more streamlined, repeatable processes.",
           icon: <HiOutlineArrowPath size={20} />,
+          cardType: "stat",
+          cardData: { value: "847K", label: "saved per team/yr", change: "Average" },
         },
         {
           title: "Team Productivity",
           description:
             "Measured improvements in team output, including applications drafted per month, office action response turnaround times, and the ability to handle growing portfolios without proportional headcount increases.",
           icon: <HiOutlineHandRaised size={20} />,
+          cardType: "metric",
+          cardData: { value: 84, max: 100, label: "first-action allowance" },
         },
         {
           title: "Cost Reduction",
           description:
             "Documented savings across prosecution budgets, covering reduced outside counsel spend, lower prior art search costs, fewer office action rounds, and decreased time-to-grant across patent portfolios.",
           icon: <HiOutlineReceiptPercent size={20} />,
+          cardType: "profile",
+          cardData: { name: "AmLaw 50 Firm", subtitle: "IP Practice Group", stat: "92", statLabel: "% satisfaction" },
         },
         {
           title: "Quality Improvements",
           description:
             "Evidence of higher allowance rates, stronger claim sets, fewer rejections, and improved consistency across applications — demonstrating that efficiency gains do not come at the expense of quality.",
           icon: <HiOutlineTrophy size={20} />,
+          cardType: "chart",
+          cardData: { bars: [30, 45, 65, 80, 92, 95], labels: ["M1", "M2", "M3", "M4", "M5", "M6"] },
         },
       ]}
       howItHelps={{

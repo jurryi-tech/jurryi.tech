@@ -15,31 +15,43 @@ export default function PortfolioAnalyticsPage() {
           title: "Portfolio Heatmaps",
           description: "Generates dynamic visual heatmaps displaying patent density, claim strength, and geographic coverage across technology domains — instantly revealing areas of concentrated protection and vulnerable gaps requiring strategic attention.",
           icon: <HiOutlineSquares2X2 size={20} />,
+          cardType: "chart",
+          cardData: { bars: [92, 45, 78, 55, 88, 30, 65], labels: ["AI", "Bio", "Semi", "Mech", "SW", "Chem", "Tel"] },
         },
         {
           title: "Competitive Intelligence",
           description: "Tracks competitor patent activity in real time, analyzing their filing patterns, technology focus areas, and prosecution strategies to provide early warning of competitive threats and opportunities for strategic differentiation.",
           icon: <HiOutlineBuildingOffice2 size={20} />,
+          cardType: "profile",
+          cardData: { name: "CompetitorX", subtitle: "Portfolio: 2,340 patents", stat: "67", statLabel: "% overlap" },
         },
         {
           title: "Gap Analysis",
           description: "Identifies critical gaps in your patent coverage by comparing your portfolio against competitor holdings, industry trends, and your own product roadmap — highlighting where new filings would deliver the greatest strategic and commercial value.",
           icon: <HiOutlineMagnifyingGlassCircle size={20} />,
+          cardType: "metric",
+          cardData: { value: 34, max: 100, label: "white spaces found" },
         },
         {
           title: "Valuation Metrics",
           description: "Assigns data-driven valuation estimates to individual patents and portfolio segments based on citation impact, technology relevance, remaining life, claim breadth, and licensing market comparables for informed financial decision-making.",
           icon: <HiOutlineSparkles size={20} />,
+          cardType: "stat",
+          cardData: { value: "$4.2M", label: "portfolio value", change: "+18% YoY" },
         },
         {
           title: "Filing Trends",
           description: "Analyzes historical filing patterns across your portfolio and industry to forecast future technology trajectories, identify emerging areas of innovation, and time your filings to maximize strategic positioning and cost efficiency.",
           icon: <HiOutlineArrowTrendingUp size={20} />,
+          cardType: "timeline",
+          cardData: { steps: ["Q1: 45", "Q2: 62", "Q3: 78"] },
         },
         {
           title: "White Space Identification",
           description: "Discovers unpatented technology spaces adjacent to your core innovations where first-mover filing advantages exist, mapping unexplored intersections between technical domains that represent high-value protection opportunities.",
           icon: <HiOutlineLightBulb size={20} />,
+          cardType: "list",
+          cardData: { items: ["Edge computing", "Quantum ML", "Bio-sensors", "Privacy tech"] },
         },
       ]}
       howItHelps={{

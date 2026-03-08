@@ -16,36 +16,48 @@ export default function ContactPage() {
           description:
             "Connect with our sales team to discuss how Jurryi can be tailored to your firm's specific prosecution workflow. We offer customized pricing for solo practitioners, mid-size firms, and enterprise IP departments, with flexible licensing models designed to scale with your practice.",
           icon: <HiOutlineBriefcase size={20} />,
+          cardType: "list" as const,
+          cardData: { items: ["Custom pricing", "Volume discounts", "Enterprise plans", "Pilot programs"] },
         },
         {
           title: "Technical Support",
           description:
             "Our dedicated support engineers are available to help you resolve any technical issues, from initial setup and configuration to advanced troubleshooting. Enterprise customers receive priority support with guaranteed response times and a dedicated account engineer.",
           icon: <HiOutlineWrench size={20} />,
+          cardType: "timeline" as const,
+          cardData: { steps: ["Submit", "Diagnose", "Resolve"] },
         },
         {
           title: "Partnership Opportunities",
           description:
             "We actively partner with patent management platforms, docketing systems, law firm technology providers, and IP analytics companies. If you see an opportunity for integration or co-development, our partnerships team would welcome the conversation.",
           icon: <HiOutlineHandRaised size={20} />,
+          cardType: "stat" as const,
+          cardData: { value: "< 2hr", label: "response time", change: "Business hours" },
         },
         {
           title: "Enterprise Plans",
           description:
             "Large organizations with complex requirements benefit from our enterprise tier, which includes dedicated infrastructure, custom model fine-tuning, advanced security configurations, and white-glove onboarding managed by our professional services team.",
           icon: <HiOutlineBuildingOffice2 size={20} />,
+          cardType: "code" as const,
+          cardData: { lines: ["POST /api/contact", "{ type: 'partnership',", "  company: 'Your Firm',", "  message: '...' }"] },
         },
         {
           title: "Demo Requests",
           description:
             "See Jurryi in action with a personalized demonstration tailored to your practice area and workflow. Our product specialists walk you through real-world scenarios — from claim drafting to office action responses — using examples relevant to your technical domain.",
           icon: <HiOutlineFilm size={20} />,
+          cardType: "metric" as const,
+          cardData: { value: 95, max: 100, label: "satisfaction score" },
         },
         {
           title: "Feedback & Suggestions",
           description:
             "Your input directly shapes our product roadmap. We maintain an open feedback channel where customers and prospective users can suggest features, report issues, and vote on upcoming capabilities. Every submission is reviewed by our product team.",
           icon: <HiOutlineChatBubbleLeftRight size={20} />,
+          cardType: "chart" as const,
+          cardData: { bars: [88, 92, 85, 95, 90, 87], labels: ["Sales", "Support", "Legal", "Eng", "Demo", "Other"] },
         },
       ]}
       howItHelps={{

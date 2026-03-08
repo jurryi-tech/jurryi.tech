@@ -16,36 +16,48 @@ export default function SecurityPage() {
           description:
             "Jurryi maintains SOC 2 Type II certification, independently audited on an annual basis. This certification validates that our security controls, availability safeguards, processing integrity, confidentiality measures, and privacy practices meet rigorous industry standards.",
           icon: <HiOutlineShieldCheck size={20} />,
+          cardType: "metric" as const,
+          cardData: { value: 100, max: 100, label: "SOC 2 compliance" },
         },
         {
           title: "End-to-End Encryption",
           description:
             "All data is encrypted both in transit using TLS 1.3 and at rest using AES-256 encryption. Encryption keys are managed through dedicated hardware security modules with strict rotation policies, ensuring your patent data remains unreadable to unauthorized parties at every stage.",
           icon: <HiOutlineLockClosed size={20} />,
+          cardType: "metric" as const,
+          cardData: { value: 256, max: 256, label: "bit AES encryption" },
         },
         {
           title: "Zero-Knowledge Architecture",
           description:
             "Our platform is designed so that Jurryi personnel cannot access your patent documents or invention disclosures. Data processing occurs in isolated, ephemeral environments, and no customer content is used for model training without explicit, documented consent.",
           icon: <HiOutlineEye size={20} />,
+          cardType: "comparison" as const,
+          cardData: { before: "Visible", after: "Zero-knowledge", improvement: "Private" },
         },
         {
           title: "Data Residency Controls",
           description:
             "Choose where your data is stored and processed. We offer regional data residency options across North America, Europe, and Asia-Pacific to help you comply with local data sovereignty requirements and organizational policies.",
           icon: <HiOutlineGlobeAmericas size={20} />,
+          cardType: "list" as const,
+          cardData: { items: ["US (Virginia)", "EU (Frankfurt)", "India (Mumbai)", "Custom regions"] },
         },
         {
           title: "Granular Access Controls",
           description:
             "Implement role-based access control with fine-grained permissions at the matter, portfolio, and document level. Support for SSO via SAML 2.0 and OIDC, multi-factor authentication, and session management ensures only authorized personnel access sensitive materials.",
           icon: <HiOutlineKey size={20} />,
+          cardType: "list" as const,
+          cardData: { items: ["SSO / SAML", "Role-based (RBAC)", "MFA required", "IP allowlisting"] },
         },
         {
           title: "Comprehensive Audit Logging",
           description:
             "Every action on the platform is recorded in immutable audit logs with full traceability. Logs capture user activity, document access, AI interactions, and administrative changes — supporting internal compliance reviews, client audits, and regulatory inquiries.",
           icon: <HiOutlineClipboardDocumentList size={20} />,
+          cardType: "stat" as const,
+          cardData: { value: "100%", label: "audit coverage", change: "Real-time" },
         },
       ]}
       howItHelps={{
