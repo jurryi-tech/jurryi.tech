@@ -117,7 +117,7 @@ function ArchitectureDiagram({ activeStep }: { activeStep: number }) {
         (SLM) <tspan textDecoration="underline">108</tspan>
       </text>
 
-      {/* ========== STRAIGHT ARROWS: Server → Internet ========== */}
+      {/* ========== STRAIGHT ARROW: Server → Internet ========== */}
       <line x1="440" y1="240" x2="490" y2="240" stroke="#000" strokeWidth="1.5" markerEnd="url(#arrBlk)" />
 
       {/* ========== INTERNET CLOUD ========== */}
@@ -127,25 +127,30 @@ function ArchitectureDiagram({ activeStep }: { activeStep: number }) {
       />
       <text x="533" y="245" textAnchor="middle" fontFamily={TNR} fontSize="12" fill="#000">Internet</text>
 
-      {/* ========== ARROW: Internet → Device ========== */}
-      <line x1="576" y1="238" x2="620" y2="238" stroke="#000" strokeWidth="1.5" markerEnd="url(#arrBlk)" />
+      {/* ========== STRAIGHT ARROW: Internet → Device ========== */}
+      <line x1="576" y1="238" x2="628" y2="238" stroke="#000" strokeWidth="1.5" markerEnd="url(#arrBlk)" />
 
-      {/* ========== 100A — BLUE CURVED ARC (top: server over to device) ========== */}
+      {/* ========== 100A — BLUE CURVED ARC (top: server arcing over to device top-right) ========== */}
+      {/* Starts from top of Server 102 box, arcs high over, ends at top-right corner of End User Device */}
       <path
-        d="M440,160 Q520,20 700,70"
-        fill="none" stroke="#4472C4" strokeWidth="2"
+        d="M380,120 C380,10 750,10 810,60"
+        fill="none" stroke="#4472C4" strokeWidth="2.5"
       />
-      {/* Arrowhead for 100A */}
-      <polygon points="698,64 708,70 698,76" fill="#4472C4" />
-      <text x="530" y="45" textAnchor="middle" fontFamily={TNR} fontSize="14" fill="#FF0000" fontWeight="bold">100A</text>
+      {/* Arrowhead pointing down-right into device */}
+      <polygon points="805,53 815,63 807,67" fill="#4472C4" />
+      {/* 100A label — red text centered above the arc */}
+      <text x="560" y="25" textAnchor="middle" fontFamily={TNR} fontSize="15" fill="#FF0000" fontWeight="bold">100A</text>
 
-      {/* ========== 100B — RED CURVED ARC (bottom: through internet) ========== */}
+      {/* ========== 100B — RED CURVED ARC (bottom: server → through internet → device left) ========== */}
+      {/* Starts from bottom of Server box, curves down below Internet cloud, into left side of device */}
       <path
-        d="M440,340 Q530,430 620,340"
-        fill="none" stroke="#FF0000" strokeWidth="2"
+        d="M380,350 C420,460 580,460 630,350"
+        fill="none" stroke="#FF0000" strokeWidth="2.5"
       />
-      <polygon points="618,334 628,340 618,346" fill="#FF0000" />
-      <text x="500" y="400" textAnchor="middle" fontFamily={TNR} fontSize="14" fill="#FF0000" fontWeight="bold">100B</text>
+      {/* Arrowhead pointing up-right into device */}
+      <polygon points="625,344 635,350 627,358" fill="#FF0000" />
+      {/* 100B label — red text centered below the arc */}
+      <text x="490" y="440" textAnchor="middle" fontFamily={TNR} fontSize="15" fill="#FF0000" fontWeight="bold">100B</text>
 
       {/* ========== END USER DEVICE 110 (Right) ========== */}
       <rect
@@ -237,21 +242,22 @@ function ArchitectureDiagram({ activeStep }: { activeStep: number }) {
         Input <tspan textDecoration="underline">116B</tspan>
       </text>
 
-      {/* ========== ARROW into Output 116A (blue, left-pointing) ========== */}
-      <line x1="830" y1="415" x2="790" y2="415" stroke="#4472C4" strokeWidth="1.5" markerEnd="url(#arrBlue)" />
+      {/* ========== 100C — BLUE ELBOW: Drafting Operation right → right edge of Device box → down ========== */}
+      {/* Horizontal from right of Drafting Operation (x=880) to right edge of Device outer box (x=920) */}
+      <line x1="880" y1="173" x2="930" y2="173" stroke="#4472C4" strokeWidth="2" />
+      {/* Vertical blue line going down the right edge of Device box, from Drafting Operation down to Output 116A */}
+      <line x1="930" y1="173" x2="930" y2="415" stroke="#4472C4" strokeWidth="2" />
+      {/* Blue arrow pointing LEFT into Output 116A */}
+      <line x1="930" y1="415" x2="790" y2="415" stroke="#4472C4" strokeWidth="2" markerEnd="url(#arrBlue)" />
 
-      {/* ========== 100D — RED VERTICAL ARROW (right side, down) ========== */}
+      {/* ========== 100D — RED VERTICAL ARROW: continues down from blue elbow ========== */}
+      {/* Red line starts where blue elbow ends (at Output level) and goes straight down */}
       <line
-        x1="920" y1="340" x2="920" y2="530"
-        stroke="#FF0000" strokeWidth="2" markerEnd="url(#arrRed)"
+        x1="930" y1="415" x2="930" y2="620"
+        stroke="#FF0000" strokeWidth="2.5" markerEnd="url(#arrRed)"
       />
-      <text x="940" y="480" fontFamily={TNR} fontSize="14" fill="#FF0000" fontWeight="bold">100D</text>
-
-      {/* Elbow connector from sandbox right → down to 100D */}
-      <path
-        d="M895,260 L920,260 L920,340"
-        fill="none" stroke="#4472C4" strokeWidth="1.5"
-      />
+      {/* 100D label — to the right of the red arrow */}
+      <text x="942" y="580" fontFamily={TNR} fontSize="15" fill="#FF0000" fontWeight="bold">100D</text>
 
       {/* ========== EQUALS SIGN (device = monitor) ========== */}
       <line x1="710" y1="492" x2="710" y2="502" stroke="#4472C4" strokeWidth="2" />
@@ -280,20 +286,20 @@ function ArchitectureDiagram({ activeStep }: { activeStep: number }) {
       <line x1="120" y1="390" x2="120" y2="420" stroke="#FF0000" strokeWidth="1" />
 
       {/* ========== ANIMATED DATA PACKETS ========== */}
-      {/* Step 1: 100A — packets flowing server → cloud → device */}
+      {/* Step 1: 100A — packets flowing along the blue arc (server over top to device) */}
       {activeStep === 0 && (
         <>
           <circle r="5" fill="#4472C4" filter="url(#glow)">
             <animateMotion dur="3s" repeatCount="indefinite" begin="0s"
-              path="M440,160 Q520,20 700,70" />
+              path="M380,120 C380,10 750,10 810,60" />
           </circle>
           <circle r="5" fill="#C5A44E" filter="url(#glow)">
             <animateMotion dur="3s" repeatCount="indefinite" begin="1s"
-              path="M440,160 Q520,20 700,70" />
+              path="M380,120 C380,10 750,10 810,60" />
           </circle>
           <circle r="4" fill="#4472C4" filter="url(#glow)">
             <animateMotion dur="3s" repeatCount="indefinite" begin="2s"
-              path="M440,160 Q520,20 700,70" />
+              path="M380,120 C380,10 750,10 810,60" />
           </circle>
         </>
       )}
@@ -310,25 +316,29 @@ function ArchitectureDiagram({ activeStep }: { activeStep: number }) {
           </circle>
         </>
       )}
-      {/* Step 3: 100C — internal processing loop */}
+      {/* Step 3: 100C — packet flows along blue elbow: Drafting → right edge → down → into Output */}
       {activeStep === 2 && (
         <>
-          <circle r="5" fill="#C5A44E" filter="url(#glow)">
+          <circle r="5" fill="#4472C4" filter="url(#glow)">
             <animateMotion dur="2.5s" repeatCount="indefinite" begin="0s"
-              path="M725,460 L725,300 L775,270 L775,200 L775,170 L825,170 L825,270 L825,400 L725,460" />
+              path="M880,173 L930,173 L930,415 L790,415" />
           </circle>
-          <circle r="5" fill="#FF0000" filter="url(#glow)">
+          <circle r="5" fill="#C5A44E" filter="url(#glow)">
             <animateMotion dur="2.5s" repeatCount="indefinite" begin="0.8s"
-              path="M725,460 L725,300 L775,270 L775,200 L775,170 L825,170 L825,270 L825,400 L725,460" />
+              path="M880,173 L930,173 L930,415 L790,415" />
           </circle>
         </>
       )}
-      {/* Step 4: 100D — output delivered, sandbox destroyed */}
+      {/* Step 4: 100D — packet flows down red arrow + sandbox deletion flash */}
       {activeStep === 3 && (
         <>
-          <circle r="5" fill="#C5A44E" filter="url(#glow)">
+          <circle r="5" fill="#FF0000" filter="url(#glow)">
             <animateMotion dur="2s" repeatCount="indefinite" begin="0s"
-              path="M775,410 L830,410 L920,340 L920,530" />
+              path="M930,415 L930,620" />
+          </circle>
+          <circle r="5" fill="#C5A44E" filter="url(#glow)">
+            <animateMotion dur="2s" repeatCount="indefinite" begin="0.7s"
+              path="M930,415 L930,620" />
           </circle>
           {/* Red flash on sandbox = deletion */}
           <rect x="655" y="118" width="240" height="220" rx="0" fill="#FF0000" opacity="0">
