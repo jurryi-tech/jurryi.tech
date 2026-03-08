@@ -92,7 +92,7 @@ USPTO patent examiner behavior analytics and prosecution strategy optimization.
 - Universities and research institutions
 
 ## Technology
-- Enterprise-grade security (SOC 2 compliant)
+- Enterprise-grade security (SOC 2 Type II certification in progress)
 - Privacy-first architecture — client data never used for model training
 - On-premise deployment options available
 - API access for integration with existing patent management systems (CPI, Anaqua, Dennemeyer)

@@ -241,7 +241,7 @@ export default function Hero() {
             ref={subHeadRef}
             className="font-sans text-[18px] font-normal leading-[1.7] text-[#5A5A5A] max-w-[520px] mb-12 opacity-0"
           >
-            Prosecution-ready patent applications from day one. 101-compliant
+            Prosecution-ready patent applications from day one. 35 U.S.C. § 101-compliant
             specifications. Office action responses in minutes, not days. Cut
             your prosecution costs by 60% while doubling your grant rate.
           </p>

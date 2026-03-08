@@ -202,46 +202,83 @@ function SankeyFlowDiagram() {
   );
 }
 
-function ProblemSolutionGears() {
+function GearSVG({ teeth, innerRadius, outerRadius, toothDepth, color, className }: {
+  teeth: number; innerRadius: number; outerRadius: number; toothDepth: number; color: string; className: string;
+}) {
+  // Build a realistic gear path with involute-style teeth
+  const cx = 50, cy = 50;
+  const pitchRadius = outerRadius - toothDepth / 2;
+  const toothAngle = (2 * Math.PI) / teeth;
+  const toothWidth = toothAngle * 0.35; // tooth takes 35% of each slot
+
+  let d = "";
+  for (let i = 0; i < teeth; i++) {
+    const angle = i * toothAngle;
+    // Root start
+    const r1x = cx + outerRadius * Math.cos(angle - toothWidth);
+    const r1y = cy + outerRadius * Math.sin(angle - toothWidth);
+    // Tip start
+    const t1x = cx + (outerRadius + toothDepth) * Math.cos(angle - toothWidth * 0.7);
+    const t1y = cy + (outerRadius + toothDepth) * Math.sin(angle - toothWidth * 0.7);
+    // Tip end
+    const t2x = cx + (outerRadius + toothDepth) * Math.cos(angle + toothWidth * 0.7);
+    const t2y = cy + (outerRadius + toothDepth) * Math.sin(angle + toothWidth * 0.7);
+    // Root end
+    const r2x = cx + outerRadius * Math.cos(angle + toothWidth);
+    const r2y = cy + outerRadius * Math.sin(angle + toothWidth);
+    // Next root start
+    const nextAngle = (i + 1) * toothAngle;
+    const n1x = cx + outerRadius * Math.cos(nextAngle - toothWidth);
+    const n1y = cy + outerRadius * Math.sin(nextAngle - toothWidth);
+
+    if (i === 0) d += `M ${r1x} ${r1y} `;
+    d += `L ${t1x} ${t1y} L ${t2x} ${t2y} L ${r2x} ${r2y} `;
+    // Arc along the root circle to next tooth
+    d += `A ${outerRadius} ${outerRadius} 0 0 1 ${n1x} ${n1y} `;
+  }
+  d += "Z";
+
   return (
-    <div className="flex items-center justify-center gap-0 py-8">
-      <div className="relative">
-        <svg
-          className="animate-spin-slow h-28 w-28 text-[#003399]"
-          viewBox="0 0 100 100"
-          fill="none"
-        >
-          <circle cx="50" cy="50" r="30" stroke="currentColor" strokeWidth="2" fill="none" />
-          {[0, 45, 90, 135, 180, 225, 270, 315].map((deg) => (
-            <rect
-              key={deg}
-              x="46" y="10" width="8" height="16" rx="2"
-              fill="currentColor" opacity="0.3"
-              transform={`rotate(${deg} 50 50)`}
-            />
-          ))}
-        </svg>
-        <span className="absolute inset-0 flex items-center justify-center text-xs font-bold uppercase tracking-wider text-[#003399]">
+    <svg className={className} viewBox="0 0 100 100" fill="none">
+      {/* Gear body with teeth */}
+      <path d={d} fill={color} fillOpacity="0.12" stroke={color} strokeWidth="1.5" />
+      {/* Inner hub circle */}
+      <circle cx={cx} cy={cy} r={innerRadius} fill={color} fillOpacity="0.06" stroke={color} strokeWidth="1.5" />
+      {/* Center axle hole */}
+      <circle cx={cx} cy={cy} r={5} fill={color} fillOpacity="0.2" stroke={color} strokeWidth="1" />
+      {/* Spokes */}
+      {[0, 120, 240].map((deg) => {
+        const rad = (deg * Math.PI) / 180;
+        return (
+          <line
+            key={deg}
+            x1={cx + 6 * Math.cos(rad)} y1={cy + 6 * Math.sin(rad)}
+            x2={cx + innerRadius * Math.cos(rad)} y2={cy + innerRadius * Math.sin(rad)}
+            stroke={color} strokeWidth="2" strokeOpacity="0.25"
+          />
+        );
+      })}
+    </svg>
+  );
+}
+
+function ProblemSolutionGears() {
+  // 10 teeth each, offset by half a tooth (18deg) so they mesh
+  return (
+    <div className="flex items-center justify-center py-8">
+      <div className="relative" style={{ width: 130, height: 130 }}>
+        <div className="absolute inset-0 animate-spin-slow">
+          <GearSVG teeth={10} innerRadius={18} outerRadius={28} toothDepth={8} color="#003399" className="w-full h-full" />
+        </div>
+        <span className="absolute inset-0 flex items-center justify-center text-[11px] font-bold uppercase tracking-wider text-[#003399] pointer-events-none">
           Problem
         </span>
       </div>
-      <div className="relative -ml-4">
-        <svg
-          className="animate-spin-slow-reverse h-28 w-28 text-[#C5A44E]"
-          viewBox="0 0 100 100"
-          fill="none"
-        >
-          <circle cx="50" cy="50" r="30" stroke="currentColor" strokeWidth="2" fill="none" />
-          {[0, 45, 90, 135, 180, 225, 270, 315].map((deg) => (
-            <rect
-              key={deg}
-              x="46" y="10" width="8" height="16" rx="2"
-              fill="currentColor" opacity="0.3"
-              transform={`rotate(${deg} 50 50)`}
-            />
-          ))}
-        </svg>
-        <span className="absolute inset-0 flex items-center justify-center text-xs font-bold uppercase tracking-wider text-[#C5A44E]">
+      <div className="relative -ml-[18px]" style={{ width: 130, height: 130 }}>
+        <div className="absolute inset-0 animate-spin-slow-reverse" style={{ animationDelay: "-1s" }}>
+          <GearSVG teeth={10} innerRadius={18} outerRadius={28} toothDepth={8} color="#C5A44E" className="w-full h-full" />
+        </div>
+        <span className="absolute inset-0 flex items-center justify-center text-[11px] font-bold uppercase tracking-wider text-[#C5A44E] pointer-events-none">
           Solution
         </span>
       </div>

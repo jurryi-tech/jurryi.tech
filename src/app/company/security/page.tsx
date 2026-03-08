@@ -12,9 +12,9 @@ export default function SecurityPage() {
       description="Patent prosecution involves some of the most confidential information in any organization — unpublished inventions, trade secrets, and strategic IP portfolios. Jurryi's security infrastructure is purpose-built to meet the stringent requirements of law firms, corporate IP departments, and government agencies. We maintain the highest industry standards for data protection, access control, and regulatory compliance so that you can leverage AI with complete confidence."
       features={[
         {
-          title: "SOC 2 Type II Certified",
+          title: "SOC 2 Type II — In Progress",
           description:
-            "Jurryi maintains SOC 2 Type II certification, independently audited on an annual basis. This certification validates that our security controls, availability safeguards, processing integrity, confidentiality measures, and privacy practices meet rigorous industry standards.",
+            "Jurryi is actively pursuing SOC 2 Type II certification with independent auditing currently under process. Upon completion, this certification will validate that our security controls, availability safeguards, processing integrity, confidentiality measures, and privacy practices meet rigorous industry standards.",
           icon: <HiOutlineShieldCheck size={20} />,
           cardType: "metric" as const,
           cardData: { value: 100, max: 100, label: "SOC 2 compliance" },

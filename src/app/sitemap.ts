@@ -32,6 +32,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const blogPosts = [
     "best-ai-patent-drafting-tools-2026",
+    "how-ai-patent-drafting-works",
+    "ai-office-action-response-guide",
+    "ai-prior-art-search-vs-traditional",
+    "patent-claim-drafting-with-ai",
+    "multi-jurisdiction-patent-filing-ai",
   ];
 
   return [

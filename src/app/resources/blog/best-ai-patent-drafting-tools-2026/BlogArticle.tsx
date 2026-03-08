@@ -25,7 +25,7 @@ export default function BlogArticle() {
       <header className="sticky top-0 z-40 bg-[rgba(253,251,247,0.92)] backdrop-blur-xl border-b border-black/6">
         <div className="max-w-7xl mx-auto flex items-center justify-between h-16 px-6">
           <Link href="/" className="flex items-center gap-3">
-            <span className="flex h-8 w-8 items-center justify-center rounded-md bg-[#1A1A1A] font-serif text-sm font-bold text-[#FDFBF7]">
+            <span className="flex h-8 w-8 items-center justify-center  bg-[#1A1A1A] font-serif text-sm font-bold text-[#FDFBF7]">
               J
             </span>
             <span className="font-mono text-xs tracking-[0.3em] text-[#1A1A1A] uppercase">
@@ -41,7 +41,7 @@ export default function BlogArticle() {
             </Link>
             <a
               href="mailto:contact@jurryi.com?subject=Demo%20Request&body=Hi%20Jurryi%20Team%2C%0A%0AI%20would%20like%20to%20request%20a%20demo.%0A%0AThank%20you."
-              className="bg-[#1A1A1A] text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-[#C5A44E] transition-colors"
+              className="bg-[#1A1A1A] text-white px-4 py-2  text-sm font-medium hover:bg-[#C5A44E] transition-colors"
             >
               Request Access
             </a>
@@ -53,7 +53,7 @@ export default function BlogArticle() {
       <section className="px-6 pt-16 pb-12 border-b border-black/5">
         <div className="max-w-3xl mx-auto">
           <div className="flex items-center gap-3 mb-6">
-            <span className="font-mono text-[11px] tracking-[0.2em] uppercase text-[#C5A44E] bg-[#C5A44E]/10 px-3 py-1 rounded-full">
+            <span className="font-mono text-[11px] tracking-[0.2em] uppercase text-[#C5A44E] bg-[#C5A44E]/10 px-3 py-1 ">
               Industry Analysis
             </span>
             <span className="text-[13px] text-[#999]">March 8, 2026</span>
@@ -108,7 +108,7 @@ export default function BlogArticle() {
             <h2 className="font-serif text-2xl text-[#1A1A1A] mb-6">
               Key Takeaways
             </h2>
-            <div className="bg-[#F5F0E8] rounded-xl p-8 space-y-4">
+            <div className="bg-[#F5F0E8]  p-8 space-y-4">
               <div className="flex gap-3">
                 <span className="text-[#C5A44E] font-bold mt-0.5">&#10003;</span>
                 <p className="text-[15px] text-[#333] leading-relaxed">
@@ -170,7 +170,7 @@ export default function BlogArticle() {
           {/* Tool 1: PatMaster */}
           <section id="patmaster-jurryi" className="mb-16">
             <div className="flex items-center gap-3 mb-2">
-              <span className="flex h-8 w-8 items-center justify-center rounded-md bg-[#1A1A1A] font-serif text-sm font-bold text-[#C5A44E]">
+              <span className="flex h-8 w-8 items-center justify-center  bg-[#1A1A1A] font-serif text-sm font-bold text-[#C5A44E]">
                 1
               </span>
               <h2 className="font-serif text-2xl text-[#1A1A1A]">
@@ -267,13 +267,13 @@ export default function BlogArticle() {
               interface with jurisdiction-specific compliance checking.
             </p>
 
-            <div className="bg-[#1A1A1A] rounded-xl p-6 text-center">
+            <div className="bg-[#1A1A1A]  p-6 text-center">
               <p className="text-[#999] text-sm mb-3">
                 Ready to transform your patent prosecution workflow?
               </p>
               <a
                 href="mailto:contact@jurryi.com?subject=PatMaster%20Demo%20Request&body=Hi%20Jurryi%20Team%2C%0A%0AI%20read%20your%20blog%20on%20AI%20patent%20drafting%20tools%20and%20would%20like%20to%20request%20a%20demo%20of%20PatMaster.%0A%0AThank%20you."
-                className="inline-block bg-[#C5A44E] text-[#1A1A1A] font-medium px-8 py-3 rounded-lg hover:bg-[#D4B55E] transition-colors"
+                className="inline-block bg-[#C5A44E] text-[#1A1A1A] font-medium px-8 py-3  hover:bg-[#D4B55E] transition-colors"
               >
                 Request a PatMaster Demo
               </a>
@@ -285,7 +285,7 @@ export default function BlogArticle() {
           {/* Tool 2: Patsnap */}
           <section id="patsnap-eureka" className="mb-16">
             <div className="flex items-center gap-3 mb-2">
-              <span className="flex h-8 w-8 items-center justify-center rounded-md bg-[#F5F0E8] font-serif text-sm font-bold text-[#1A1A1A]">
+              <span className="flex h-8 w-8 items-center justify-center  bg-[#F5F0E8] font-serif text-sm font-bold text-[#1A1A1A]">
                 2
               </span>
               <h2 className="font-serif text-2xl text-[#1A1A1A]">
@@ -331,7 +331,7 @@ export default function BlogArticle() {
           {/* Tool 3: Solve Intelligence */}
           <section id="solve-intelligence" className="mb-16">
             <div className="flex items-center gap-3 mb-2">
-              <span className="flex h-8 w-8 items-center justify-center rounded-md bg-[#F5F0E8] font-serif text-sm font-bold text-[#1A1A1A]">
+              <span className="flex h-8 w-8 items-center justify-center  bg-[#F5F0E8] font-serif text-sm font-bold text-[#1A1A1A]">
                 3
               </span>
               <h2 className="font-serif text-2xl text-[#1A1A1A]">
@@ -372,7 +372,7 @@ export default function BlogArticle() {
           {/* Tool 4: DeepIP */}
           <section id="deepip" className="mb-16">
             <div className="flex items-center gap-3 mb-2">
-              <span className="flex h-8 w-8 items-center justify-center rounded-md bg-[#F5F0E8] font-serif text-sm font-bold text-[#1A1A1A]">
+              <span className="flex h-8 w-8 items-center justify-center  bg-[#F5F0E8] font-serif text-sm font-bold text-[#1A1A1A]">
                 4
               </span>
               <h2 className="font-serif text-2xl text-[#1A1A1A]">DeepIP</h2>
@@ -412,7 +412,7 @@ export default function BlogArticle() {
           {/* Tool 5: Specifio */}
           <section id="specifio" className="mb-16">
             <div className="flex items-center gap-3 mb-2">
-              <span className="flex h-8 w-8 items-center justify-center rounded-md bg-[#F5F0E8] font-serif text-sm font-bold text-[#1A1A1A]">
+              <span className="flex h-8 w-8 items-center justify-center  bg-[#F5F0E8] font-serif text-sm font-bold text-[#1A1A1A]">
                 5
               </span>
               <h2 className="font-serif text-2xl text-[#1A1A1A]">Specifio</h2>
@@ -452,7 +452,7 @@ export default function BlogArticle() {
           {/* Tool 6: PowerPatent */}
           <section id="powerpatent" className="mb-16">
             <div className="flex items-center gap-3 mb-2">
-              <span className="flex h-8 w-8 items-center justify-center rounded-md bg-[#F5F0E8] font-serif text-sm font-bold text-[#1A1A1A]">
+              <span className="flex h-8 w-8 items-center justify-center  bg-[#F5F0E8] font-serif text-sm font-bold text-[#1A1A1A]">
                 6
               </span>
               <h2 className="font-serif text-2xl text-[#1A1A1A]">
@@ -494,7 +494,7 @@ export default function BlogArticle() {
           {/* Tool 7: ClaimMaster */}
           <section id="claimmaster" className="mb-16">
             <div className="flex items-center gap-3 mb-2">
-              <span className="flex h-8 w-8 items-center justify-center rounded-md bg-[#F5F0E8] font-serif text-sm font-bold text-[#1A1A1A]">
+              <span className="flex h-8 w-8 items-center justify-center  bg-[#F5F0E8] font-serif text-sm font-bold text-[#1A1A1A]">
                 7
               </span>
               <h2 className="font-serif text-2xl text-[#1A1A1A]">
@@ -870,7 +870,7 @@ export default function BlogArticle() {
               patent prosecution demands.
             </p>
 
-            <div className="bg-[#1A1A1A] rounded-xl p-8 text-center">
+            <div className="bg-[#1A1A1A]  p-8 text-center">
               <h3 className="text-white font-serif text-xl mb-2">
                 Experience PatMaster
               </h3>
@@ -880,7 +880,7 @@ export default function BlogArticle() {
               </p>
               <a
                 href="mailto:contact@jurryi.com?subject=PatMaster%20Demo%20Request&body=Hi%20Jurryi%20Team%2C%0A%0AI%20read%20your%20blog%20on%20AI%20patent%20drafting%20tools%20and%20would%20like%20to%20request%20a%20demo%20of%20PatMaster.%0A%0AThank%20you."
-                className="inline-block bg-[#C5A44E] text-[#1A1A1A] font-medium px-8 py-3 rounded-lg hover:bg-[#D4B55E] transition-colors"
+                className="inline-block bg-[#C5A44E] text-[#1A1A1A] font-medium px-8 py-3  hover:bg-[#D4B55E] transition-colors"
               >
                 Request a Demo
               </a>

@@ -49,7 +49,7 @@ export default function AboutUsPage() {
             "Client confidentiality is non-negotiable in patent practice. Our infrastructure is engineered with zero-knowledge principles, end-to-end encryption, and strict data isolation to ensure that sensitive invention disclosures remain protected at every layer.",
           icon: <HiOutlineLockClosed size={20} />,
           cardType: "list" as const,
-          cardData: { items: ["Zero-knowledge", "SOC 2 Type II", "End-to-end encryption", "Data residency"] },
+          cardData: { items: ["Zero-knowledge", "SOC 2 (In Progress)", "End-to-end encryption", "Data residency"] },
         },
         {
           title: "Continuous Innovation",

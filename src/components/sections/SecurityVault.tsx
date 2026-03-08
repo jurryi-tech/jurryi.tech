@@ -18,9 +18,9 @@ const securityCards = [
   },
   {
     icon: "shield",
-    title: "SOC 2 Type II Certified",
+    title: "SOC 2 Type II — In Progress",
     description:
-      "Annual independent audits verify our security controls meet the highest standards for data protection, availability, and confidentiality.",
+      "SOC 2 Type II certification is currently under process. Our security infrastructure is being independently audited to verify controls for data protection, availability, and confidentiality.",
   },
   {
     icon: "key",
