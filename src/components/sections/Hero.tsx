@@ -255,7 +255,14 @@ export default function Hero() {
             <GoldSeparator />
             <AnimatedStat value={84} suffix="%" label="first-action allowance" />
             <GoldSeparator />
-            <AnimatedStat value={847} prefix="$" suffix="K" label="saved per team / year" />
+            <div className="flex flex-col items-start gap-1">
+              <span className="font-serif font-bold text-[28px] text-[#1A1A1A]">
+                1 week → 25 min
+              </span>
+              <span className="font-mono text-[11px] tracking-[0.05em] text-[#8B7355]">
+                drafting time reduced
+              </span>
+            </div>
           </div>
 
           {/* CTA Buttons */}

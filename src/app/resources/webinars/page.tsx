@@ -1,0 +1,61 @@
+"use client";
+
+import PageTemplate from "@/components/ui/PageTemplate";
+
+export default function WebinarsPage() {
+  return (
+    <PageTemplate
+      category="Resources"
+      title="Webinars"
+      subtitle="Live and on-demand training sessions for patent professionals"
+      description="Accelerate your mastery of patent prosecution with Jurryi's webinar program. Join live sessions led by patent law experts and platform specialists, or access our growing library of recorded trainings on demand. From introductory overviews to advanced deep-dives, our webinar series is designed to help every member of your team build competence and confidence with AI-powered prosecution tools."
+      features={[
+        {
+          title: "Live Q&A Sessions",
+          description:
+            "Interactive, real-time sessions where you can ask questions directly to Jurryi product experts and patent prosecution specialists, getting personalized answers to your specific workflow challenges.",
+          icon: "\u2753",
+        },
+        {
+          title: "Product Demos",
+          description:
+            "Guided demonstrations of Jurryi's latest features and capabilities, showing exactly how to apply new tools to real prosecution scenarios with live walkthroughs and practical examples.",
+          icon: "\u{1F4BB}",
+        },
+        {
+          title: "Expert Panels",
+          description:
+            "Panel discussions bringing together patent attorneys, former USPTO examiners, and IP strategists to debate current issues, share prosecution insights, and forecast industry developments.",
+          icon: "\u{1F465}",
+        },
+        {
+          title: "Certification Programs",
+          description:
+            "Structured learning paths with assessments that validate your proficiency with the Jurryi platform, providing recognized credentials that demonstrate expertise to colleagues and clients.",
+          icon: "\u{1F393}",
+        },
+        {
+          title: "Hands-On Workshops",
+          description:
+            "Practical, exercise-driven sessions where participants work through real patent prosecution scenarios using Jurryi, building muscle memory and confidence with guided expert support.",
+          icon: "\u{1F6E0}\uFE0F",
+        },
+        {
+          title: "Monthly Updates",
+          description:
+            "Regular briefings covering platform releases, patent law developments, and prosecution trend data — keeping your team aligned on the latest tools and strategies available to them.",
+          icon: "\u{1F4C5}",
+        },
+      ]}
+      howItHelps={{
+        attorneys:
+          "Earn continuing education credits while staying current on AI-assisted prosecution techniques, platform capabilities, and evolving patent law developments that impact your practice.",
+        drafters:
+          "Develop advanced platform skills through hands-on workshops and structured certification programs that build proficiency and enable you to take on more complex drafting assignments.",
+        engineers:
+          "Access technical deep-dives into Jurryi's architecture, API capabilities, and integration patterns, led by the engineering team that builds and maintains the platform.",
+      }}
+      accentColor="#2D7D46"
+    />
+  );
+}

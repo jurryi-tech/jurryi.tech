@@ -54,35 +54,8 @@ export default function Header() {
           </span>
         </a>
 
-        {/* Center Nav - Desktop */}
-        <nav className="hidden lg:flex items-center gap-10">
-          {navLinks.map((link) => (
-            <motion.a
-              key={link}
-              href={`#${link.toLowerCase()}`}
-              className="relative flex flex-col items-center text-sm font-medium text-[#3A3A3A]"
-              style={{ fontFamily: "Inter, sans-serif", fontSize: 14, fontWeight: 500 }}
-              whileHover="hover"
-            >
-              <motion.span
-                variants={{
-                  hover: { color: "#C5A44E" },
-                }}
-                transition={{ duration: 0.2 }}
-              >
-                {link}
-              </motion.span>
-              <motion.span
-                className="absolute -bottom-2 h-1 w-1 rounded-full bg-[#C5A44E]"
-                variants={{
-                  hover: { scale: 1, opacity: 1 },
-                }}
-                initial={{ scale: 0, opacity: 0 }}
-                transition={{ type: "spring", stiffness: 500, damping: 20 }}
-              />
-            </motion.a>
-          ))}
-        </nav>
+        {/* Spacer */}
+        <div className="hidden lg:block" />
 
         {/* Right: Login + CTA */}
         <div className="hidden lg:flex items-center gap-6">
@@ -132,17 +105,6 @@ export default function Header() {
         transition={{ duration: 0.3, ease: "easeInOut" }}
       >
         <nav className="flex flex-col gap-4 px-8 py-6">
-          {navLinks.map((link) => (
-            <a
-              key={link}
-              href={`#${link.toLowerCase()}`}
-              className="text-base font-medium text-[#3A3A3A] hover:text-[#C5A44E] transition-colors"
-              onClick={() => setMobileOpen(false)}
-            >
-              {link}
-            </a>
-          ))}
-          <hr className="border-black/5 my-2" />
           <a href="/login" className="text-base font-medium text-[#3A3A3A]">
             Login
           </a>

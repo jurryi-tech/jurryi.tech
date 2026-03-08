@@ -1,37 +1,41 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { motion } from "framer-motion";
+import Link from "next/link";
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
+function toSlug(name: string) {
+  return name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+}
+
 const platformLinks = [
-  "AI Patent Drafter",
-  "Prior Art Search",
-  "Office Action Response",
-  "Claim Amendment Engine",
-  "Portfolio Analytics",
-  "Examiner Intelligence",
+  { name: "AI Patent Drafter", href: "/platform/ai-patent-drafter" },
+  { name: "Prior Art Search", href: "/platform/prior-art-search" },
+  { name: "Office Action Response", href: "/platform/office-action-response" },
+  { name: "Claim Amendment Engine", href: "/platform/claim-amendment-engine" },
+  { name: "Portfolio Analytics", href: "/platform/portfolio-analytics" },
+  { name: "Examiner Intelligence", href: "/platform/examiner-intelligence" },
 ];
 
 const resourceLinks = [
-  "Documentation",
-  "API Reference",
-  "Patent Law Guide",
-  "Blog",
-  "Case Studies",
-  "Webinars",
+  { name: "Documentation", href: "/resources/documentation" },
+  { name: "API Reference", href: "/resources/api-reference" },
+  { name: "Patent Law Guide", href: "/resources/patent-law-guide" },
+  { name: "Blog", href: "/resources/blog" },
+  { name: "Case Studies", href: "/resources/case-studies" },
+  { name: "Webinars", href: "/resources/webinars" },
 ];
 
 const companyLinks = [
-  "About Us",
-  "Careers",
-  "Security",
-  "Privacy Policy",
-  "Terms of Service",
-  "Contact",
+  { name: "About Us", href: "/company/about-us" },
+  { name: "Careers", href: "/company/careers" },
+  { name: "Security", href: "/company/security" },
+  { name: "Privacy Policy", href: "/company/privacy-policy" },
+  { name: "Terms of Service", href: "/company/terms-of-service" },
+  { name: "Contact", href: "/company/contact" },
 ];
 
 const socialLinks = ["LinkedIn", "Twitter/X", "GitHub"];
@@ -84,13 +88,13 @@ export default function Footer() {
             </h4>
             <ul className="space-y-3">
               {platformLinks.map((link) => (
-                <li key={link}>
-                  <a
-                    href="#"
+                <li key={link.name}>
+                  <Link
+                    href={link.href}
                     className="text-sm hover:text-white transition-colors duration-200"
                   >
-                    {link}
-                  </a>
+                    {link.name}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -103,13 +107,13 @@ export default function Footer() {
             </h4>
             <ul className="space-y-3">
               {resourceLinks.map((link) => (
-                <li key={link}>
-                  <a
-                    href="#"
+                <li key={link.name}>
+                  <Link
+                    href={link.href}
                     className="text-sm hover:text-white transition-colors duration-200"
                   >
-                    {link}
-                  </a>
+                    {link.name}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -122,13 +126,13 @@ export default function Footer() {
             </h4>
             <ul className="space-y-3">
               {companyLinks.map((link) => (
-                <li key={link}>
-                  <a
-                    href="#"
+                <li key={link.name}>
+                  <Link
+                    href={link.href}
                     className="text-sm hover:text-white transition-colors duration-200"
                   >
-                    {link}
-                  </a>
+                    {link.name}
+                  </Link>
                 </li>
               ))}
             </ul>
