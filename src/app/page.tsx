@@ -14,7 +14,7 @@ const OfficeActionTheater = dynamic(() => import("@/components/sections/OfficeAc
 const SecurityVault = dynamic(() => import("@/components/sections/SecurityVault"), { ssr: false });
 const ProductCards = dynamic(() => import("@/components/sections/ProductCards"), { ssr: false });
 const PatentDrawings = dynamic(() => import("@/components/sections/PatentDrawings"), { ssr: false });
-const CostCalculator = dynamic(() => import("@/components/sections/CostCalculator"), { ssr: false });
+
 const SocialProof = dynamic(() => import("@/components/sections/SocialProof"), { ssr: false });
 const CTASection = dynamic(() => import("@/components/sections/CTASection"), { ssr: false });
 const Footer = dynamic(() => import("@/components/sections/Footer"), { ssr: false });
@@ -75,7 +75,6 @@ export default function Home() {
         <SecurityVault />
         <ProductCards />
         <PatentDrawings />
-        <CostCalculator />
         <SocialProof />
         <CTASection />
         <Footer />
