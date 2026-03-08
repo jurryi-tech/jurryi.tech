@@ -254,41 +254,55 @@ export default function OfficeActionTheater() {
           </div>
         </div>
 
-        {/* ── PHASE 2: Analysis Rings ── */}
+        {/* ── PHASE 2: AI Analysis Pipeline ── */}
         <div
           ref={ringsContainerRef}
-          className="absolute right-[5%] md:right-[10%] top-1/2 -translate-y-1/2 w-[420px] md:w-[500px] h-[420px] md:h-[500px] opacity-0 translate-x-[60px]"
+          className="absolute right-[3%] md:right-[8%] top-1/2 -translate-y-1/2 w-[380px] md:w-[440px] opacity-0 translate-x-[60px]"
         >
-          {rings.map((ring, i) => {
-            const size = 100 + i * 60;
-            return (
-              <div
-                key={i}
-                ref={(el) => {
-                  ringRefs.current[i] = el;
-                }}
-                className="absolute rounded-full flex items-center justify-center opacity-0"
-                style={{
-                  width: `${size}px`,
-                  height: `${size}px`,
-                  top: `50%`,
-                  left: `50%`,
-                  transform: `translate(-50%, -50%)`,
-                  border: `2px solid rgba(30, 64, 175, ${0.8 - i * 0.1})`,
-                  background: `radial-gradient(circle, rgba(30, 64, 175, ${0.04 + i * 0.01}) 0%, transparent 70%)`,
-                }}
-              >
-                <div className="absolute text-center px-2" style={{ maxWidth: `${size - 20}px` }}>
-                  <p className="text-[9px] md:text-[10px] text-blue-800 font-semibold leading-tight">
-                    {ring.label}
-                  </p>
-                  <p className="text-[8px] md:text-[9px] text-blue-600 leading-tight mt-0.5">
-                    {ring.result}
-                  </p>
+          <div className="bg-white/95 backdrop-blur-sm border border-blue-200 rounded-xl shadow-xl overflow-hidden">
+            {/* Header */}
+            <div className="bg-[#1B2A4A] px-5 py-3 flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-blue-400 animate-pulse" />
+              <span className="text-[11px] font-mono text-blue-200 tracking-wider uppercase">
+                Jurryi AI Analysis Engine
+              </span>
+            </div>
+            {/* Steps */}
+            <div className="p-4 space-y-0">
+              {rings.map((ring, i) => (
+                <div
+                  key={i}
+                  ref={(el) => {
+                    ringRefs.current[i] = el;
+                  }}
+                  className="opacity-0 flex gap-3 py-3 border-b border-blue-50 last:border-0"
+                >
+                  {/* Step indicator */}
+                  <div className="flex flex-col items-center pt-0.5">
+                    <div className={`w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold ${
+                      i < 5
+                        ? "bg-blue-100 text-blue-700 border border-blue-300"
+                        : "bg-green-100 text-green-700 border border-green-300"
+                    }`}>
+                      {i + 1}
+                    </div>
+                    {i < rings.length - 1 && (
+                      <div className="w-px h-full bg-blue-200 mt-1" />
+                    )}
+                  </div>
+                  {/* Content */}
+                  <div className="flex-1 min-w-0">
+                    <p className="text-[11px] md:text-[12px] font-semibold text-[#1B2A4A] leading-tight">
+                      {ring.label}
+                    </p>
+                    <p className="text-[9px] md:text-[10px] text-blue-600 leading-snug mt-1 font-mono">
+                      {ring.result}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              ))}
+            </div>
+          </div>
         </div>
 
         {/* ── PHASE 3: Response Document ── */}
