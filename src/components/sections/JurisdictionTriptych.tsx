@@ -357,8 +357,10 @@ export default function JurisdictionTriptych() {
   const panelWrapperRef = useRef<HTMLDivElement>(null);
   const panelsRef = useRef<(HTMLDivElement | null)[]>([]);
   const [isMobile, setIsMobile] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     const check = () => setIsMobile(window.innerWidth < 1024);
     check();
     window.addEventListener("resize", check);
@@ -366,54 +368,70 @@ export default function JurisdictionTriptych() {
   }, []);
 
   useEffect(() => {
-    if (isMobile) return;
+    if (!mounted || isMobile) return;
+
+    // Kill any existing ScrollTriggers for this section first
+    ScrollTrigger.getAll().forEach((st) => {
+      if (st.vars.trigger === sectionRef.current) st.kill();
+    });
 
     const section = sectionRef.current;
     const wrapper = panelWrapperRef.current;
     const panels = panelsRef.current.filter(Boolean) as HTMLDivElement[];
     if (!section || !wrapper || panels.length < 3) return;
 
-    const ctx = gsap.context(() => {
-      gsap.set(panels[0], { opacity: 1, xPercent: 0 });
-      gsap.set(panels[1], { opacity: 0, xPercent: 100 });
-      gsap.set(panels[2], { opacity: 0, xPercent: 100 });
+    // Small delay to ensure DOM is fully settled after React render
+    const timer = setTimeout(() => {
+      const ctx = gsap.context(() => {
+        gsap.set(panels[0], { opacity: 1, xPercent: 0 });
+        gsap.set(panels[1], { opacity: 0, xPercent: 100 });
+        gsap.set(panels[2], { opacity: 0, xPercent: 100 });
 
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: section,
-          start: "top top",
-          end: "bottom bottom",
-          pin: wrapper,
-          scrub: 1,
-        },
-      });
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: section,
+            start: "top top",
+            end: "bottom bottom",
+            pin: wrapper,
+            pinSpacing: false,
+            scrub: 1,
+          },
+        });
 
-      tl.to(panels[0], { opacity: 0, xPercent: -50, duration: 1 }, 0)
-        .to(panels[1], { opacity: 1, xPercent: 0, duration: 1 }, 0);
+        tl.to(panels[0], { opacity: 0, xPercent: -50, duration: 1 }, 0)
+          .to(panels[1], { opacity: 1, xPercent: 0, duration: 1 }, 0);
 
-      tl.to(panels[1], { opacity: 0, xPercent: -50, duration: 1 }, 1.5)
-        .to(panels[2], { opacity: 1, xPercent: 0, duration: 1 }, 1.5);
+        tl.to(panels[1], { opacity: 0, xPercent: -50, duration: 1 }, 1.5)
+          .to(panels[2], { opacity: 1, xPercent: 0, duration: 1 }, 1.5);
 
-      panels.forEach((panel) => {
-        const cards = panel.querySelectorAll(".anim-card");
-        if (cards.length === 0) return;
-        gsap.fromTo(
-          cards,
-          { opacity: 0, y: 40 },
-          {
-            opacity: 1, y: 0, duration: 0.6, stagger: 0.1,
-            scrollTrigger: {
-              trigger: panel,
-              start: "top 80%",
-              toggleActions: "play none none reverse",
-            },
-          }
-        );
-      });
-    }, section);
+        panels.forEach((panel) => {
+          const cards = panel.querySelectorAll(".anim-card");
+          if (cards.length === 0) return;
+          gsap.fromTo(
+            cards,
+            { opacity: 0, y: 40 },
+            {
+              opacity: 1, y: 0, duration: 0.6, stagger: 0.1,
+              scrollTrigger: {
+                trigger: panel,
+                start: "top 80%",
+                toggleActions: "play none none reverse",
+              },
+            }
+          );
+        });
+      }, section);
 
-    return () => ctx.revert();
-  }, [isMobile]);
+      // Store ctx on section for cleanup
+      (section as any).__gsapCtx = ctx;
+    }, 100);
+
+    return () => {
+      clearTimeout(timer);
+      const ctx = (sectionRef.current as any)?.__gsapCtx;
+      if (ctx) ctx.revert();
+    };
+  }, [mounted, isMobile]);
 
   const setPanelRef = (i: number) => (el: HTMLDivElement | null) => {
     panelsRef.current[i] = el;
