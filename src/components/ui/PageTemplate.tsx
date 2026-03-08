@@ -271,7 +271,7 @@ export default function PageTemplate({
             transition={{ delay: 0.2 }}
           >
             <Link
-              href="/request-access"
+              href="mailto:contact@jurryi.com?subject=Demo%20Request&body=Hi%20Jurryi%20Team%2C%0A%0AI%20would%20like%20to%20request%20a%20demo.%0A%0AThank%20you."
               className="inline-block px-10 py-4 rounded-md text-sm font-medium text-[#1A1A1A] transition-all duration-300 hover:scale-105"
               style={{ backgroundColor: accentColor }}
             >
@@ -287,7 +287,7 @@ export default function PageTemplate({
           <Link href="/" className="font-mono text-xs tracking-[0.2em] text-white hover:text-[#C5A44E] transition-colors">
             JURRYI
           </Link>
-          <p className="text-xs">&copy; 2024 Jurryi Tech, Inc. All rights reserved.</p>
+          <p className="text-xs">&copy; 2026 Jurryi Tech, Inc. All rights reserved.</p>
         </div>
       </footer>
     </div>

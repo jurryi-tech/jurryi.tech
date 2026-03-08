@@ -77,7 +77,7 @@ export default function Footer() {
               AI-Powered Patent Prosecution Infrastructure
             </p>
             <p className="text-xs text-[#666]">
-              &copy; 2024 Jurryi Tech, Inc. All rights reserved.
+              &copy; 2026 Jurryi Tech, Inc. All rights reserved.
             </p>
           </div>
 

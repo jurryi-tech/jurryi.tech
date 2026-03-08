@@ -117,7 +117,7 @@ export default function CTASection() {
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
           <motion.a
-            href="#"
+            href="mailto:contact@jurryi.com?subject=Demo%20Request&body=Hi%20Jurryi%20Team%2C%0A%0AI%20would%20like%20to%20request%20a%20demo.%0A%0AThank%20you."
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             className="inline-block bg-[#C5A44E] text-black font-medium text-base px-10 py-4 rounded-lg hover:bg-[#D4B55E] transition-colors duration-200"

@@ -66,7 +66,7 @@ export default function Header() {
             Login
           </a>
           <a
-            href="/request-access"
+            href="mailto:contact@jurryi.com?subject=Demo%20Request&body=Hi%20Jurryi%20Team%2C%0A%0AI%20would%20like%20to%20request%20a%20demo.%0A%0AThank%20you."
             className="bg-[#1A1A1A] text-white px-5 py-2.5 rounded-md text-sm font-medium transition-colors hover:bg-[#C5A44E]"
           >
             Request Access
@@ -109,7 +109,7 @@ export default function Header() {
             Login
           </a>
           <a
-            href="/request-access"
+            href="mailto:contact@jurryi.com?subject=Demo%20Request&body=Hi%20Jurryi%20Team%2C%0A%0AI%20would%20like%20to%20request%20a%20demo.%0A%0AThank%20you."
             className="inline-block text-center bg-[#1A1A1A] text-white px-5 py-2.5 rounded-md text-sm font-medium"
           >
             Request Access
