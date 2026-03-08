@@ -65,6 +65,9 @@ export default function Header() {
           <a href="/company/about-us" className="text-sm font-medium text-[#5A5A5A] hover:text-[#1A1A1A] transition-colors">
             About
           </a>
+          <a href="/motivation" className="text-sm font-medium text-[#5A5A5A] hover:text-[#1A1A1A] transition-colors">
+            Motivation
+          </a>
         </nav>
 
         {/* Right: CTA */}
@@ -112,6 +115,7 @@ export default function Header() {
           <a href="/how-it-works" className="text-sm font-medium text-[#1A1A1A]">How It Works</a>
           <a href="/company/security" className="text-sm font-medium text-[#1A1A1A]">Security</a>
           <a href="/company/about-us" className="text-sm font-medium text-[#1A1A1A]">About</a>
+          <a href="/motivation" className="text-sm font-medium text-[#1A1A1A]">Motivation</a>
           <a
             href="mailto:contact@jurryi.com?subject=Demo%20Request&body=Hi%20Jurryi%20Team%2C%0A%0AI%20would%20like%20to%20request%20a%20demo.%0A%0AThank%20you."
             className="inline-block text-center bg-[#1A1A1A] text-white px-5 py-2.5 rounded-md text-sm font-medium"
