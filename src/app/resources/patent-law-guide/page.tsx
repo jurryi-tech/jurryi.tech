@@ -1,5 +1,6 @@
 "use client";
 
+import { HiOutlineGlobeAmericas, HiOutlineScale, HiOutlineAdjustmentsHorizontal, HiOutlineMap, HiOutlinePencil, HiOutlineDocumentText } from "react-icons/hi2";
 import PageTemplate from "@/components/ui/PageTemplate";
 
 export default function PatentLawGuidePage() {
@@ -14,37 +15,37 @@ export default function PatentLawGuidePage() {
           title: "Jurisdiction-Specific Guides",
           description:
             "Detailed overviews of patent prosecution rules, timelines, and procedural nuances for the USPTO, EPO, JPO, CNIPA, KIPO, and other major patent offices worldwide.",
-          icon: "\u{1F30D}",
+          icon: <HiOutlineGlobeAmericas size={20} />,
         },
         {
           title: "101/102/103/112 Analysis",
           description:
             "In-depth analysis frameworks for each statutory requirement — patent eligibility under \u00A7101, novelty under \u00A7102, non-obviousness under \u00A7103, and written description and enablement under \u00A7112.",
-          icon: "\u2696\uFE0F",
+          icon: <HiOutlineScale size={20} />,
         },
         {
           title: "Prosecution Strategies",
           description:
             "Proven strategies for responding to office actions, conducting examiner interviews, filing continuations and divisionals, and navigating appeals before the PTAB.",
-          icon: "\u{1F3AF}",
+          icon: <HiOutlineAdjustmentsHorizontal size={20} />,
         },
         {
           title: "International Filing",
           description:
             "Comprehensive guidance on PCT applications, Paris Convention priority claims, regional phase entry, and coordinating prosecution across multiple jurisdictions for global patent portfolios.",
-          icon: "\u{1F5FA}\uFE0F",
+          icon: <HiOutlineMap size={20} />,
         },
         {
           title: "Claim Drafting Best Practices",
           description:
             "Expert guidance on constructing independent and dependent claims, means-plus-function limitations, Markush groups, and drafting techniques that maximize claim scope while maintaining defensibility.",
-          icon: "\u270D\uFE0F",
+          icon: <HiOutlinePencil size={20} />,
         },
         {
           title: "Case Law Updates",
           description:
             "Regularly updated summaries and analyses of landmark Federal Circuit and Supreme Court decisions that shape patent prosecution practice, with practical takeaways for practitioners.",
-          icon: "\u{1F4DC}",
+          icon: <HiOutlineDocumentText size={20} />,
         },
       ]}
       howItHelps={{

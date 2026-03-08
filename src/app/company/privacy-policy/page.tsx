@@ -1,5 +1,6 @@
 "use client";
 
+import { HiOutlineChartBar, HiOutlineGlobeEuropeAfrica, HiOutlineClock, HiOutlineHandRaised, HiOutlineFingerPrint, HiOutlineHandThumbUp } from "react-icons/hi2";
 import PageTemplate from "@/components/ui/PageTemplate";
 
 export default function PrivacyPolicyPage() {
@@ -14,37 +15,37 @@ export default function PrivacyPolicyPage() {
           title: "Data Collection Transparency",
           description:
             "We provide a comprehensive, plain-language accounting of every category of data we collect — from account registration details and usage analytics to document content and AI interaction logs. You will always know exactly what information Jurryi processes and for what purpose.",
-          icon: "📊",
+          icon: <HiOutlineChartBar size={20} />,
         },
         {
           title: "GDPR & Global Compliance",
           description:
             "Jurryi is fully compliant with the General Data Protection Regulation, the California Consumer Privacy Act, and other major data protection frameworks worldwide. We maintain lawful bases for processing, honor data subject rights, and work with certified data protection officers.",
-          icon: "🇪",
+          icon: <HiOutlineGlobeEuropeAfrica size={20} />,
         },
         {
           title: "Data Retention Policies",
           description:
             "We retain your data only for as long as it is necessary to provide our services or as required by applicable law. Clear retention schedules are published for every data category, and automated deletion processes ensure that expired data is purged securely and completely.",
-          icon: "⏱",
+          icon: <HiOutlineClock size={20} />,
         },
         {
           title: "Third-Party Sharing Limits",
           description:
             "Jurryi does not sell your data — ever. We share information with third parties only when strictly necessary for service delivery, and only with vendors who are contractually bound to equivalent privacy and security standards through comprehensive data processing agreements.",
-          icon: "🤝",
+          icon: <HiOutlineHandRaised size={20} />,
         },
         {
           title: "Cookie & Tracking Policy",
           description:
             "Our cookie policy gives you granular control over tracking technologies. We use essential cookies for platform functionality and optional analytics cookies only with your explicit consent. You can modify your preferences at any time through our cookie management center.",
-          icon: "🍪",
+          icon: <HiOutlineFingerPrint size={20} />,
         },
         {
           title: "User Rights & Controls",
           description:
             "You have the right to access, correct, export, and delete your personal data at any time. Our self-service privacy dashboard makes it simple to exercise these rights, and our support team responds to all privacy-related requests within the timeframes mandated by applicable regulations.",
-          icon: "✋",
+          icon: <HiOutlineHandThumbUp size={20} />,
         },
       ]}
       howItHelps={{

@@ -1,5 +1,6 @@
 "use client";
 
+import { HiOutlineShieldCheck, HiOutlineLockClosed, HiOutlineEye, HiOutlineGlobeAmericas, HiOutlineKey, HiOutlineClipboardDocumentList } from "react-icons/hi2";
 import PageTemplate from "@/components/ui/PageTemplate";
 
 export default function SecurityPage() {
@@ -14,37 +15,37 @@ export default function SecurityPage() {
           title: "SOC 2 Type II Certified",
           description:
             "Jurryi maintains SOC 2 Type II certification, independently audited on an annual basis. This certification validates that our security controls, availability safeguards, processing integrity, confidentiality measures, and privacy practices meet rigorous industry standards.",
-          icon: "🛡",
+          icon: <HiOutlineShieldCheck size={20} />,
         },
         {
           title: "End-to-End Encryption",
           description:
             "All data is encrypted both in transit using TLS 1.3 and at rest using AES-256 encryption. Encryption keys are managed through dedicated hardware security modules with strict rotation policies, ensuring your patent data remains unreadable to unauthorized parties at every stage.",
-          icon: "🔐",
+          icon: <HiOutlineLockClosed size={20} />,
         },
         {
           title: "Zero-Knowledge Architecture",
           description:
             "Our platform is designed so that Jurryi personnel cannot access your patent documents or invention disclosures. Data processing occurs in isolated, ephemeral environments, and no customer content is used for model training without explicit, documented consent.",
-          icon: "👁",
+          icon: <HiOutlineEye size={20} />,
         },
         {
           title: "Data Residency Controls",
           description:
             "Choose where your data is stored and processed. We offer regional data residency options across North America, Europe, and Asia-Pacific to help you comply with local data sovereignty requirements and organizational policies.",
-          icon: "🌍",
+          icon: <HiOutlineGlobeAmericas size={20} />,
         },
         {
           title: "Granular Access Controls",
           description:
             "Implement role-based access control with fine-grained permissions at the matter, portfolio, and document level. Support for SSO via SAML 2.0 and OIDC, multi-factor authentication, and session management ensures only authorized personnel access sensitive materials.",
-          icon: "🔑",
+          icon: <HiOutlineKey size={20} />,
         },
         {
           title: "Comprehensive Audit Logging",
           description:
             "Every action on the platform is recorded in immutable audit logs with full traceability. Logs capture user activity, document access, AI interactions, and administrative changes — supporting internal compliance reviews, client audits, and regulatory inquiries.",
-          icon: "📋",
+          icon: <HiOutlineClipboardDocumentList size={20} />,
         },
       ]}
       howItHelps={{

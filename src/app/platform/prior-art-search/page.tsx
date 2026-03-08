@@ -1,5 +1,6 @@
 "use client";
 
+import { HiOutlineMagnifyingGlass, HiOutlineBookOpen, HiOutlineChartBar, HiOutlineClipboardDocumentList, HiOutlineMap, HiOutlineSignal } from "react-icons/hi2";
 import PageTemplate from "@/components/ui/PageTemplate";
 
 export default function PriorArtSearchPage() {
@@ -13,32 +14,32 @@ export default function PriorArtSearchPage() {
         {
           title: "Semantic Search",
           description: "Goes beyond traditional keyword matching by understanding the conceptual meaning of inventions, identifying semantically similar prior art across different terminology, languages, and technical domains that keyword searches routinely miss.",
-          icon: "🔍",
+          icon: <HiOutlineMagnifyingGlass size={20} />,
         },
         {
           title: "Patent & Non-Patent Literature",
           description: "Searches across global patent databases, scientific journals, conference proceedings, white papers, technical standards, and open-source repositories to ensure comprehensive prior art coverage across all relevant disclosure categories.",
-          icon: "📚",
+          icon: <HiOutlineBookOpen size={20} />,
         },
         {
           title: "Automated Relevance Scoring",
           description: "Assigns intelligent relevance scores to each reference based on claim-level overlap, technical similarity, and temporal proximity — surfacing the most critical prior art first and eliminating hours of manual review.",
-          icon: "📊",
+          icon: <HiOutlineChartBar size={20} />,
         },
         {
           title: "Claim Charting",
           description: "Automatically generates element-by-element claim charts mapping prior art disclosures against each claim limitation, providing structured evidence for patentability assessments, invalidity analyses, and freedom-to-operate opinions.",
-          icon: "📋",
+          icon: <HiOutlineClipboardDocumentList size={20} />,
         },
         {
           title: "Landscape Analysis",
           description: "Visualizes the competitive patent landscape with interactive maps showing filing trends, key assignees, technology clusters, and white space opportunities to inform strategic IP portfolio decisions and R&D investments.",
-          icon: "🗺",
+          icon: <HiOutlineMap size={20} />,
         },
         {
           title: "Real-Time Monitoring",
           description: "Continuously monitors newly published patent applications and grants across all major jurisdictions, alerting you to emerging prior art, competitor filings, and potential infringement risks as they appear.",
-          icon: "📡",
+          icon: <HiOutlineSignal size={20} />,
         },
       ]}
       howItHelps={{

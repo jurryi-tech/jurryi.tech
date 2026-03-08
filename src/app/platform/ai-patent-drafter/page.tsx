@@ -1,5 +1,6 @@
 "use client";
 
+import { HiOutlineDocumentText, HiOutlineAdjustmentsHorizontal, HiOutlineShieldCheck, HiOutlineGlobeAlt, HiOutlineLink, HiOutlineCog6Tooth } from "react-icons/hi2";
 import PageTemplate from "@/components/ui/PageTemplate";
 
 export default function AIPatentDrafterPage() {
@@ -13,32 +14,32 @@ export default function AIPatentDrafterPage() {
         {
           title: "Specification Generation",
           description: "Automatically generates comprehensive patent specifications from invention disclosures, including detailed descriptions, embodiments, and technical drawings placeholders that meet USPTO and international filing requirements.",
-          icon: "📄",
+          icon: <HiOutlineDocumentText size={20} />,
         },
         {
           title: "Claims Optimization",
           description: "Crafts strategically layered independent and dependent claims with optimal scope, balancing breadth of protection against prior art vulnerability while maintaining clear antecedent basis throughout the claim hierarchy.",
-          icon: "🎯",
+          icon: <HiOutlineAdjustmentsHorizontal size={20} />,
         },
         {
           title: "101 Compliance Engine",
           description: "Proactively analyzes draft applications against Section 101 eligibility requirements, identifying potential abstract idea or natural phenomenon rejections and suggesting technical integration language to strengthen patent eligibility.",
-          icon: "✓",
+          icon: <HiOutlineShieldCheck size={20} />,
         },
         {
           title: "Multi-Jurisdiction Support",
           description: "Generates applications tailored to the specific requirements of USPTO, EPO, JPO, CNIPA, and KIPO, automatically adapting claim formats, unity of invention standards, and disclosure requirements for each jurisdiction.",
-          icon: "🌐",
+          icon: <HiOutlineGlobeAlt size={20} />,
         },
         {
           title: "Prior Art Integration",
           description: "Seamlessly incorporates prior art references into the background section and distinguishes the invention, ensuring the specification adequately addresses the closest prior art while emphasizing novel and non-obvious aspects.",
-          icon: "🔗",
+          icon: <HiOutlineLink size={20} />,
         },
         {
           title: "Auto Formatting",
           description: "Produces applications in patent-office-compliant formats with proper numbering, paragraph referencing, claim dependency notation, and formal language conventions — ready for direct filing without manual reformatting.",
-          icon: "⚙",
+          icon: <HiOutlineCog6Tooth size={20} />,
         },
       ]}
       howItHelps={{

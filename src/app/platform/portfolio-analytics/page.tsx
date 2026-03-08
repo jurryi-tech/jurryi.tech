@@ -1,5 +1,6 @@
 "use client";
 
+import { HiOutlineSquares2X2, HiOutlineBuildingOffice2, HiOutlineMagnifyingGlassCircle, HiOutlineSparkles, HiOutlineArrowTrendingUp, HiOutlineLightBulb } from "react-icons/hi2";
 import PageTemplate from "@/components/ui/PageTemplate";
 
 export default function PortfolioAnalyticsPage() {
@@ -13,32 +14,32 @@ export default function PortfolioAnalyticsPage() {
         {
           title: "Portfolio Heatmaps",
           description: "Generates dynamic visual heatmaps displaying patent density, claim strength, and geographic coverage across technology domains — instantly revealing areas of concentrated protection and vulnerable gaps requiring strategic attention.",
-          icon: "🗾",
+          icon: <HiOutlineSquares2X2 size={20} />,
         },
         {
           title: "Competitive Intelligence",
           description: "Tracks competitor patent activity in real time, analyzing their filing patterns, technology focus areas, and prosecution strategies to provide early warning of competitive threats and opportunities for strategic differentiation.",
-          icon: "🏢",
+          icon: <HiOutlineBuildingOffice2 size={20} />,
         },
         {
           title: "Gap Analysis",
           description: "Identifies critical gaps in your patent coverage by comparing your portfolio against competitor holdings, industry trends, and your own product roadmap — highlighting where new filings would deliver the greatest strategic and commercial value.",
-          icon: "🔎",
+          icon: <HiOutlineMagnifyingGlassCircle size={20} />,
         },
         {
           title: "Valuation Metrics",
           description: "Assigns data-driven valuation estimates to individual patents and portfolio segments based on citation impact, technology relevance, remaining life, claim breadth, and licensing market comparables for informed financial decision-making.",
-          icon: "💎",
+          icon: <HiOutlineSparkles size={20} />,
         },
         {
           title: "Filing Trends",
           description: "Analyzes historical filing patterns across your portfolio and industry to forecast future technology trajectories, identify emerging areas of innovation, and time your filings to maximize strategic positioning and cost efficiency.",
-          icon: "📈",
+          icon: <HiOutlineArrowTrendingUp size={20} />,
         },
         {
           title: "White Space Identification",
           description: "Discovers unpatented technology spaces adjacent to your core innovations where first-mover filing advantages exist, mapping unexplored intersections between technical domains that represent high-value protection opportunities.",
-          icon: "💡",
+          icon: <HiOutlineLightBulb size={20} />,
         },
       ]}
       howItHelps={{

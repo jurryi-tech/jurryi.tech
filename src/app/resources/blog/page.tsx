@@ -1,5 +1,6 @@
 "use client";
 
+import { HiOutlineArrowTrendingUp, HiOutlineSparkles, HiOutlinePencilSquare, HiOutlineMicrophone, HiOutlineNewspaper, HiOutlineEye } from "react-icons/hi2";
 import PageTemplate from "@/components/ui/PageTemplate";
 
 export default function BlogPage() {
@@ -14,37 +15,37 @@ export default function BlogPage() {
           title: "Industry Analysis",
           description:
             "Deep-dive articles exploring trends in patent prosecution, AI-assisted drafting, examiner behavior patterns, and the evolving landscape of intellectual property strategy across technology sectors.",
-          icon: "\u{1F4C8}",
+          icon: <HiOutlineArrowTrendingUp size={20} />,
         },
         {
           title: "Product Updates",
           description:
             "Detailed announcements of new Jurryi features, platform improvements, and capability releases, with practical guidance on how to leverage each update in your daily prosecution workflows.",
-          icon: "\u{1F195}",
+          icon: <HiOutlineSparkles size={20} />,
         },
         {
           title: "Case Studies",
           description:
             "Narrative accounts of how law firms, corporate IP departments, and solo practitioners have used Jurryi to solve specific prosecution challenges and achieve measurable improvements in outcomes.",
-          icon: "\u{1F4DD}",
+          icon: <HiOutlinePencilSquare size={20} />,
         },
         {
           title: "Expert Interviews",
           description:
             "Conversations with leading patent attorneys, former examiners, IP strategists, and technology innovators sharing their perspectives on the future of patent prosecution and intellectual property.",
-          icon: "\u{1F399}\uFE0F",
+          icon: <HiOutlineMicrophone size={20} />,
         },
         {
           title: "Patent Law Changes",
           description:
             "Timely coverage and practical analysis of legislative updates, USPTO rule changes, and judicial decisions that affect patent prosecution practice and portfolio management strategy.",
-          icon: "\u{1F4F0}",
+          icon: <HiOutlineNewspaper size={20} />,
         },
         {
           title: "Technology Trends",
           description:
             "Forward-looking articles examining how emerging technologies — from generative AI to quantum computing — are reshaping patent landscapes and creating new opportunities for innovators.",
-          icon: "\u{1F52E}",
+          icon: <HiOutlineEye size={20} />,
         },
       ]}
       howItHelps={{

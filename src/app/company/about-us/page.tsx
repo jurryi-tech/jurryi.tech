@@ -1,5 +1,6 @@
 "use client";
 
+import { HiOutlineScale, HiOutlineCpuChip, HiOutlineGlobeAlt, HiOutlineAdjustmentsHorizontal, HiOutlineLockClosed, HiOutlineRocketLaunch } from "react-icons/hi2";
 import PageTemplate from "@/components/ui/PageTemplate";
 
 export default function AboutUsPage() {
@@ -14,37 +15,37 @@ export default function AboutUsPage() {
           title: "Founded by Patent Attorneys",
           description:
             "Jurryi was built from the ground up by registered patent attorneys and agents who have spent years navigating the complexities of prosecution before the USPTO and international offices. Every product decision is informed by real-world IP practice.",
-          icon: "⚖",
+          icon: <HiOutlineScale size={20} />,
         },
         {
           title: "AI-First Approach",
           description:
             "Rather than retrofitting legacy tools with superficial automation, we designed our platform with artificial intelligence at its core. Our models are purpose-built for patent language, claim construction, and office action analysis from day one.",
-          icon: "🧠",
+          icon: <HiOutlineCpuChip size={20} />,
         },
         {
           title: "Global Team",
           description:
             "Our multidisciplinary team spans continents, bringing together expertise in patent law, machine learning, natural language processing, and enterprise software engineering to serve a global client base across every major jurisdiction.",
-          icon: "🌐",
+          icon: <HiOutlineGlobeAlt size={20} />,
         },
         {
           title: "Prosecution-Trained Models",
           description:
             "Our AI models are fine-tuned on millions of patent documents, office actions, and prosecution histories. They understand the subtleties of claim language, prior art relevance, and examiner tendencies in ways generic language models cannot.",
-          icon: "🎯",
+          icon: <HiOutlineAdjustmentsHorizontal size={20} />,
         },
         {
           title: "Privacy-First Architecture",
           description:
             "Client confidentiality is non-negotiable in patent practice. Our infrastructure is engineered with zero-knowledge principles, end-to-end encryption, and strict data isolation to ensure that sensitive invention disclosures remain protected at every layer.",
-          icon: "🔒",
+          icon: <HiOutlineLockClosed size={20} />,
         },
         {
           title: "Continuous Innovation",
           description:
             "The patent landscape evolves constantly — and so do we. Our research team continuously advances our models, integrates new data sources, and refines our tools based on feedback from the practitioners who rely on them every day.",
-          icon: "🚀",
+          icon: <HiOutlineRocketLaunch size={20} />,
         },
       ]}
       howItHelps={{

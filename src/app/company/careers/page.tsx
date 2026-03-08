@@ -1,5 +1,6 @@
 "use client";
 
+import { HiOutlineComputerDesktop, HiOutlineDocumentText, HiOutlineHomeModern, HiOutlineSparkles, HiOutlineBookOpen, HiOutlineArrowTrendingUp } from "react-icons/hi2";
 import PageTemplate from "@/components/ui/PageTemplate";
 
 export default function CareersPage() {
@@ -14,37 +15,37 @@ export default function CareersPage() {
           title: "Engineering Roles",
           description:
             "Join our engineering team to build scalable, high-performance systems that process millions of patent documents in real time. We work with modern stacks including Next.js, Python, and cloud-native infrastructure to deliver enterprise-grade AI applications.",
-          icon: "💻",
+          icon: <HiOutlineComputerDesktop size={20} />,
         },
         {
           title: "IP Domain Experts",
           description:
             "We actively seek patent attorneys, agents, and prosecution specialists who want to shape the future of their profession. Your domain knowledge directly informs our product roadmap, model training, and quality benchmarks.",
-          icon: "📜",
+          icon: <HiOutlineDocumentText size={20} />,
         },
         {
           title: "Remote-First Culture",
           description:
             "Our team operates across multiple time zones with a remote-first philosophy. We invest in asynchronous communication, comprehensive documentation, and regular in-person gatherings to maintain strong collaboration without requiring relocation.",
-          icon: "🏠",
+          icon: <HiOutlineHomeModern size={20} />,
         },
         {
           title: "Competitive Compensation",
           description:
             "We offer top-of-market salaries, meaningful equity participation, comprehensive health benefits, and generous paid time off. We believe exceptional talent deserves exceptional compensation — no compromises.",
-          icon: "💎",
+          icon: <HiOutlineSparkles size={20} />,
         },
         {
           title: "Patent Law Training",
           description:
             "Every team member, regardless of role, receives structured training in patent prosecution fundamentals. Understanding the domain we serve makes everyone more effective and ensures our products reflect genuine practitioner needs.",
-          icon: "📚",
+          icon: <HiOutlineBookOpen size={20} />,
         },
         {
           title: "Growth Opportunities",
           description:
             "As a rapidly scaling company, we offer clear paths for career advancement, leadership development, and cross-functional exploration. We promote from within and encourage team members to expand their expertise into adjacent domains.",
-          icon: "📈",
+          icon: <HiOutlineArrowTrendingUp size={20} />,
         },
       ]}
       howItHelps={{

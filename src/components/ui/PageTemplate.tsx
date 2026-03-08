@@ -1,9 +1,10 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, ReactNode } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { HiOutlineScale, HiOutlinePencilAlt, HiOutlineCog } from "react-icons/hi";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -12,7 +13,7 @@ if (typeof window !== "undefined") {
 interface Feature {
   title: string;
   description: string;
-  icon: string;
+  icon: ReactNode;
 }
 
 interface PageTemplateProps {
@@ -47,10 +48,10 @@ const itemVariants = {
 };
 
 const roleCards = [
-  { key: "attorneys", label: "Patent Attorneys", icon: "§" },
-  { key: "drafters", label: "Patent Drafters", icon: "✎" },
-  { key: "engineers", label: "Patent Engineers", icon: "⚙" },
-] as const;
+  { key: "attorneys" as const, label: "Patent Attorneys", icon: <HiOutlineScale size={22} /> },
+  { key: "drafters" as const, label: "Patent Drafters", icon: <HiOutlinePencilAlt size={22} /> },
+  { key: "engineers" as const, label: "Patent Engineers", icon: <HiOutlineCog size={22} /> },
+];
 
 export default function PageTemplate({
   category,

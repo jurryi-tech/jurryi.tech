@@ -1,5 +1,6 @@
 "use client";
 
+import { HiOutlineArrowsRightLeft, HiOutlineArrowsPointingOut, HiOutlineCheckBadge, HiOutlineArrowPath, HiOutlineListBullet, HiOutlineDocumentDuplicate } from "react-icons/hi2";
 import PageTemplate from "@/components/ui/PageTemplate";
 
 export default function ClaimAmendmentEnginePage() {
@@ -13,32 +14,32 @@ export default function ClaimAmendmentEnginePage() {
         {
           title: "Claim Dependency Analysis",
           description: "Maps the complete dependency structure across all claims, identifying critical support chains, potential antecedent basis issues, and orphaned limitations to ensure every amendment maintains structural integrity throughout the claim hierarchy.",
-          icon: "🔀",
+          icon: <HiOutlineArrowsRightLeft size={20} />,
         },
         {
           title: "Broadening & Narrowing",
           description: "Provides calibrated broadening and narrowing recommendations for each claim, quantifying the scope impact of proposed amendments against the prior art landscape and identifying the optimal balance between coverage and allowability.",
-          icon: "↔",
+          icon: <HiOutlineArrowsPointingOut size={20} />,
         },
         {
           title: "112 Compliance",
           description: "Continuously validates all amendments against Section 112 requirements including written description support, enablement, definiteness, and means-plus-function limitations — flagging potential issues before they become examiner rejections.",
-          icon: "✅",
+          icon: <HiOutlineCheckBadge size={20} />,
         },
         {
           title: "Continuation Strategy",
           description: "Recommends strategic continuation, divisional, and CIP filing opportunities based on amendment trajectories, suggesting how to preserve broader claim scope in child applications while securing allowance in the parent case.",
-          icon: "🔄",
+          icon: <HiOutlineArrowPath size={20} />,
         },
         {
           title: "Claim Tree Visualization",
           description: "Renders interactive visual claim trees showing dependency relationships, amendment history, and scope changes over time — providing instant clarity on how each amendment affects the overall claim architecture and protection boundaries.",
-          icon: "🌳",
+          icon: <HiOutlineListBullet size={20} />,
         },
         {
           title: "Amendment History",
           description: "Maintains a complete audit trail of every amendment made throughout prosecution, tracking scope evolution, prosecution history estoppel implications, and the rationale behind each change for future enforcement and licensing analysis.",
-          icon: "📜",
+          icon: <HiOutlineDocumentDuplicate size={20} />,
         },
       ]}
       howItHelps={{

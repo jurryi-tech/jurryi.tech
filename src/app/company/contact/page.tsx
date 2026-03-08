@@ -1,5 +1,6 @@
 "use client";
 
+import { HiOutlineBriefcase, HiOutlineWrench, HiOutlineHandRaised, HiOutlineBuildingOffice2, HiOutlineFilm, HiOutlineChatBubbleLeftRight } from "react-icons/hi2";
 import PageTemplate from "@/components/ui/PageTemplate";
 
 export default function ContactPage() {
@@ -14,37 +15,37 @@ export default function ContactPage() {
           title: "Sales Inquiries",
           description:
             "Connect with our sales team to discuss how Jurryi can be tailored to your firm's specific prosecution workflow. We offer customized pricing for solo practitioners, mid-size firms, and enterprise IP departments, with flexible licensing models designed to scale with your practice.",
-          icon: "💼",
+          icon: <HiOutlineBriefcase size={20} />,
         },
         {
           title: "Technical Support",
           description:
             "Our dedicated support engineers are available to help you resolve any technical issues, from initial setup and configuration to advanced troubleshooting. Enterprise customers receive priority support with guaranteed response times and a dedicated account engineer.",
-          icon: "🔧",
+          icon: <HiOutlineWrench size={20} />,
         },
         {
           title: "Partnership Opportunities",
           description:
             "We actively partner with patent management platforms, docketing systems, law firm technology providers, and IP analytics companies. If you see an opportunity for integration or co-development, our partnerships team would welcome the conversation.",
-          icon: "🤝",
+          icon: <HiOutlineHandRaised size={20} />,
         },
         {
           title: "Enterprise Plans",
           description:
             "Large organizations with complex requirements benefit from our enterprise tier, which includes dedicated infrastructure, custom model fine-tuning, advanced security configurations, and white-glove onboarding managed by our professional services team.",
-          icon: "🏢",
+          icon: <HiOutlineBuildingOffice2 size={20} />,
         },
         {
           title: "Demo Requests",
           description:
             "See Jurryi in action with a personalized demonstration tailored to your practice area and workflow. Our product specialists walk you through real-world scenarios — from claim drafting to office action responses — using examples relevant to your technical domain.",
-          icon: "🎬",
+          icon: <HiOutlineFilm size={20} />,
         },
         {
           title: "Feedback & Suggestions",
           description:
             "Your input directly shapes our product roadmap. We maintain an open feedback channel where customers and prospective users can suggest features, report issues, and vote on upcoming capabilities. Every submission is reviewed by our product team.",
-          icon: "💬",
+          icon: <HiOutlineChatBubbleLeftRight size={20} />,
         },
       ]}
       howItHelps={{

@@ -1,5 +1,6 @@
 "use client";
 
+import { HiOutlineDocumentText, HiOutlineCheckCircle, HiOutlineShieldCheck, HiOutlineBolt, HiOutlineScale, HiOutlineHandRaised } from "react-icons/hi2";
 import PageTemplate from "@/components/ui/PageTemplate";
 
 export default function TermsOfServicePage() {
@@ -14,37 +15,37 @@ export default function TermsOfServicePage() {
           title: "Service Scope & Definitions",
           description:
             "A clear delineation of what the Jurryi platform encompasses, including AI-assisted drafting tools, prior art search capabilities, office action analysis, docketing integrations, and all ancillary features. Every service component is defined precisely so there is no ambiguity about what is covered.",
-          icon: "📄",
+          icon: <HiOutlineDocumentText size={20} />,
         },
         {
           title: "Acceptable Usage Policies",
           description:
             "Our usage policies outline permitted and prohibited activities on the platform, including guidelines for AI-generated content review, responsible use of automated features, rate limits, and restrictions designed to maintain platform integrity and service quality for all users.",
-          icon: "✅",
+          icon: <HiOutlineCheckCircle size={20} />,
         },
         {
           title: "Intellectual Property Ownership",
           description:
             "You retain full ownership of all content you create, upload, or generate using Jurryi. Our terms explicitly confirm that no intellectual property rights in your patent drafts, claims, disclosures, or other work product transfer to Jurryi through your use of the platform.",
-          icon: "©",
+          icon: <HiOutlineShieldCheck size={20} />,
         },
         {
           title: "SLA & Uptime Guarantees",
           description:
             "We commit to 99.9% platform availability backed by financially-supported service level agreements. Our SLA details scheduled maintenance windows, incident response timelines, communication protocols, and the credits or remedies available in the event of service disruptions.",
-          icon: "⚡",
+          icon: <HiOutlineBolt size={20} />,
         },
         {
           title: "Liability Framework",
           description:
             "A balanced liability framework that clearly allocates risk between Jurryi and our users. We stand behind our platform with meaningful warranties while establishing reasonable limitations that reflect the advisory nature of AI-assisted patent prosecution tools.",
-          icon: "⚖",
+          icon: <HiOutlineScale size={20} />,
         },
         {
           title: "Dispute Resolution",
           description:
             "In the event of a disagreement, our terms provide for structured dispute resolution beginning with good-faith negotiation, followed by mediation, and binding arbitration as a final recourse. We prioritize efficient, cost-effective resolution over protracted litigation.",
-          icon: "🤝",
+          icon: <HiOutlineHandRaised size={20} />,
         },
       ]}
       howItHelps={{
