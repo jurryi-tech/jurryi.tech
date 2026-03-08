@@ -30,25 +30,6 @@ const products = [
     badges: ["USPTO", "IPO", "EPO"],
   },
   {
-    title: "Prior Art Search Engine",
-    icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="w-12 h-12">
-        <circle cx="20" cy="20" r="12" stroke="#1A1A1A" strokeWidth="2" fill="none" />
-        <line x1="29" y1="29" x2="40" y2="40" stroke="#1A1A1A" strokeWidth="2.5" strokeLinecap="round" />
-        <circle cx="16" cy="17" r="2" fill="#C8A951" opacity="0.5" />
-        <circle cx="23" cy="15" r="1.5" fill="#C8A951" opacity="0.5" />
-        <circle cx="20" cy="23" r="1.5" fill="#C8A951" opacity="0.5" />
-        <line x1="16" y1="17" x2="23" y2="15" stroke="#C8A951" strokeWidth="0.8" opacity="0.4" />
-        <line x1="23" y1="15" x2="20" y2="23" stroke="#C8A951" strokeWidth="0.8" opacity="0.4" />
-        <line x1="20" y1="23" x2="16" y2="17" stroke="#C8A951" strokeWidth="0.8" opacity="0.4" />
-      </svg>
-    ),
-    description:
-      "Search 147 million+ documents in under 90 seconds. Semantic search, not just keyword matching. Cross-language coverage across 12 languages.",
-    features: "147M+ documents | Semantic search | 12 languages",
-    badges: [],
-  },
-  {
     title: "Office Action Response Generator",
     icon: (
       <svg viewBox="0 0 48 48" fill="none" className="w-12 h-12">
@@ -79,23 +60,6 @@ const products = [
     description:
       "Intelligent claim narrowing and broadening suggestions based on prosecution history analytics. Art Unit-specific optimization.",
     features: "Prosecution analytics | Art Unit data | Claim optimization",
-    badges: [],
-  },
-  {
-    title: "Portfolio Analytics Dashboard",
-    icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="w-12 h-12">
-        <circle cx="24" cy="28" r="14" stroke="#1A1A1A" strokeWidth="1.5" fill="none" />
-        <ellipse cx="24" cy="28" rx="14" ry="5" stroke="#1A1A1A" strokeWidth="1" opacity="0.3" fill="none" />
-        <rect x="8" y="6" width="6" height="16" rx="1" stroke="#C8A951" strokeWidth="1.5" fill="#C8A951" opacity="0.2" />
-        <rect x="16" y="2" width="6" height="20" rx="1" stroke="#C8A951" strokeWidth="1.5" fill="#C8A951" opacity="0.3" />
-        <rect x="24" y="8" width="6" height="14" rx="1" stroke="#C8A951" strokeWidth="1.5" fill="#C8A951" opacity="0.2" />
-        <rect x="32" y="4" width="6" height="18" rx="1" stroke="#C8A951" strokeWidth="1.5" fill="#C8A951" opacity="0.25" />
-      </svg>
-    ),
-    description:
-      "Track your entire patent portfolio across jurisdictions. Deadline management, prosecution status, grant predictions, and competitive intelligence.",
-    features: "Multi-jurisdiction | Deadline tracking | Competitive intel",
     badges: [],
   },
   {
@@ -233,7 +197,7 @@ export default function ProductCards() {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
         >
-          Every Tool a Patent Team Needs
+          Intelligent Drafting Tools
         </motion.h2>
       </div>
 

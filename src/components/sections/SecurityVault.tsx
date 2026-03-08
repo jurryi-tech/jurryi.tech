@@ -9,46 +9,69 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-const securityCards = [
+/* ── How It Works Steps ── */
+const steps = [
   {
-    icon: "lock",
-    title: "Zero-Knowledge Architecture",
+    number: "01",
+    title: "Jurryi goes to Attorney/Inventor\u2019s device",
     description:
-      "Your patent disclosures are processed in encrypted memory and never stored. The system retains no copies of your invention data \u2014 not in logs, not in training data, not anywhere.",
+      "One-time installation. Jurryi Program Module + SLM download from our private cloud server to the end user device. SLM model size is only 2.5 GB for 4 billion parameters and is perfect for iterative reasoning. Reduces Hallucination.",
   },
   {
-    icon: "shield",
-    title: "SOC 2 Type II — In Progress",
+    number: "02",
+    title: "Sandbox Creation (Protection of IP)",
     description:
-      "SOC 2 Type II certification is currently under process. Our security infrastructure is being independently audited to verify controls for data protection, availability, and confidentiality.",
+      "Isolated encrypted sandbox in a specified Installer Directory. No external process can access it. Sandbox gets killed once the drafting process is complete. This protects our own IP plus ensures patent data security.",
   },
   {
-    icon: "key",
-    title: "AES-256 Encryption",
+    number: "03",
+    title: "On-Device Drafting",
     description:
-      "All data in transit and at rest is encrypted using AES-256, the same standard used by intelligence agencies and financial institutions.",
+      "Inventor docs loaded as input. SLM as brain is used for iterative review, read, reason and write process to extract, parse, and convert inventor data into patent-ready format \u2014 entirely on-device. No API calls are ever made to any external AI model\u2019s API Server. 100% Private, Secure and Confidential Patent Drafting Process.",
   },
   {
-    icon: "cloud",
-    title: "Private Cloud Deployment",
+    number: "04",
+    title: "Output & Clean-Up",
     description:
-      "Deploy Jurryi entirely within your own cloud infrastructure. Your data never leaves your environment. Full air-gap capability.",
-  },
-  {
-    icon: "users",
-    title: "Role-Based Access Control",
-    description:
-      "Granular permissions ensure only authorized team members can access specific patent applications, with complete audit trails.",
-  },
-  {
-    icon: "gavel",
-    title: "Attorney-Client Privilege Preserved",
-    description:
-      "Jurryi is designed as a tool under attorney direction \u2014 all outputs are work product under the supervision of a licensed practitioner.",
+      "Patent document outputted. Control Component permanently deletes the entire sandbox \u2014 zero trace.",
   },
 ];
 
-function CardIcon({ type }: { type: string }) {
+/* ── Our Solution Cards ── */
+const solutionCards = [
+  {
+    icon: "lock",
+    title: "On-Device Processing and No API calls.",
+    points: [
+      "Data processed in encrypted memory. Never stored, never logged, never trained on.",
+      "No API-Calling to external AI models",
+    ],
+  },
+  {
+    icon: "shield",
+    title: "No Hallucination due to SLM",
+    points: [
+      "We use SLM as brain for agentic calling for repetitive reasoning and review. Zero Hallucination Guaranteed.",
+    ],
+  },
+  {
+    icon: "server",
+    title: "Provision for Private Cloud Deployment",
+    points: [
+      "Deploy entirely within your own infrastructure. Your data never leaves the premises.",
+      "On Device Processing is the second service we provide for Confidentiality and Privacy of Patents.",
+    ],
+  },
+  {
+    icon: "privilege",
+    title: "Privilege Preserved",
+    points: [
+      "Outputs are work product under attorney direction. Privilege intact.",
+    ],
+  },
+];
+
+function SolutionIcon({ type }: { type: string }) {
   const cls = "w-6 h-6";
   switch (type) {
     case "lock":
@@ -66,23 +89,16 @@ function CardIcon({ type }: { type: string }) {
           <path d="M9 12l2 2 4-4" />
         </svg>
       );
-    case "key":
+    case "server":
       return (
         <svg className={cls} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-          <circle cx="8" cy="15" r="5" />
-          <path d="M11.5 11.5L17 6" />
-          <path d="M17 6h4v4" />
-          <path d="M14 9l3-3" />
+          <rect x="2" y="2" width="20" height="8" rx="2" />
+          <rect x="2" y="14" width="20" height="8" rx="2" />
+          <line x1="6" y1="6" x2="6.01" y2="6" />
+          <line x1="6" y1="18" x2="6.01" y2="18" />
         </svg>
       );
-    case "cloud":
-      return (
-        <svg className={cls} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z" />
-          <path d="M12 12v6M8 16l4-4 4 4" />
-        </svg>
-      );
-    case "users":
+    case "privilege":
       return (
         <svg className={cls} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
           <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
@@ -90,164 +106,18 @@ function CardIcon({ type }: { type: string }) {
           <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
         </svg>
       );
-    case "gavel":
-      return (
-        <svg className={cls} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M14.5 2.5l5 5-1.5 1.5-5-5z" />
-          <path d="M8.5 8.5l5 5-1.5 1.5-5-5z" />
-          <path d="M3 20l3-3M2 22h8M18 6l2-2" />
-        </svg>
-      );
     default:
       return null;
   }
 }
 
-function VaultDoorSVG() {
-  return (
-    <svg
-      viewBox="0 0 400 400"
-      className="w-[280px] h-[280px] md:w-[360px] md:h-[360px]"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      {/* Outer bezel — thick ring */}
-      <circle cx="200" cy="200" r="195" stroke="#3A3A3A" strokeWidth="4" />
-      <circle cx="200" cy="200" r="190" stroke="#C5A44E" strokeWidth="1" opacity="0.5" />
-      <circle cx="200" cy="200" r="185" stroke="#5A5A5A" strokeWidth="2" />
-
-      {/* Machined grooves on bezel */}
-      {Array.from({ length: 72 }).map((_, i) => {
-        const angle = (i * 5 * Math.PI) / 180;
-        const x1 = 200 + Math.cos(angle) * 186;
-        const y1 = 200 + Math.sin(angle) * 186;
-        const x2 = 200 + Math.cos(angle) * 193;
-        const y2 = 200 + Math.sin(angle) * 193;
-        return (
-          <line
-            key={`tick-${i}`}
-            x1={x1} y1={y1} x2={x2} y2={y2}
-            stroke={i % 6 === 0 ? "#C5A44E" : "#4A4A4A"}
-            strokeWidth={i % 6 === 0 ? "1.5" : "0.5"}
-            opacity={i % 6 === 0 ? "0.8" : "0.4"}
-          />
-        );
-      })}
-
-      {/* Door face — main circle */}
-      <circle cx="200" cy="200" r="170" fill="url(#vaultGradient)" stroke="#4A4A4A" strokeWidth="2" />
-
-      {/* Concentric decorative rings */}
-      <circle cx="200" cy="200" r="155" stroke="#3A3A3A" strokeWidth="1" opacity="0.5" />
-      <circle cx="200" cy="200" r="140" stroke="#C5A44E" strokeWidth="0.5" opacity="0.3" />
-      <circle cx="200" cy="200" r="120" stroke="#3A3A3A" strokeWidth="1" opacity="0.4" />
-
-      {/* Bolt holes — 8 around the perimeter */}
-      {Array.from({ length: 8 }).map((_, i) => {
-        const angle = (i * 45 * Math.PI) / 180;
-        const cx = 200 + Math.cos(angle) * 158;
-        const cy = 200 + Math.sin(angle) * 158;
-        return (
-          <g key={`bolt-${i}`}>
-            <circle cx={cx} cy={cy} r="8" fill="#2A2A2A" stroke="#4A4A4A" strokeWidth="1" />
-            <circle cx={cx} cy={cy} r="3" fill="#3A3A3A" />
-            <line
-              x1={cx - 2} y1={cy} x2={cx + 2} y2={cy}
-              stroke="#555" strokeWidth="1"
-            />
-          </g>
-        );
-      })}
-
-      {/* Handle / wheel — three spokes */}
-      <circle cx="200" cy="200" r="70" stroke="#C5A44E" strokeWidth="3" fill="none" />
-      <circle cx="200" cy="200" r="65" stroke="#8B7355" strokeWidth="1" fill="none" opacity="0.5" />
-
-      {/* Spoke 1 */}
-      <line x1="200" y1="130" x2="200" y2="200" stroke="#C5A44E" strokeWidth="4" strokeLinecap="round" />
-      {/* Spoke 2 */}
-      <line x1="139.4" y1="235" x2="200" y2="200" stroke="#C5A44E" strokeWidth="4" strokeLinecap="round" />
-      {/* Spoke 3 */}
-      <line x1="260.6" y1="235" x2="200" y2="200" stroke="#C5A44E" strokeWidth="4" strokeLinecap="round" />
-
-      {/* Spoke handle balls */}
-      <circle cx="200" cy="130" r="6" fill="#C5A44E" />
-      <circle cx="139.4" cy="235" r="6" fill="#C5A44E" />
-      <circle cx="260.6" cy="235" r="6" fill="#C5A44E" />
-
-      {/* Center hub */}
-      <circle cx="200" cy="200" r="25" fill="url(#hubGradient)" stroke="#C5A44E" strokeWidth="2" />
-      <circle cx="200" cy="200" r="15" fill="#1A1A1A" stroke="#8B7355" strokeWidth="1" />
-
-      {/* Keyhole */}
-      <circle cx="200" cy="196" r="4" fill="#C5A44E" opacity="0.8" />
-      <rect x="198" y="198" width="4" height="10" rx="1" fill="#C5A44E" opacity="0.8" />
-
-      {/* Locking bars (visible at edges) */}
-      {[0, 90, 180, 270].map((deg) => {
-        const angle = (deg * Math.PI) / 180;
-        const x = 200 + Math.cos(angle) * 175;
-        const y = 200 + Math.sin(angle) * 175;
-        const w = deg % 180 === 0 ? 20 : 6;
-        const h = deg % 180 === 0 ? 6 : 20;
-        return (
-          <rect
-            key={`bar-${deg}`}
-            x={x - w / 2} y={y - h / 2}
-            width={w} height={h} rx="2"
-            fill="#C5A44E" opacity="0.6"
-          />
-        );
-      })}
-
-      {/* Gradients */}
-      <defs>
-        <radialGradient id="vaultGradient" cx="40%" cy="35%">
-          <stop offset="0%" stopColor="#2E2E2E" />
-          <stop offset="100%" stopColor="#1A1A1A" />
-        </radialGradient>
-        <radialGradient id="hubGradient" cx="40%" cy="35%">
-          <stop offset="0%" stopColor="#3A3A3A" />
-          <stop offset="100%" stopColor="#222222" />
-        </radialGradient>
-      </defs>
-    </svg>
-  );
-}
-
 export default function SecurityVault() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const vaultRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const section = sectionRef.current;
-    const vault = vaultRef.current;
-    if (!section || !vault) return;
-
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        vault,
-        { rotation: 0 },
-        {
-          rotation: 120,
-          ease: "none",
-          scrollTrigger: {
-            trigger: section,
-            start: "top 80%",
-            end: "50% center",
-            scrub: 1,
-          },
-        }
-      );
-    }, section);
-
-    return () => ctx.revert();
-  }, []);
 
   return (
     <section
       ref={sectionRef}
-      className="relative w-full py-24 md:py-32"
+      className="relative w-full"
       style={{ background: "linear-gradient(180deg, #141414 0%, #1A1A1A 50%, #141414 100%)" }}
     >
       {/* Subtle grid overlay */}
@@ -260,69 +130,159 @@ export default function SecurityVault() {
       />
 
       <div className="relative z-10">
-        {/* Title */}
-        <div className="text-center mb-16 px-4">
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="font-mono text-xs tracking-[0.3em] text-[#C5A44E] mb-4 uppercase"
-          >
-            Security Infrastructure
-          </motion.p>
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="font-serif text-4xl md:text-6xl font-bold text-white tracking-wide mb-4"
-          >
-            THE VAULT
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.15 }}
-            className="text-[#8B7355] text-base md:text-lg tracking-wider uppercase font-mono text-sm"
-          >
-            Enterprise-Grade Security Architecture
-          </motion.p>
-        </div>
+        {/* ═══════════════════════════════════════════════ */}
+        {/* SECTION 1: HOW JURRYI WORKS                    */}
+        {/* ═══════════════════════════════════════════════ */}
+        <div className="py-24 md:py-32">
+          {/* Title */}
+          <div className="text-center mb-16 px-4">
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="font-mono text-xs tracking-[0.3em] text-[#C5A44E] mb-4 uppercase"
+            >
+              The Vault
+            </motion.p>
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+              className="font-serif text-3xl md:text-5xl lg:text-6xl font-bold text-white tracking-wide mb-6"
+            >
+              How Jurryi is the world&apos;s most private artificial intelligence?
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.15 }}
+              className="text-[#999] text-base md:text-lg max-w-3xl mx-auto leading-relaxed"
+            >
+              Your invention never leaves your device. Our technology goes to the user&apos;s device, drafts the patent, and leaves. We never collect, store, or transmit any data.
+            </motion.p>
+          </div>
 
-        {/* Vault Door */}
-        <div className="flex justify-center mb-20">
-          <div ref={vaultRef} style={{ transformOrigin: "center center" }}>
-            <VaultDoorSVG />
+          {/* Steps */}
+          <div className="max-w-5xl mx-auto px-4 md:px-8">
+            <div className="relative">
+              {/* Vertical line connecting steps */}
+              <div className="absolute left-[28px] md:left-[32px] top-0 bottom-0 w-[2px] bg-gradient-to-b from-[#C5A44E]/60 via-[#C5A44E]/30 to-transparent" />
+
+              <div className="flex flex-col gap-12">
+                {steps.map((step, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, x: -30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true, amount: 0.3 }}
+                    transition={{ duration: 0.6, delay: i * 0.12 }}
+                    className="flex gap-6 md:gap-8"
+                  >
+                    {/* Step number circle */}
+                    <div className="flex-shrink-0 w-14 h-14 md:w-16 md:h-16 rounded-full bg-[#C5A44E]/10 border-2 border-[#C5A44E] flex items-center justify-center z-10">
+                      <span className="font-serif font-bold text-[#C5A44E] text-lg md:text-xl">
+                        {step.number}
+                      </span>
+                    </div>
+
+                    {/* Content */}
+                    <div className="pt-2 md:pt-3">
+                      <h3 className="text-white font-semibold text-lg md:text-xl mb-3">
+                        {step.title}
+                      </h3>
+                      <p className="text-[#999] text-sm md:text-base leading-relaxed max-w-2xl">
+                        {step.description}
+                      </p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Security Cards Grid */}
-        <div className="max-w-6xl mx-auto px-4 md:px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {securityCards.map((card, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 40 }}
+        {/* ═══════════════════════════════════════════════ */}
+        {/* SECTION 2: OUR SOLUTION                        */}
+        {/* ═══════════════════════════════════════════════ */}
+        <div className="py-24 md:py-32 border-t border-[#2C2C2C]">
+          {/* Title */}
+          <div className="max-w-6xl mx-auto px-4 md:px-8 mb-16">
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.5, delay: i * 0.08 }}
-              className="group rounded-xl p-6 md:p-8 transition-all duration-300 border border-[#2C2C2C] hover:border-[#C5A44E]/40 bg-[#1E1E1E]/80 backdrop-blur-sm"
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="font-mono text-xs tracking-[0.3em] text-[#C5A44E] mb-4 uppercase"
             >
-              <div className="w-10 h-10 rounded-lg bg-[#C5A44E]/10 border border-[#C5A44E]/20 flex items-center justify-center text-[#C5A44E] mb-4">
-                <CardIcon type={card.icon} />
-              </div>
-              <h3 className="text-white font-semibold text-base mb-3">
-                {card.title}
-              </h3>
-              <p className="text-[#999] text-sm leading-relaxed">
-                {card.description}
-              </p>
-            </motion.div>
-          ))}
-        </div>
+              Our Solution
+            </motion.p>
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+              className="font-serif text-3xl md:text-5xl font-bold text-white tracking-wide mb-4"
+            >
+              Built on zero-knowledge architecture.
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.1 }}
+              className="text-[#999] text-base md:text-lg max-w-4xl leading-relaxed"
+            >
+              Our proprietary method drafts patents on inventor/attorney device with no API Calls to any external AI model. We deliver privacy and data security alongside intelligent patent drafting.
+            </motion.p>
+          </div>
 
-        {/* Trust Bar */}
+          {/* Solution Cards — 2x2 grid */}
+          <div className="max-w-6xl mx-auto px-4 md:px-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+            {solutionCards.map((card, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className="rounded-xl p-6 md:p-8 border-l-4 border-[#C5A44E] bg-[#1E1E1E]/80 backdrop-blur-sm"
+              >
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-10 h-10 rounded-lg bg-[#C5A44E]/10 border border-[#C5A44E]/20 flex items-center justify-center text-[#C5A44E]">
+                    <SolutionIcon type={card.icon} />
+                  </div>
+                  <h3 className="text-white font-semibold text-base md:text-lg">
+                    {card.title}
+                  </h3>
+                </div>
+                <ul className="space-y-2 pl-14">
+                  {card.points.map((point, j) => (
+                    <li key={j} className="text-[#999] text-sm leading-relaxed flex items-start gap-2">
+                      <span className="text-[#C5A44E] mt-1.5 flex-shrink-0">•</span>
+                      <span>{point}</span>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Tagline */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.3 }}
+            className="max-w-6xl mx-auto px-4 md:px-8 mt-16"
+          >
+            <p className="font-serif text-xl md:text-2xl italic text-[#C5A44E]">
+              This is not a feature. This is our foundation.
+            </p>
+          </motion.div>
+        </div>
       </div>
     </section>
   );

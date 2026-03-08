@@ -54,8 +54,18 @@ export default function Header() {
           </span>
         </a>
 
-        {/* Spacer */}
-        <div className="hidden lg:block" />
+        {/* Nav Links */}
+        <nav className="hidden lg:flex items-center gap-8">
+          <a href="/how-it-works" className="text-sm font-medium text-[#5A5A5A] hover:text-[#1A1A1A] transition-colors">
+            How It Works
+          </a>
+          <a href="/company/security" className="text-sm font-medium text-[#5A5A5A] hover:text-[#1A1A1A] transition-colors">
+            Security
+          </a>
+          <a href="/company/about-us" className="text-sm font-medium text-[#5A5A5A] hover:text-[#1A1A1A] transition-colors">
+            About
+          </a>
+        </nav>
 
         {/* Right: CTA */}
         <div className="hidden lg:flex items-center gap-6">
@@ -99,6 +109,9 @@ export default function Header() {
         transition={{ duration: 0.3, ease: "easeInOut" }}
       >
         <nav className="flex flex-col gap-4 px-8 py-6">
+          <a href="/how-it-works" className="text-sm font-medium text-[#1A1A1A]">How It Works</a>
+          <a href="/company/security" className="text-sm font-medium text-[#1A1A1A]">Security</a>
+          <a href="/company/about-us" className="text-sm font-medium text-[#1A1A1A]">About</a>
           <a
             href="mailto:contact@jurryi.com?subject=Demo%20Request&body=Hi%20Jurryi%20Team%2C%0A%0AI%20would%20like%20to%20request%20a%20demo.%0A%0AThank%20you."
             className="inline-block text-center bg-[#1A1A1A] text-white px-5 py-2.5 rounded-md text-sm font-medium"

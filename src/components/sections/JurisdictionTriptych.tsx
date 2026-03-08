@@ -202,81 +202,70 @@ function SankeyFlowDiagram() {
   );
 }
 
-function GearSVG({ teeth, innerRadius, outerRadius, toothDepth, color, className }: {
-  teeth: number; innerRadius: number; outerRadius: number; toothDepth: number; color: string; className: string;
-}) {
-  // Build a realistic gear path with involute-style teeth
+// Pre-computed gear path for 10-tooth gear (cx=50, cy=50, outerRadius=28, toothDepth=8)
+// to avoid floating-point hydration mismatches between server and client
+function buildGearPath(teeth: number, outerR: number, toothD: number): string {
   const cx = 50, cy = 50;
-  const pitchRadius = outerRadius - toothDepth / 2;
   const toothAngle = (2 * Math.PI) / teeth;
-  const toothWidth = toothAngle * 0.35; // tooth takes 35% of each slot
-
+  const tw = toothAngle * 0.35;
   let d = "";
   for (let i = 0; i < teeth; i++) {
-    const angle = i * toothAngle;
-    // Root start
-    const r1x = cx + outerRadius * Math.cos(angle - toothWidth);
-    const r1y = cy + outerRadius * Math.sin(angle - toothWidth);
-    // Tip start
-    const t1x = cx + (outerRadius + toothDepth) * Math.cos(angle - toothWidth * 0.7);
-    const t1y = cy + (outerRadius + toothDepth) * Math.sin(angle - toothWidth * 0.7);
-    // Tip end
-    const t2x = cx + (outerRadius + toothDepth) * Math.cos(angle + toothWidth * 0.7);
-    const t2y = cy + (outerRadius + toothDepth) * Math.sin(angle + toothWidth * 0.7);
-    // Root end
-    const r2x = cx + outerRadius * Math.cos(angle + toothWidth);
-    const r2y = cy + outerRadius * Math.sin(angle + toothWidth);
-    // Next root start
-    const nextAngle = (i + 1) * toothAngle;
-    const n1x = cx + outerRadius * Math.cos(nextAngle - toothWidth);
-    const n1y = cy + outerRadius * Math.sin(nextAngle - toothWidth);
-
+    const a = i * toothAngle;
+    const r1x = (cx + outerR * Math.cos(a - tw)).toFixed(2);
+    const r1y = (cy + outerR * Math.sin(a - tw)).toFixed(2);
+    const t1x = (cx + (outerR + toothD) * Math.cos(a - tw * 0.7)).toFixed(2);
+    const t1y = (cy + (outerR + toothD) * Math.sin(a - tw * 0.7)).toFixed(2);
+    const t2x = (cx + (outerR + toothD) * Math.cos(a + tw * 0.7)).toFixed(2);
+    const t2y = (cy + (outerR + toothD) * Math.sin(a + tw * 0.7)).toFixed(2);
+    const r2x = (cx + outerR * Math.cos(a + tw)).toFixed(2);
+    const r2y = (cy + outerR * Math.sin(a + tw)).toFixed(2);
+    const na = (i + 1) * toothAngle;
+    const n1x = (cx + outerR * Math.cos(na - tw)).toFixed(2);
+    const n1y = (cy + outerR * Math.sin(na - tw)).toFixed(2);
     if (i === 0) d += `M ${r1x} ${r1y} `;
     d += `L ${t1x} ${t1y} L ${t2x} ${t2y} L ${r2x} ${r2y} `;
-    // Arc along the root circle to next tooth
-    d += `A ${outerRadius} ${outerRadius} 0 0 1 ${n1x} ${n1y} `;
+    d += `A ${outerR} ${outerR} 0 0 1 ${n1x} ${n1y} `;
   }
-  d += "Z";
+  return d + "Z";
+}
 
+const GEAR_PATH_10 = buildGearPath(10, 28, 8);
+const SPOKE_ANGLES = [0, 120, 240].map((deg) => (deg * Math.PI) / 180);
+
+function GearSVG({ color, className }: { color: string; className: string }) {
   return (
     <svg className={className} viewBox="0 0 100 100" fill="none">
-      {/* Gear body with teeth */}
-      <path d={d} fill={color} fillOpacity="0.12" stroke={color} strokeWidth="1.5" />
-      {/* Inner hub circle */}
-      <circle cx={cx} cy={cy} r={innerRadius} fill={color} fillOpacity="0.06" stroke={color} strokeWidth="1.5" />
-      {/* Center axle hole */}
-      <circle cx={cx} cy={cy} r={5} fill={color} fillOpacity="0.2" stroke={color} strokeWidth="1" />
-      {/* Spokes */}
-      {[0, 120, 240].map((deg) => {
-        const rad = (deg * Math.PI) / 180;
-        return (
-          <line
-            key={deg}
-            x1={cx + 6 * Math.cos(rad)} y1={cy + 6 * Math.sin(rad)}
-            x2={cx + innerRadius * Math.cos(rad)} y2={cy + innerRadius * Math.sin(rad)}
-            stroke={color} strokeWidth="2" strokeOpacity="0.25"
-          />
-        );
-      })}
+      <path d={GEAR_PATH_10} fill={color} fillOpacity="0.12" stroke={color} strokeWidth="1.5" />
+      <circle cx="50" cy="50" r="18" fill={color} fillOpacity="0.06" stroke={color} strokeWidth="1.5" />
+      <circle cx="50" cy="50" r="5" fill={color} fillOpacity="0.2" stroke={color} strokeWidth="1" />
+      {SPOKE_ANGLES.map((rad, i) => (
+        <line
+          key={i}
+          x1={(50 + 6 * Math.cos(rad)).toFixed(2)}
+          y1={(50 + 6 * Math.sin(rad)).toFixed(2)}
+          x2={(50 + 18 * Math.cos(rad)).toFixed(2)}
+          y2={(50 + 18 * Math.sin(rad)).toFixed(2)}
+          stroke={color} strokeWidth="2" strokeOpacity="0.25"
+        />
+      ))}
     </svg>
   );
 }
 
 function ProblemSolutionGears() {
-  // 10 teeth each, offset by half a tooth (18deg) so they mesh
   return (
     <div className="flex items-center justify-center py-8">
       <div className="relative" style={{ width: 130, height: 130 }}>
         <div className="absolute inset-0 animate-spin-slow">
-          <GearSVG teeth={10} innerRadius={18} outerRadius={28} toothDepth={8} color="#1A1A1A" className="w-full h-full" />
+          <GearSVG color="#003399" className="w-full h-full" />
         </div>
-        <span className="absolute inset-0 flex items-center justify-center text-[11px] font-bold uppercase tracking-wider text-[#1A1A1A] pointer-events-none">
+        <span className="absolute inset-0 flex items-center justify-center text-[11px] font-bold uppercase tracking-wider text-[#003399] pointer-events-none">
           Problem
         </span>
       </div>
       <div className="relative -ml-[18px]" style={{ width: 130, height: 130 }}>
         <div className="absolute inset-0 animate-spin-slow-reverse" style={{ animationDelay: "-1s" }}>
-          <GearSVG teeth={10} innerRadius={18} outerRadius={28} toothDepth={8} color="#C5A44E" className="w-full h-full" />
+          <GearSVG color="#C5A44E" className="w-full h-full" />
         </div>
         <span className="absolute inset-0 flex items-center justify-center text-[11px] font-bold uppercase tracking-wider text-[#C5A44E] pointer-events-none">
           Solution

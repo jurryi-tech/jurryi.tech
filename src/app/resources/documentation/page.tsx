@@ -62,7 +62,7 @@ export default function DocumentationPage() {
       ]}
       howItHelps={{
         attorneys:
-          "Rapidly onboard to the platform and discover advanced features that streamline case management, enabling you to focus on high-value legal strategy rather than operational overhead.",
+          "Access proprietary on-device patent drafting technology that keeps your invention details completely private — no data ever reaches an external server, enabling fully confidential patent preparation.",
         drafters:
           "Follow step-by-step workflow guides tailored to patent drafting, ensuring consistent quality and adherence to firm standards across every application you prepare.",
         engineers:

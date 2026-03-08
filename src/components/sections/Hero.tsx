@@ -168,7 +168,7 @@ export default function Hero() {
   }, []);
 
   /* Split pre-headline text into individual chars */
-  const preText = "PATENT PROSECUTION INFRASTRUCTURE";
+  const preText = "INTELLIGENT PATENT DRAFTING";
   const preChars = preText.split("").map((ch, i) => (
     <span key={i} className="pre-char inline-block opacity-0">
       {ch === " " ? "\u00A0" : ch}
@@ -211,7 +211,7 @@ export default function Hero() {
               className="font-serif font-normal text-[#1A1A1A] leading-[1.05]"
               style={{ fontSize: "clamp(3.2rem, 5.5vw, 5.8rem)" }}
             >
-              Draft. Prosecute.
+              Draft. Defend.
             </h1>
             {/* Gold edge line */}
             <div className="absolute right-0 top-0 bottom-0 w-[2px] bg-[#C5A44E]" />
@@ -241,9 +241,9 @@ export default function Hero() {
             ref={subHeadRef}
             className="font-sans text-[18px] font-normal leading-[1.7] text-[#5A5A5A] max-w-[520px] mb-12 opacity-0"
           >
-            Prosecution-ready patent applications from day one. 35 U.S.C. § 101-compliant
-            specifications. Office action responses in minutes, not days. Cut
-            your prosecution costs by 60% while doubling your grant rate.
+            Patents pre-built to withstand rejections — 35 U.S.C. §101, §102, §103, §112
+            and European Articles 52, 54, 56, 83 addressed from the first draft.
+            Private, on-device drafting where your invention never leaves your computer.
           </p>
 
           {/* Stat Trio */}
@@ -251,9 +251,9 @@ export default function Hero() {
             ref={statsRef}
             className="flex items-center flex-wrap gap-y-4 mb-12 opacity-0"
           >
-            <AnimatedStat value={60} suffix="%" label="lower prosecution costs" />
+            <AnimatedStat value={5} suffix="" label="rejection grounds pre-addressed" />
             <GoldSeparator />
-            <AnimatedStat value={84} suffix="%" label="first-action allowance" />
+            <AnimatedStat value={100} suffix="%" label="on-device · zero data leaks" />
             <GoldSeparator />
             <div className="flex flex-col items-start gap-1">
               <span className="font-serif font-bold text-[28px] text-[#1A1A1A]">
@@ -310,7 +310,7 @@ export default function Hero() {
 
             {/* Secondary CTA */}
             <motion.a
-              href="#how-it-works"
+              href="/how-it-works"
               className="relative text-sm font-medium text-[#1A1A1A] group"
               whileHover="hover"
             >
